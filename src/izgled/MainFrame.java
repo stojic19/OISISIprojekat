@@ -1,5 +1,6 @@
 package izgled;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -26,5 +27,9 @@ public class MainFrame extends JFrame{
         JLabel lbl = new JLabel("TO DO:Prikaz entiteta sistema");
         panel.add(lbl);
         
+        Toolbar tb=new Toolbar();
+        add(tb,BorderLayout.NORTH);
+        
+
 	}
 }
