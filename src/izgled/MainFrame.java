@@ -32,5 +32,8 @@ public class MainFrame extends JFrame{
         
         Meni meni = new Meni(this);
 		setJMenuBar(meni);
+		
+		StatusBar sb = new StatusBar();
+		add(sb,BorderLayout.SOUTH);
 	}
 }
