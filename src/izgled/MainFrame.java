@@ -30,6 +30,7 @@ public class MainFrame extends JFrame{
         Toolbar tb=new Toolbar();
         add(tb,BorderLayout.NORTH);
         
-
+        Meni meni = new Meni(this);
+		setJMenuBar(meni);
 	}
 }
