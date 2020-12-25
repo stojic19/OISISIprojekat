@@ -9,24 +9,24 @@ public class Ocena {
 		SEST, SEDAM, OSAM, DEVET, DESET;
 	}
 	
-	//private Student student;
+	private Student student;
 	private Predmet predmet;
 	private VrednostOcene vrednostOcene;
 	private Date datumPolaganja;
 	
 	public Ocena(/*Student student,*/Predmet predmet,VrednostOcene ocena,Date datPol)
 	{
-		//setStudent(student);
+		setStudent(student);
 		setPredmet(predmet);
 		setVrednostOcene(vrednostOcene);
 		setDatumPolaganja(datPol);
 	}
-	/*public Student getStudent() {
+	public Student getStudent() {
 		return student;
 	}
 	public void setStudent(Student student) {
 		this.student = student;
-	}*/
+	}
 	public Predmet getPredmet() {
 		return predmet;
 	}
