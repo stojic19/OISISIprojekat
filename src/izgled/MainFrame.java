@@ -16,7 +16,7 @@ public class MainFrame extends JFrame{
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
         setSize(3*screenWidth / 4, 3*screenHeight / 4);
-        setTitle("Studentska služba");
+        setTitle("Studentska sluï¿½ba");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -35,5 +35,9 @@ public class MainFrame extends JFrame{
 		
 		StatusBar sb = new StatusBar();
 		add(sb,BorderLayout.SOUTH);
+		
+		
+		Tab tab=Tab.getInstance();
+        add(tab,BorderLayout.CENTER);
 	}
 }
