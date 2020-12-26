@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import listeners.window.MyWindowListener;
+
 public class MainFrame extends JFrame{
 	/**
 	 * 
@@ -25,6 +27,10 @@ public class MainFrame extends JFrame{
         setTitle("Studentska služba");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
+        addWindowListener(new MyWindowListener());
+       
+        
         
         JPanel panel = new JPanel();
         panel.setBackground(new Color(155,172,194));
