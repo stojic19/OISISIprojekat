@@ -12,7 +12,7 @@ public class TextFieldFocusListener implements FocusListener {
 	public void focusGained(FocusEvent arg0) {
 
 		JTextField txt = (JTextField) arg0.getComponent();
-		txt.setBackground(Color.CYAN);
+		txt.setBackground(new Color(170, 167, 196));
 		
 	}
 

@@ -5,13 +5,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-
+import table.AbstractTableModelProfesori;
 import table.AbstractTableModelStudenti;
+import table.ProfesoriJTable;
 import table.StudentiJTable;
 
 
@@ -21,6 +21,13 @@ public class Tab extends JTabbedPane{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+private static int selectedIndex1=0;
+	
+public static int getSelectedIndex1() {
+	    System.out.println(String.valueOf(selectedIndex1));
+		return selectedIndex1;
+	}
 	
 private static Tab instance=null;
 
@@ -62,6 +69,8 @@ private static Tab instance=null;
 
 
     }
+
+    
     
     public void azurirajPrikazStudenta(String akcija, int vrednost) {
         AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStudenata.getModel();
@@ -100,5 +109,7 @@ private static Tab instance=null;
 
          this.azurirajPrikazStudenta(null, -1);
      }
+   
+	
 
 }

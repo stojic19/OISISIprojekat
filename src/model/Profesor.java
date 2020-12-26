@@ -61,6 +61,63 @@ public class Profesor {
 		this.titula = titula;
 		this.zvanje = zvanje;
 	}
+	
+	public Titula nadjiTitulu(String titula) {
+		Titula t=null;
+		switch(Integer.parseInt(titula)) {
+		case 0:
+			t =Titula.BSC;
+		
+		    break;
+		case 1:
+		     t=Titula.MSC;
+		     break;
+		     
+		case 2:
+		     t=Titula.MR;
+		     break;
+		case 3:
+		     t=Titula.DR;
+		     break;
+		case 4:
+		     t=Titula.PROFDR;
+		     break;
+		}
+		
+		return t;
+	}
+	public Zvanje nadjiZvanje(String zvanje) {
+		Zvanje z=null;
+		switch(Integer.parseInt(zvanje)) {
+		case 0:
+		     z=Zvanje.SARADNIKUNASTAVI;
+		     break;
+		case 1:
+			 z=Zvanje.ASISTENT;
+		     break;
+		case 2:
+			 z=Zvanje.ASISTENTSADOKTORATOM;
+		     break;
+		case 3:
+			 z=Zvanje.DOCENT;
+		     break;
+		case 4:
+			 z=Zvanje.VANREDNIPROFESOR;
+		     break;
+		case 5:
+			 z=Zvanje.REDOVNIPROFESOR;
+		     break;
+		case 6:
+			 z=Zvanje.PROFESOREMERITUS;
+		     break;
+		case 7:
+			 z=Zvanje.DEKAN;
+		     break;
+		}
+	
+		return z;
+		
+	}
 	public String getPrz() {
 		return prz;
 	}

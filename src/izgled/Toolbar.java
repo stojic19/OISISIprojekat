@@ -5,15 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import listeners.action.NewActionListener;
+
 
 
 public class Toolbar extends JToolBar {
-	Toolbar(){
+	Toolbar(final JFrame parent){
 	    super(SwingConstants.HORIZONTAL);
 	    
 	    JButton btn1 = new JButton();
@@ -21,15 +24,8 @@ public class Toolbar extends JToolBar {
 	    btn1.setIcon(new ImageIcon("slike/plus.png"));
 	    add(btn1);
 	    
-		btn1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Pritisnuto dugme add");
-					
-				
-			}
-		});
+		btn1.addActionListener(new NewActionListener(parent));
+		
 	    addSeparator();
 
 	    JButton btn2 = new JButton();

@@ -1,4 +1,4 @@
-package izgled;
+package table;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -10,8 +10,13 @@ import javax.swing.table.TableCellRenderer;
 
 
 public class ProfesoriJTable extends JTable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	
+
+
 	public ProfesoriJTable() {
         this.setRowSelectionAllowed(true);
         this.setColumnSelectionAllowed(true);

@@ -1,7 +1,7 @@
-/model/
 /controller/
+/dialog/
+/izgled/
 /view/
 /table/
-/izgled/
-/dialog/
 /listeners/
+/model/

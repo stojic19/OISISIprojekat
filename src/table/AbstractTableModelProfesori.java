@@ -1,4 +1,4 @@
-package izgled;
+package table;
 
 import java.text.ParseException;
 
@@ -6,9 +6,11 @@ import javax.swing.table.AbstractTableModel;
 
 import model.BazaProfesora;
 
-public class AbstractTableModelProfesori extends AbstractTableModel {
-
-	@Override
+public class AbstractTableModelProfesori extends AbstractTableModel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public int getRowCount() {
 		// TODO Auto-generated method stub
 		try {

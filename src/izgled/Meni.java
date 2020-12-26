@@ -61,7 +61,7 @@ import listeners.action.NewActionListener;;
 			miAbout.setIcon(new ImageIcon("slike/about_menu.png"));
 			
 			miNew.addActionListener(new NewActionListener(parent));
-			
+		
 			miHelp.addActionListener(new ActionListener() {
 
 				@Override

@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public MainFrame(){
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -27,7 +32,7 @@ public class MainFrame extends JFrame{
         JLabel lbl = new JLabel("TO DO:Prikaz entiteta sistema");
         panel.add(lbl);
         
-        Toolbar tb=new Toolbar();
+        Toolbar tb=new Toolbar(this);
         add(tb,BorderLayout.NORTH);
         
         Meni meni = new Meni(this);
