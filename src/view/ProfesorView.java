@@ -26,6 +26,7 @@ import controller.ProfesoriController;
 import listeners.action.YesNoDialogActionListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.DateKeyListener;
+import listeners.key.IdNumberKeyListener;
 import listeners.key.TelNumKeyListener;
 import model.Profesor;
 
@@ -121,9 +122,10 @@ public class ProfesorView extends JPanel{
 		tfAdrk.addFocusListener(tfFocusListener);
 		
 
-		
+		KeyListener idNumberKeyListener=new  IdNumberKeyListener();
 		lblBrlk = new JLabel("Broj lične karte*");
 		tfBrlk = new JTextField(20);
+		tfBrlk.addKeyListener(idNumberKeyListener);
 		tfBrlk.addFocusListener(tfFocusListener);
 		
 		lblTitula = new JLabel("Titula*");

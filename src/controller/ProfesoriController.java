@@ -56,6 +56,9 @@ public class ProfesoriController {
 		if (datRodj.isEmpty()) {
 			return "Unesite datum rođenja profesora";
 		}
+		if(datRodj.length()!=11){
+			return "Nepravilan format datuma";
+		}
 		if (adrs == null) {
 			return "Unesite adresu stanovanja profesora";
 		}
@@ -88,6 +91,9 @@ public class ProfesoriController {
 		brlk = brlk.trim();
 		if (brlk.isEmpty()) {
 			return "Unesite broj lične karte profesora";
+		}
+		if(brlk.length()<8){
+			return "Broj lične karte ima minimalno 8 karaktera!";
 		}
 		for(Profesor p: checkingList)
 		{
