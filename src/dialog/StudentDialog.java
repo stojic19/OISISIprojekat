@@ -15,10 +15,10 @@ public class StudentDialog extends JDialog{
 	public static final String APP_TITLE = "Dodavanje studenta";
 
 	public StudentDialog(Frame parent) {
-		super(parent, APP_TITLE, false);
+		super(parent, APP_TITLE, true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(400, 400);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(parent);
 
 		StudentView studentView = new StudentView();
 
