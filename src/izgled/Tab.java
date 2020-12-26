@@ -1,12 +1,15 @@
 package izgled;
 
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JPanel;
-
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 
 public class Tab extends JTabbedPane{
@@ -19,26 +22,57 @@ private static Tab instance=null;
         }
         return instance;
     }
+    
+    
+    private Toolkit t=Toolkit.getDefaultToolkit();
+    private Dimension dim=t.getScreenSize();
+	private int w=dim.width*3/4;
+    private int h=dim.height*3/4;
+    
+    
+    private JPanel stud=new JPanel();
+    private JPanel prof=new JPanel();
+    private JPanel pred=new JPanel();
+    
+    //TABELE
+    private JTable tabelaProfesora;
 
     private Tab() {
 
-        Toolkit t=Toolkit.getDefaultToolkit();
-        Dimension dim=t.getScreenSize();
-        int w=dim.width*3/4;
-        int h=dim.height*3/4;
 
-        JPanel stud=new JPanel();
-        JPanel prof=new JPanel();
-        JPanel pred=new JPanel();
         add("Studenti",stud);
         add("Profesori",prof);
+        prikaziTabeluProfesora();
         add("Predmeti",pred);
 
-        // stud.setBackground(new Color(91, 102, 117));
-        // prof.setBackground(new Color(91, 102, 117));
-        // pred.setBackground(new Color(91, 102, 117));
+         stud.setBackground(new Color(91, 102, 117));
+         prof.setBackground(new Color(91, 102, 117));
+         pred.setBackground(new Color(91, 102, 117));
 
 
 
     }
+    
+
+
+
+    public void azurirajPrikazProfesora(String akcija, int vrednost) {
+         AbstractTableModelProfesori model = (AbstractTableModelProfesori) tabelaProfesora.getModel();
+
+         model.fireTableDataChanged();
+         validate();
+     }
+
+   private void prikaziTabeluProfesora() {
+
+   	   tabelaProfesora  = new ProfesoriJTable();
+
+         JScrollPane scrollPane = new JScrollPane(tabelaProfesora);
+         scrollPane.setPreferredSize(new Dimension(w-200,h-200));
+         prof.add(scrollPane, BorderLayout.CENTER);
+
+
+         this.azurirajPrikazProfesora(null, -1);
+     }
+
 }
