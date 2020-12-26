@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 
 import dialog.AboutDialog;
 import dialog.HelpDialog;
+import listeners.action.NewActionListener;;
 
 	public class Meni extends JMenuBar {
 		
@@ -58,6 +59,8 @@ import dialog.HelpDialog;
 			miDelete.setIcon(new ImageIcon("slike/delete_menu.png"));
 			miHelp.setIcon(new ImageIcon("slike/help_menu.png"));
 			miAbout.setIcon(new ImageIcon("slike/about_menu.png"));
+			
+			miNew.addActionListener(new NewActionListener(parent));
 			
 			miHelp.addActionListener(new ActionListener() {
 
