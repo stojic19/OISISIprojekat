@@ -4,6 +4,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 	import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -53,12 +54,12 @@ import listeners.action.NewActionListener;;
 			mEdit.setMnemonic(KeyEvent.VK_E);
 			mHelp.setMnemonic(KeyEvent.VK_H);
 			
-			miNew.setIcon(new ImageIcon("slike/add_menu.jpg"));
-			miClose.setIcon(new ImageIcon("slike/close_menu.png"));
-			miEdit.setIcon(new ImageIcon("slike/edit_menu.png"));
-			miDelete.setIcon(new ImageIcon("slike/delete_menu.png"));
-			miHelp.setIcon(new ImageIcon("slike/help_menu.png"));
-			miAbout.setIcon(new ImageIcon("slike/about_menu.png"));
+			miNew.setIcon(new ImageIcon("slike" + File.separator + "add_menu.jpg"));
+			miClose.setIcon(new ImageIcon("slike" + File.separator + "close_menu.png"));
+			miEdit.setIcon(new ImageIcon("slike" + File.separator + "edit_menu.png"));
+			miDelete.setIcon(new ImageIcon("slike" + File.separator + "delete_menu.png"));
+			miHelp.setIcon(new ImageIcon("slike" + File.separator + "help_menu.png"));
+			miAbout.setIcon(new ImageIcon("slike" + File.separator + "about_menu.png"));
 			
 			miNew.addActionListener(new NewActionListener(parent));
 		
@@ -66,7 +67,6 @@ import listeners.action.NewActionListener;;
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					//JOptionPane.showMessageDialog(null, "");
 					HelpDialog dialog = new HelpDialog(parent,"Help");
 					dialog.setVisible(true);
 				}
@@ -75,7 +75,6 @@ import listeners.action.NewActionListener;;
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					//JOptionPane.showMessageDialog(null, "");
 					AboutDialog dialog = new AboutDialog(parent,"About");
 					dialog.setVisible(true);
 				}

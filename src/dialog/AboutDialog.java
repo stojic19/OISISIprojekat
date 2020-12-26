@@ -8,6 +8,7 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,14 +31,15 @@ public class AboutDialog extends JDialog {
         int screenHeight = screenSize.height;
 		setSize(700, screenHeight/2);
 		setLocationRelativeTo(null);
-		ImageIcon helpIcon = new ImageIcon("slike/about_menu.png");
+		ImageIcon helpIcon = new ImageIcon("slike"+ File.separator + "about_menu.png");
 		setIconImage(helpIcon.getImage());
 		
-		JTextArea JTA = new JTextArea("Verzija 1.00 za Domaci1. Sadrzi samo osnovne elemente koji ce naknadno biti nadogradjeni.\n"
-				+ "Aplikacija je namenjena da olaksa rad studentske sluzbe i da omoguci dodavanje,izmenu i brisanje profesora,sudenata,predmeta.\n"
-				+ "Magdalena Rejin rodjena je u Novom Sadu 1999. godine. Zavrsila je Gimnaziju \"Laza Kostic\". Trenutno studira na Fakultetu tehnickih nauka, smer Racunarstvo i automatika.\n"
-				+ " Aleksa Stojic rodjen je u Novom Sadu 1999. godine. Zavrsio je Gimnaziju \"Jovan Jovanovic Zmaj\". Trenutno studira na Fakultetu tehnickih nauka, smer Racunarstvo i automatika.",20,20);
+		JTextArea JTA = new JTextArea("Verzija 2.00 za Domaći2. Program omogućava prikaz i dodavanje studenata i profesora.\n"
+				+ "Aplikacija je namenjena da olakša rad studentske službe i da omogući dodavanje,izmenu i brisanje profesora, studenata, predmeta.\n"
+				+ "Magdalena Rejin rođena je u Novom Sadu 1999. godine. Završila je Gimnaziju \"Laza Kostić\". Trenutno studira na Fakultetu tehničkih nauka, smer Računarstvo i automatika.\n"
+				+ " Aleksa Stojić rođen je u Novom Sadu 1999. godine. Završio je Gimnaziju \"Jovan Jovanović Zmaj\". Trenutno studira na Fakultetu tehničkih nauka, smer Računarstvo i automatika.",20,20);
 		JTA.setLineWrap(true);
+		JTA.setWrapStyleWord(true);
 		JTA.setEditable(false);
 		JTA.setBackground(new Color(155,172,194));
 		JTA.setSize(400, 350);

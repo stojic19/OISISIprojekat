@@ -8,6 +8,7 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,13 +32,19 @@ public class HelpDialog extends JDialog{
         int screenHeight = screenSize.height;
 		setSize(700, screenHeight/2);
 		setLocationRelativeTo(null);
-		ImageIcon helpIcon = new ImageIcon("slike/help_menu.png");
+		ImageIcon helpIcon = new ImageIcon("slike" + File.separator + "help_menu.png");
 		setIconImage(helpIcon.getImage());
 		
-		JTextArea JTA = new JTextArea("Precice:\nNew - CTRL + N\nClose - CTRL + C\n"
+		JTextArea JTA = new JTextArea("Prečice:\nNew - CTRL + N\nClose - CTRL + C\n"
 				+ "Edit - CTRL + E\nDelete - CTRL + D\nHelp - CTRL + H\nAbout - CTRL + A\n"
-				+ "TO DO: Dodavanje opisa upotrebe same aplikacije.",20,20);
+				+ "U centralnom delu glavnog prozora korisnik može da izvrši pregled podataka o studentima,"
+				+ " profesorima i predmetima.\n Pritiskom na stavku menija new, ikonicu na toolbar-u ili korišćenjem"
+				+ " odgovarajuće prečice, korisnik pokreće dijalog za dodavanje određenog entiteta, u skladu sa trenutno otvorenim tabom.\n"
+				+ " Npr. Ukoliko korisnik želi da doda novog studenta, na glavnom prozoru treba da prikaže tab na kom se nalazi tabela studenata."
+				+ " Nakon toga dijalog za dodavanje studenta pokreće na gore opisan način. Ekvivalentan proces se odvija za "
+				+ "dodavanje profesora, odnosno predmeta.",20,20);
         JTA.setLineWrap(true);
+        JTA.setWrapStyleWord(true);
 		JTA.setEditable(false);
 		JTA.setBackground(new Color(155,172,194));
 		JTA.setSize(400, 350);
