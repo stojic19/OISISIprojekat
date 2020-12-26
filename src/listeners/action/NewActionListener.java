@@ -4,6 +4,7 @@ import izgled.Tab;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 
@@ -19,19 +20,24 @@ public class NewActionListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		switch(Tab.getInstance().getSelectedIndex()){
-		case 0:
-			StudentDialog dialog = new StudentDialog(parent);
-			dialog.setVisible(true);
-			break;
-		case 1:
-			ProfesoriDialog dialog1 = new ProfesoriDialog(parent);
-			dialog1.setVisible(true);
-			break;
-		case 2://TO DO
-			break;
-		default:
+		try {
+			switch(Tab.getInstance().getSelectedIndex()){
+			case 0:
+				StudentDialog dialog = new StudentDialog(parent);
+				dialog.setVisible(true);
 				break;
+			case 1:
+				ProfesoriDialog dialog1 = new ProfesoriDialog(parent);
+				dialog1.setVisible(true);
+				break;
+			case 2://TO DO
+				break;
+			default:
+					break;
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}

@@ -5,10 +5,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+
 import table.AbstractTableModelProfesori;
 import table.AbstractTableModelStudenti;
 import table.ProfesoriJTable;
@@ -31,7 +34,7 @@ public static int getSelectedIndex1() {
 	
 private static Tab instance=null;
 
-    public static Tab getInstance() {
+    public static Tab getInstance() throws ParseException {
         if (instance == null) {
             instance = new Tab();
         }
@@ -53,7 +56,7 @@ private static Tab instance=null;
     private JTable tabelaProfesora;
     private JTable tabelaStudenata;
 
-    private Tab() {
+    private Tab() throws ParseException {
 
 
         add("Studenti",stud);
@@ -98,7 +101,7 @@ private static Tab instance=null;
 
          this.azurirajPrikazProfesora(null, -1);
      }
-   private void prikaziTabeluStudenata() {
+   private void prikaziTabeluStudenata() throws ParseException {
 
    	   tabelaStudenata  = new StudentiJTable();
 
