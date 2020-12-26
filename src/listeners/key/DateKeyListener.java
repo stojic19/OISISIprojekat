@@ -28,7 +28,7 @@ public class DateKeyListener implements KeyListener {
 			txt.setText(txt.getText().substring(0, 5));
 		}
 		else if (txt.getText().length() == 10 && (c!='.')) {
-			JOptionPane.showMessageDialog(null, "Nakon broja dana ide tačka!");
+			JOptionPane.showMessageDialog(null, "Nakon broja godine ide tačka!");
 			txt.setText(txt.getText().substring(0, 10));
 		}
 		else if (txt.getText().length() == 11) {
@@ -81,6 +81,11 @@ public class DateKeyListener implements KeyListener {
 			if(Integer.parseInt(datum)<Integer.parseInt(txt.getText().substring(6, 10)))
 			{
 				JOptionPane.showMessageDialog(null, "Nije moguće uneti datum iz budućnosti!");
+				txt.setText(txt.getText().substring(0, 6));
+			}
+			if(1900>=Integer.parseInt(txt.getText().substring(6, 10)))
+			{
+				JOptionPane.showMessageDialog(null, "Nije moguće uneti datum raniji od 1900. godine!");
 				txt.setText(txt.getText().substring(0, 6));
 			}
 		}

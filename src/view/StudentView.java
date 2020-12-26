@@ -139,9 +139,8 @@ public class StudentView extends JPanel {
 			}
 		});
 
-		// pnlOK = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		btnOK = new JButton("Potvrdi");
-		btnOK.setBackground(Color.CYAN);
+		btnOK.setBackground(new Color(170, 167, 196));
 		btnOK.addActionListener(new ActionListener() {
 
 			@Override
