@@ -3,6 +3,8 @@ package izgled;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +23,7 @@ public class Toolbar extends JToolBar {
 	    
 	    JButton btn1 = new JButton();
 	    btn1.setToolTipText("Add");
-	    btn1.setIcon(new ImageIcon("slike/plus.png"));
+	    btn1.setIcon(new ImageIcon("slike" + File.separator + "plus.png"));
 	    add(btn1);
 	    
 		btn1.addActionListener(new NewActionListener(parent));
@@ -30,7 +32,7 @@ public class Toolbar extends JToolBar {
 
 	    JButton btn2 = new JButton();
 	    btn2.setToolTipText("Edit");
-	    btn2.setIcon(new ImageIcon("slike/edit.png"));
+	    btn2.setIcon(new ImageIcon("slike" + File.separator + "edit.png"));
 	    add(btn2);
 	    
 		btn2.addActionListener(new ActionListener() {
@@ -47,7 +49,7 @@ public class Toolbar extends JToolBar {
 
 	    JButton btn3 = new JButton();
 	    btn3.setToolTipText("Delete");
-	    btn3.setIcon(new ImageIcon("slike/delete.png"));
+	    btn3.setIcon(new ImageIcon("slike" + File.separator + "delete.png"));
 	    add(btn3);
 		btn3.addActionListener(new ActionListener() {
 			
