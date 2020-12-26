@@ -11,9 +11,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import table.AbstractTableModelStudenti;
+import table.StudentiJTable;
+
 
 public class Tab extends JTabbedPane{
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 private static Tab instance=null;
 
     public static Tab getInstance() {
@@ -36,11 +44,13 @@ private static Tab instance=null;
     
     //TABELE
     private JTable tabelaProfesora;
+    private JTable tabelaStudenata;
 
     private Tab() {
 
 
         add("Studenti",stud);
+        prikaziTabeluStudenata();
         add("Profesori",prof);
         prikaziTabeluProfesora();
         add("Predmeti",pred);
@@ -53,7 +63,12 @@ private static Tab instance=null;
 
     }
     
+    public void azurirajPrikazStudenta(String akcija, int vrednost) {
+        AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStudenata.getModel();
 
+        model.fireTableDataChanged();
+        validate();
+    }
 
 
     public void azurirajPrikazProfesora(String akcija, int vrednost) {
@@ -73,6 +88,17 @@ private static Tab instance=null;
 
 
          this.azurirajPrikazProfesora(null, -1);
+     }
+   private void prikaziTabeluStudenata() {
+
+   	   tabelaStudenata  = new StudentiJTable();
+
+         JScrollPane scrollPane = new JScrollPane( tabelaStudenata);
+         scrollPane.setPreferredSize(new Dimension(w-200,h-200));
+         stud.add(scrollPane, BorderLayout.CENTER);
+
+
+         this.azurirajPrikazStudenta(null, -1);
      }
 
 }
