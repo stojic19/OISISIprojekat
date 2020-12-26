@@ -90,7 +90,7 @@ private static Tab instance=null;
          validate();
      }
 
-   private void prikaziTabeluProfesora() {
+   private void prikaziTabeluProfesora() throws ParseException {
 
    	   tabelaProfesora  = new ProfesoriJTable();
 

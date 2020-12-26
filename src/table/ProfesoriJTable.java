@@ -3,10 +3,16 @@ package table;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.text.ParseException;
 
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
+
+import model.BazaProfesora;
+
 
 
 public class ProfesoriJTable extends JTable {
@@ -17,13 +23,18 @@ public class ProfesoriJTable extends JTable {
 
 
 
-	public ProfesoriJTable() {
+	public ProfesoriJTable() throws ParseException {
         this.setRowSelectionAllowed(true);
         this.setColumnSelectionAllowed(true);
         this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.getTableHeader().setBackground(new Color(170, 167, 196));
         this.getTableHeader().setFont(this.getTableHeader().getFont().deriveFont(Font.BOLD));
         this.setModel(new AbstractTableModelProfesori());
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+		for(int i = 0;i < BazaProfesora.getInstance().getColumnCount();i++)
+		this.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
     }
 	
 	
