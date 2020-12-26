@@ -35,11 +35,17 @@ import dialog.HelpDialog;
 			JMenuItem miHelp = new JMenuItem("Help");
 			JMenuItem miAbout = new JMenuItem("About");
 			
+			miNew.setMnemonic(KeyEvent.VK_N);
 			miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+			miClose.setMnemonic(KeyEvent.VK_C);
 			miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+			miEdit.setMnemonic(KeyEvent.VK_E);
 			miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+			miDelete.setMnemonic(KeyEvent.VK_D);
 			miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+			miHelp.setMnemonic(KeyEvent.VK_H);
 			miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+			miAbout.setMnemonic(KeyEvent.VK_A);
 			miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 			
 			mFile.setMnemonic(KeyEvent.VK_F);

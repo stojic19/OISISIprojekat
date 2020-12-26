@@ -30,7 +30,7 @@ public class StatusBar extends JPanel implements ActionListener{
         int screenWidth = screenSize.width;
         
         statusBar.setPreferredSize(new Dimension(3*screenWidth/4,screenHeight/9));
-        JLabel ime = new JLabel("Studentska sluzba");
+        JLabel ime = new JLabel("Studentska služba");
        
         final JLabel datum = new JLabel();
     	//SimpleDateFormat dateFormat = new SimpleDateFormat( "HH:mm  dd.MM.yyyy." );
