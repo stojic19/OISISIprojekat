@@ -12,8 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import table.AbstractTableModelPredmeti;
 import table.AbstractTableModelProfesori;
 import table.AbstractTableModelStudenti;
+import table.PredmetiJTable;
 import table.ProfesoriJTable;
 import table.StudentiJTable;
 
@@ -55,7 +57,7 @@ private static Tab instance=null;
     //TABELE
     private JTable tabelaProfesora;
     private JTable tabelaStudenata;
-
+    private JTable tabelaPredmeta;
     private Tab() throws ParseException {
 
 
@@ -64,7 +66,7 @@ private static Tab instance=null;
         add("Profesori",prof);
         prikaziTabeluProfesora();
         add("Predmeti",pred);
-
+        prikaziTabeluPredmeta();
          stud.setBackground(new Color(91, 102, 117));
          prof.setBackground(new Color(91, 102, 117));
          pred.setBackground(new Color(91, 102, 117));
@@ -89,6 +91,12 @@ private static Tab instance=null;
          model.fireTableDataChanged();
          validate();
      }
+    public void azurirajPrikazPredmeta(String akcija, int vrednost) {
+        AbstractTableModelPredmeti model = (AbstractTableModelPredmeti) tabelaPredmeta.getModel();
+
+        model.fireTableDataChanged();
+        validate();
+    }
 
    private void prikaziTabeluProfesora() throws ParseException {
 
@@ -111,6 +119,17 @@ private static Tab instance=null;
 
 
          this.azurirajPrikazStudenta(null, -1);
+     }
+   private void prikaziTabeluPredmeta() throws ParseException {
+
+   	   tabelaPredmeta  = new PredmetiJTable();
+
+         JScrollPane scrollPane = new JScrollPane( tabelaPredmeta);
+         scrollPane.setPreferredSize(new Dimension(w-200,h-200));
+         pred.add(scrollPane, BorderLayout.CENTER);
+
+
+         this.azurirajPrikazPredmeta(null, -1);
      }
    
 	
