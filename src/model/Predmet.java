@@ -3,20 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-enum Semestar{
-	LETNJI(0),ZIMSKI(1);
-	int s;
-	private Semestar() {}
-	private Semestar(int i) {
-		this.s=i;
-	}
-	
-    private String[] semestar= {"Letnji","Zimski"};
-	
-	public String toString(){
-		return semestar[this.ordinal()];
-	}
-}
 public class Predmet {
        private String spr;
        private String naziv;
@@ -24,27 +10,40 @@ public class Predmet {
        private int godina;
        private Profesor profesor;
        private int espb;
-       private List<Student> polozili= new ArrayList<Student>();
-       private List<Student> nisuPolozili= new ArrayList<Student>();
+       private List<Student> polozili;
+       private List<Student> nisuPolozili;
        
-       
+       public enum Semestar{
+    		LETNJI(0),ZIMSKI(1);
+    		int s;
+    		private Semestar() {}
+    		private Semestar(int i) {
+    			this.s=i;
+    		}
+    		
+    	    private String[] semestar= {"Letnji","Zimski"};
+    		
+    		public String toString(){
+    			return semestar[this.ordinal()];
+    		}
+       }
 	public Predmet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Predmet(String spr, String naziv, Semestar semestar, int godina, Profesor profesor, int espb,
-			List<Student> polozili, List<Student> nisuPolozili) {
+	public Predmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
 		super();
 		this.spr = spr;
 		this.naziv = naziv;
 		this.semestar = semestar;
 		this.godina = godina;
-		this.profesor = profesor;
+		this.profesor = null;
 		this.espb = espb;
-		this.polozili = polozili;
-		this.nisuPolozili = nisuPolozili;
+		
+		polozili= new ArrayList<Student>();
+		nisuPolozili= new ArrayList<Student>();
 	}
 
 

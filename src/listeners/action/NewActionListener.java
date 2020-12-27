@@ -8,6 +8,7 @@ import java.text.ParseException;
 
 import javax.swing.JFrame;
 
+import dialog.PredmetDialog;
 import dialog.ProfesoriDialog;
 import dialog.StudentDialog;
 
@@ -30,7 +31,9 @@ public class NewActionListener implements ActionListener{
 				ProfesoriDialog dialog1 = new ProfesoriDialog(parent);
 				dialog1.setVisible(true);
 				break;
-			case 2://TO DO
+			case 2:
+				PredmetDialog dialog2 = new PredmetDialog(parent);
+				dialog2.setVisible(true);
 				break;
 			default:
 					break;

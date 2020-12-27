@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Predmet.Semestar;
+
 public class BazaPredmeta {
 	private static BazaPredmeta instance = null;
 
@@ -20,7 +22,7 @@ public class BazaPredmeta {
 	private BazaPredmeta() {
 	   
 	
-		initProfesore();
+		initPredmete();
 
 		this.kolone.add("Šifra");
 		this.kolone.add("Naziv");
@@ -29,25 +31,14 @@ public class BazaPredmeta {
 		this.kolone.add("Semestar");
 	}
 
-	
-	  private String spr;
-      private String naziv;
-      private Semestar semestar;
-      private int godina;
-      private Profesor profesor;
-      private int espb;
-      private List<Student> polozili= new ArrayList<Student>();
-      private List<Student> nisuPolozili= new ArrayList<Student>();
-
-
-	private void initProfesore() {
+	private void initPredmete() {
 			
-			Predmet p1= new Predmet("E11","Algebra",Semestar.ZIMSKI,1,new Profesor(),8,new ArrayList<Student>(),new ArrayList<Student>());
-			Predmet p2= new Predmet("E12","Matematička analiza 1",Semestar.ZIMSKI,1,new Profesor(),8,new ArrayList<Student>(),new ArrayList<Student>());
-			Predmet p3= new Predmet("E11","Arhitektura računara",Semestar.LETNJI,1,new Profesor(),8,new ArrayList<Student>(),new ArrayList<Student>());
-			Predmet p4= new Predmet("E11","Matematička analiza 2",Semestar.ZIMSKI,2,new Profesor(),8,new ArrayList<Student>(),new ArrayList<Student>());
-			Predmet p5= new Predmet("E11","Sociologija",Semestar.LETNJI,2,new Profesor(),3,new ArrayList<Student>(),new ArrayList<Student>());
-			Predmet p6= new Predmet("E11","Programski prevodioci",Semestar.ZIMSKI,3,new Profesor(),3,new ArrayList<Student>(),new ArrayList<Student>());
+			Predmet p1= new Predmet("E11","Algebra",Predmet.Semestar.ZIMSKI,1,8);
+			Predmet p2= new Predmet("E12","Matematička analiza 1",Predmet.Semestar.ZIMSKI,1,8);
+			Predmet p3= new Predmet("E11","Arhitektura računara",Predmet.Semestar.LETNJI,1,8);
+			Predmet p4= new Predmet("E11","Matematička analiza 2",Predmet.Semestar.ZIMSKI,2,8);
+			Predmet p5= new Predmet("E11","Sociologija",Predmet.Semestar.LETNJI,2,3);
+			Predmet p6= new Predmet("E11","Programski prevodioci",Predmet.Semestar.ZIMSKI,3,3);
 			predmeti.add(p1);
 			predmeti.add(p2);
 			predmeti.add(p3);
@@ -98,5 +89,29 @@ public class BazaPredmeta {
 		}
 	}
 	
+	public void addPredmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
+		this.predmeti.add(new Predmet(spr, naziv, semestar, godina, espb));
+	}
+
+	public void removePredmet(String spr) {
+		for (Predmet p : predmeti) {
+			if (p.getSpr() == spr) {
+				predmeti.remove(p);
+				break;
+			}
+		}
+	}
+
+	public void editPredmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
+		for (Predmet p : predmeti) {
+			if (p.getSpr().compareTo(spr) == 0){
+				p.setSpr(spr);
+				p.setNaziv(naziv);
+				p.setSemestar(semestar);
+				p.setGodina(godina);
+				p.setEspb(espb);
+			}
+		}
+	}
 
 }

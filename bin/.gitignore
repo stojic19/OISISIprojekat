@@ -1,3 +1,5 @@
-/table/
 /model/
-/izgled/
+/controller/
+/view/
+/dialog/
+/listeners/
