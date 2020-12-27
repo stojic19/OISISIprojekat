@@ -209,6 +209,14 @@ private static StudentiController instance = null;
 		//studentView.refreshView();
 		return "Student uspešno izmenjen";
 	}
+	public void removeStudent(int rowSelectedIndex) throws ParseException {
+    	if (rowSelectedIndex < 0) {
+			return;
+		}
+    	Student student = BazaStudenata.getInstance().getRow(rowSelectedIndex);
+		BazaStudenata.getInstance().removeStudent(student.getBrojIndeksa());
+		Tab.getInstance().azurirajPrikazStudenta("UKLONJEN", rowSelectedIndex);
+    }
 	public StudentView getStudentView() {
 		return studentView;
 	}

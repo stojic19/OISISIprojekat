@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 
 import dialog.AboutDialog;
 import dialog.HelpDialog;
+import listeners.action.DeleteActionListener;
 import listeners.action.EditActionListener;
 import listeners.action.NewActionListener;;
 
@@ -65,6 +66,8 @@ import listeners.action.NewActionListener;;
 			miNew.addActionListener(new NewActionListener(parent));
 			
 			miEdit.addActionListener(new EditActionListener(parent));
+			
+			miDelete.addActionListener(new DeleteActionListener(parent));
 			
 			miHelp.addActionListener(new ActionListener() {
 
