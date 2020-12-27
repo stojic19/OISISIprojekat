@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
+import controller.ProfesoriController;
 import controller.StudentiController;
 
 public class DeleteActionListener implements ActionListener{
@@ -37,7 +38,13 @@ public class DeleteActionListener implements ActionListener{
 				}
 				break;
 			case 1:
-				//TO DO: brisanje profesora
+				code = JOptionPane.showOptionDialog(parent ,"Da li ste sigurni da želite da obrišete profesora?","Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, mess, null);
+				if(code == JOptionPane.YES_OPTION){
+					ProfesoriController.getInstance().removeProfesor(Tab.getInstance().getTabelaProfesora().getSelectedRow());
+					parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				}else{
+					parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				}
 				break;
 			case 2:
 				//TO DO: brisanje predmeta

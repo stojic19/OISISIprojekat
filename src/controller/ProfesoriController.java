@@ -3,6 +3,7 @@ package controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
 import izgled.Tab;
 import model.BazaProfesora;
 import model.Profesor;
@@ -109,6 +110,14 @@ public class ProfesoriController {
 		Tab.getInstance().azurirajPrikazProfesora("DODAT", -1);
 		return "Profesor uspešno dodat";
 	}
+	public void removeProfesor(int rowSelectedIndex) throws ParseException {
+    	if (rowSelectedIndex < 0) {
+			return;
+		}
+    	Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
+		BazaProfesora.getInstance().removeProfesor(profesor.getBrlk());
+		Tab.getInstance().azurirajPrikazProfesora("UKLONJEN", rowSelectedIndex);
+    }
 	public ProfesorView getProfesorView() {
 		return profesorView;
 	}

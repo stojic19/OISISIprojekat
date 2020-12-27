@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import model.Student.Finansiranje;
-
 public class BazaProfesora {
 	private static BazaProfesora instance = null;
 
@@ -93,6 +91,15 @@ public class BazaProfesora {
 	
 	public void addProfesor(String prz,String ime,Date datRodj,String adresa,String brojTel,String email,String Adrk,String brlk,Titula t,Zvanje z) {
 		this.profesori.add(new Profesor(prz,ime,datRodj,adresa,brojTel,email,Adrk,brlk,t,z));
+	}
+	
+	public void removeProfesor(String brLK) {
+		for (Profesor p : profesori) {
+			if (p.getBrlk().compareTo(brLK)==0) {
+				profesori.remove(p);
+				break;
+			}
+		}
 	}
 }
 

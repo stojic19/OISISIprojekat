@@ -142,11 +142,15 @@ public void setTabelaStudenata(JTable tabelaStudenata) {
 public JTable getTabelaPredmeta() {
 	return tabelaPredmeta;
 }
-
-
-
 public void setTabelaPredmeta(JTable tabelaPredmeta) {
 	this.tabelaPredmeta = tabelaPredmeta;
+}
+
+public JTable getTabelaProfesora() {
+	return tabelaProfesora;
+}
+public void setTabelaProfesora(JTable tabelaProfesora) {
+	this.tabelaProfesora = tabelaProfesora;
 }
    	
 }
