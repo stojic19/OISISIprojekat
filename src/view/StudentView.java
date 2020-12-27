@@ -27,6 +27,7 @@ import listeners.focus.TextFieldFocusListener;
 import listeners.key.DateKeyListener;
 import listeners.key.TelNumKeyListener;
 import listeners.key.YearKeyListener;
+import model.BazaStudenata;
 import model.Student;
 import controller.StudentiController;
 
@@ -65,19 +66,19 @@ public class StudentView extends JPanel {
 	private JButton btnOK;
 	private JButton btnCANCEL;
 	
-	public StudentView(Student student) {
-		initGUI();
+	public StudentView(int selRow) throws ParseException {
+		initGUI(true);
 		constructGUI();
 
-		setStudent(student);
+		setStudent(BazaStudenata.getInstance().getRow(selRow));
 	}
 	public StudentView()
 	{
-		initGUI();
+		initGUI(false);
 		constructGUI();
 	}
 
-	private void initGUI() {
+	private void initGUI(boolean update) {
 		setLayout(new BorderLayout());
 
 		pnlContent = new JPanel(new GridBagLayout());
@@ -135,8 +136,11 @@ public class StudentView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				YesNoDialogActionListener dialog = new YesNoDialogActionListener();
-				dialog.actionPerformed(e,"Prekid unosa?","Da li ste sigurni da želite da prekinete dodavanje studenta?");
-			}
+				if(!update)
+					dialog.actionPerformed(e,"Prekid unosa?","Da li ste sigurni da želite da prekinete dodavanje studenta?");
+					else
+					dialog.actionPerformed(e,"Prekid izmene?","Da li ste sigurni da želite da prekinete izmenu podataka o studentu?");
+				}
 		});
 
 		btnOK = new JButton("Potvrdi");
@@ -146,7 +150,7 @@ public class StudentView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ok();
+					ok(update);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -259,7 +263,7 @@ public class StudentView extends JPanel {
 			cbFinan.setSelectedIndex(1);
 	}
 
-	private void ok() throws ParseException {
+	private void ok(boolean update) throws ParseException {
 		
 		String ime = tfFirstName.getText();
 		String prez = tfLastName.getText();
@@ -276,13 +280,17 @@ public class StudentView extends JPanel {
 			studentController = new StudentiController(this);
 		}
 		
-		String message = studentController.addStudent(ime,prez,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin);
-
+		String message;
+		if(!update)
+		{message = studentController.addStudent(ime,prez,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin);}
+		else
+		{message = studentController.updateStudent(ime,prez,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin,student.getBrojIndeksa());}
+		
 		Window parent = SwingUtilities.getWindowAncestor(this);
 		
 		JOptionPane.showMessageDialog(parent, message);
 		
-		if(message=="Student uspešno dodat")
+		if(message=="Student uspešno dodat" || message =="Student uspešno izmenjen")
 			parent.setVisible(false);
 	}
 

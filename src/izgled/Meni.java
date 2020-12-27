@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 
 import dialog.AboutDialog;
 import dialog.HelpDialog;
+import listeners.action.EditActionListener;
 import listeners.action.NewActionListener;;
 
 	public class Meni extends JMenuBar {
@@ -62,7 +63,9 @@ import listeners.action.NewActionListener;;
 			miAbout.setIcon(new ImageIcon("slike" + File.separator + "about_menu.png"));
 			
 			miNew.addActionListener(new NewActionListener(parent));
-		
+			
+			miEdit.addActionListener(new EditActionListener(parent));
+			
 			miHelp.addActionListener(new ActionListener() {
 
 				@Override

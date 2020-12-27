@@ -38,7 +38,6 @@ public class BazaStudenata {
 	private void initStudente() throws ParseException {
 		this.studenti = new ArrayList<Student>();
 		
-		//addStudenta(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin)
 		studenti.add(new Student("Magdalena", "Reljin",new SimpleDateFormat("dd.MM.yyyy").parse("07.08.1978."), "Bulevar Severne Armije 45", "021021021", "adresa", "RA82/2018", 2018, 3 , Finansiranje.B));
 		studenti.add(new Student("Nenad", "Jecković",new SimpleDateFormat("dd.MM.yyyy").parse("17.08.1979."), "Bulevar Severne Armije 45", "021021021", "adresa", "RA85/2018", 2018, 2 , Finansiranje.S));
 		studenti.add(new Student("Anja", "Tanović",new SimpleDateFormat("dd.MM.yyyy").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "EE49/2018", 2018, 3 , Finansiranje.B));
@@ -112,9 +111,9 @@ public class BazaStudenata {
 		}
 	}
 
-	public void editStudent(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin) {
+	public void editStudent(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin,String stariBrInd) {
 		for (Student s : studenti) {
-			if (s.getBrojIndeksa() == brIndeksa) {
+			if (0==s.getBrojIndeksa().compareTo(stariBrInd)) {
 				s.setPrezime(prezime);
 				s.setIme(ime);
 				s.setDatum(datRodj);
@@ -124,6 +123,7 @@ public class BazaStudenata {
 				s.setGodinaUpisa(godUpisa);
 				s.setTrenutnaGodinaStudija(trenGodStud);
 				s.setStatus(nacin);
+				s.setBrojIndeksa(brIndeksa);
 			}
 		}
 	}

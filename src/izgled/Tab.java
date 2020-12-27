@@ -131,7 +131,12 @@ private static Tab instance=null;
 
          this.azurirajPrikazPredmeta(null, -1);
      }
-   
-	
 
+public JTable getTabelaStudenata() {
+	return tabelaStudenata;
+}
+public void setTabelaStudenata(JTable tabelaStudenata) {
+	this.tabelaStudenata = tabelaStudenata;
+}
+   	
 }

@@ -8,14 +8,12 @@ import java.text.ParseException;
 
 import javax.swing.JFrame;
 
-import dialog.PredmetDialog;
-import dialog.ProfesoriDialog;
 import dialog.StudentDialog;
 
-public class NewActionListener implements ActionListener{
-
+public class EditActionListener implements ActionListener {
+	
 	final JFrame parent;
-	public NewActionListener(final JFrame parent){
+	public EditActionListener(final JFrame parent){
 		this.parent = parent;
 	}
 	@Override
@@ -24,16 +22,16 @@ public class NewActionListener implements ActionListener{
 		try {
 			switch(Tab.getInstance().getSelectedIndex()){
 			case 0:
-				StudentDialog dialog = new StudentDialog(parent);
+				if(Tab.getInstance().getTabelaStudenata().getSelectedRow() >= 0){
+				StudentDialog dialog = new StudentDialog(parent,Tab.getInstance().getTabelaStudenata().getSelectedRow());
 				dialog.setVisible(true);
+				}
 				break;
 			case 1:
-				ProfesoriDialog dialog1 = new ProfesoriDialog(parent);
-				dialog1.setVisible(true);
+				//TO DO: izmena profesora
 				break;
 			case 2:
-				PredmetDialog dialog2 = new PredmetDialog(parent);
-				dialog2.setVisible(true);
+				//TO DO: izmena predmeta
 				break;
 			default:
 					break;
@@ -42,6 +40,5 @@ public class NewActionListener implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 }

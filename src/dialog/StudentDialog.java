@@ -1,9 +1,13 @@
 package dialog;
 
+import java.awt.BorderLayout;
 import java.awt.Frame;
+import java.text.ParseException;
 
 import javax.swing.JDialog;
+import javax.swing.JTabbedPane;
 
+import tabs.StudentDialogTab;
 import view.StudentView;
 
 public class StudentDialog extends JDialog{
@@ -12,10 +16,9 @@ public class StudentDialog extends JDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final String APP_TITLE = "Dodavanje studenta";
-
+	
 	public StudentDialog(Frame parent) {
-		super(parent, APP_TITLE, true);
+		super(parent, "Dodavanje studenta", true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(400, 400);
 		setLocationRelativeTo(parent);
@@ -25,5 +28,19 @@ public class StudentDialog extends JDialog{
 		add(studentView);
 		
 	}
+	public StudentDialog(Frame parent,int selRow) throws ParseException {
+		super(parent, "Izmena studenta", true);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setSize(400, 450);
+		setLocationRelativeTo(parent);
+
+		JTabbedPane tabStud = new StudentDialogTab(selRow);
+		
+		add(tabStud,BorderLayout.CENTER);
+	}
+	/*
+	
+	 * 
+	 */
 
 }
