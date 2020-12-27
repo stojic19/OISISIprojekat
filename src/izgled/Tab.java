@@ -138,5 +138,15 @@ public JTable getTabelaStudenata() {
 public void setTabelaStudenata(JTable tabelaStudenata) {
 	this.tabelaStudenata = tabelaStudenata;
 }
+
+public JTable getTabelaPredmeta() {
+	return tabelaPredmeta;
+}
+
+
+
+public void setTabelaPredmeta(JTable tabelaPredmeta) {
+	this.tabelaPredmeta = tabelaPredmeta;
+}
    	
 }

@@ -8,6 +8,7 @@ import java.text.ParseException;
 
 import javax.swing.JFrame;
 
+import dialog.PredmetDialog;
 import dialog.StudentDialog;
 
 public class EditActionListener implements ActionListener {
@@ -31,7 +32,10 @@ public class EditActionListener implements ActionListener {
 				//TO DO: izmena profesora
 				break;
 			case 2:
-				//TO DO: izmena predmeta
+				if(Tab.getInstance().getTabelaPredmeta().getSelectedRow() >= 0){
+					PredmetDialog dialog2 = new PredmetDialog(parent,Tab.getInstance().getTabelaPredmeta().getSelectedRow());
+					dialog2.setVisible(true);
+					}
 				break;
 			default:
 					break;

@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -23,6 +25,7 @@ import javax.swing.SwingUtilities;
 import listeners.action.YesNoDialogActionListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.EspbKeyListener;
+import model.BazaPredmeta;
 import model.Predmet;
 import controller.PredmetiController;
 
@@ -37,7 +40,7 @@ public class PredmetView extends JPanel {
 	private PredmetiController predmetController;
 
 	private JPanel pnlContent;
-	//private JPanel pnlButton;
+	private JPanel pnlButton;
 	private JLabel lblCode;
 	private JTextField tfCode;
 	private JLabel lblName;
@@ -48,32 +51,32 @@ public class PredmetView extends JPanel {
 	private JComboBox<String> cbSemester;
 	private JLabel lblESPB;
 	private JTextField tfESPB;
-	//private JLabel lblProffesor;
-	//private JTextField tfProffesor;
+	private JLabel lblProfessor;
+	private JTextField tfProfessor;
 	
-	//private JButton btnPLUS;
-	//private JButton btnMINUS;
+	private JButton btnPLUS;
+	private JButton btnMINUS;
 
 	private JButton btnOK;
 	private JButton btnCANCEL;
 	
-	public PredmetView(Predmet predmet) {
-		initGUI();
-		constructGUI();
+	public PredmetView(int selRow) {
+		initGUI(true);
+		constructGUI(true);
 
-		setPredmet(predmet);
+		setPredmet(BazaPredmeta.getInstance().getRow(selRow));
 	}
 	public PredmetView()
 	{
-		initGUI();
-		constructGUI();
+		initGUI(false);
+		constructGUI(false);
 	}
 
-	private void initGUI() {
+	private void initGUI(boolean update) {
 		setLayout(new BorderLayout());
 
 		pnlContent = new JPanel(new GridBagLayout());
-		//pnlButton = new JPanel(new FlowLayout());
+		pnlButton = new JPanel(new GridBagLayout());
 		
 		FocusListener tfFocusListener = new TextFieldFocusListener();
 		lblCode = new JLabel("Šifra*");
@@ -104,7 +107,10 @@ public class PredmetView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				YesNoDialogActionListener dialog = new YesNoDialogActionListener();
+				if(!update)
 				dialog.actionPerformed(e,"Prekid unosa?","Da li ste sigurni da želite da prekinete dodavanje predmeta?");
+				else
+				dialog.actionPerformed(e,"Prekid izmene?","Da li ste sigurni da želite da prekinete izmenu podataka o predmetu?");
 			}
 		});
 
@@ -115,16 +121,25 @@ public class PredmetView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ok();
+					ok(update);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
+		
+		btnPLUS = new JButton("+");
+		btnMINUS = new JButton("-");
+		lblProfessor = new JLabel("Profesor*");
+		tfProfessor = new JTextField(20);
+		tfProfessor.addFocusListener(tfFocusListener);
+		tfProfessor.setMinimumSize(new Dimension(80,20));
+		btnPLUS.setMaximumSize(new Dimension(18,18));
+		btnMINUS.setMaximumSize(new Dimension(18,18));
 	}
 
-	private void constructGUI() {
+	private void constructGUI(boolean update) {
 		pnlContent.add(lblCode, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		pnlContent.add(tfCode, new GridBagConstraints(1, 0, 1, 1, 120, 0, GridBagConstraints.CENTER,
@@ -148,12 +163,33 @@ public class PredmetView extends JPanel {
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		pnlContent.add(tfESPB, new GridBagConstraints(1, 4, 1, 1, 120, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
-		
+		if(!update){
 		pnlContent.add(btnOK, new GridBagConstraints(0, 5, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		pnlContent.add(btnCANCEL, new GridBagConstraints(1, 5, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
-		
+		}
+		else
+		{
+			pnlButton.add(tfProfessor, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.WEST,
+					GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+					
+			pnlButton.add(btnPLUS, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+					
+			pnlButton.add(btnMINUS, new GridBagConstraints(2, 0, 1, 1, 0, 0, GridBagConstraints.EAST,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+					
+			pnlContent.add(lblProfessor, new GridBagConstraints(0, 5, 1, 1, 0, 0, GridBagConstraints.CENTER,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			pnlContent.add(pnlButton, new GridBagConstraints(1, 5, 1, 120, 0, 0, GridBagConstraints.CENTER,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			
+			JPanel pnlSouth = new JPanel(new FlowLayout());
+			pnlSouth.add(btnOK);
+			pnlSouth.add(btnCANCEL);
+			add(pnlSouth, BorderLayout.SOUTH);
+		}
 		add(pnlContent, BorderLayout.CENTER);
 	}
 
@@ -196,7 +232,7 @@ public class PredmetView extends JPanel {
 		tfESPB.setText(Integer.toString(predmet.getEspb()));
 	}
 
-	private void ok() throws ParseException {
+	private void ok(boolean update) throws ParseException {
 		
 		String spr = tfCode.getText();
 		String naziv = tfName.getText();
@@ -208,13 +244,17 @@ public class PredmetView extends JPanel {
 			predmetController = new PredmetiController(this);
 		}
 		
-		String message = predmetController.addPredmet(spr, naziv, semestar, godina, espb);
-
+		String message;
+		if(!update)
+		message = predmetController.addPredmet(spr, naziv, semestar, godina, espb);
+		else
+		message = predmetController.updatePredmet(spr, naziv, semestar, godina, espb,predmet.getSpr());
+			
 		Window parent = SwingUtilities.getWindowAncestor(this);
 		
 		JOptionPane.showMessageDialog(parent, message);
 		
-		if(message=="Predmet uspešno dodat")
+		if(message=="Predmet uspešno dodat"||message=="Predmet uspešno izmenjen")
 			parent.setVisible(false);
 	}
 

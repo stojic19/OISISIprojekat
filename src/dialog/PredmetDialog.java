@@ -12,10 +12,9 @@ public class PredmetDialog extends JDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final String APP_TITLE = "Dodavanje predmeta";
 
 	public PredmetDialog(Frame parent) {
-		super(parent, APP_TITLE, true);
+		super(parent, "Dodavanje predmeta", true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(400, 300);
 		setLocationRelativeTo(parent);
@@ -24,5 +23,15 @@ public class PredmetDialog extends JDialog{
 
 		add(predmetView);
 		
+	}
+	public PredmetDialog(Frame parent,int selRow) {
+		super(parent, "Izmeni predmet", true);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setSize(400, 400);
+		setLocationRelativeTo(parent);
+		
+		PredmetView predmetView = new PredmetView(selRow);
+
+		add(predmetView);
 	}
 }

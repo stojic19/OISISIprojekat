@@ -102,9 +102,9 @@ public class BazaPredmeta {
 		}
 	}
 
-	public void editPredmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
+	public void editPredmet(String spr, String naziv, Semestar semestar, int godina, int espb, String staraSpr) {
 		for (Predmet p : predmeti) {
-			if (p.getSpr().compareTo(spr) == 0){
+			if (p.getSpr().compareTo(staraSpr) == 0){
 				p.setSpr(spr);
 				p.setNaziv(naziv);
 				p.setSemestar(semestar);
