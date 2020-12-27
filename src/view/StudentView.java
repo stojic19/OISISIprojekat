@@ -92,7 +92,7 @@ public class StudentView extends JPanel {
 		tfLastName.addFocusListener(tfFocusListener);
 		
 		KeyListener dateKeyListener = new DateKeyListener();
-		lblDate = new JLabel("Datum rodjenja*");
+		lblDate = new JLabel("Datum rođenja*");
 		tfDate = new JTextField(20);
 		tfDate.addKeyListener(dateKeyListener);
 		tfDate.addFocusListener(tfFocusListener);

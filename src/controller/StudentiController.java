@@ -47,11 +47,11 @@ private static StudentiController instance = null;
 		}
 		
 		if (datRodj == null) {
-			return "Unesite datum rodjenja studenta";
+			return "Unesite datum rođenja studenta";
 		}
 		datRodj = datRodj.trim();
 		if (datRodj.isEmpty()) {
-			return "Unesite datum rodjenja studenta";
+			return "Unesite datum rođenja studenta";
 		}
 		if(datRodj.length()!=11){
 			return "Nepravilan format datuma";
@@ -88,7 +88,7 @@ private static StudentiController instance = null;
 		for(Student s: checkingList)
 		{
 			if(0==s.getBrojIndeksa().compareTo(brIndeksa))
-				return "Broj indeksa vec postoji. Unesite novi.";
+				return "Broj indeksa već postoji. Unesite novi.";
 		}
 		if (godUpisa == null) {
 			return "Unesite godinu upisa studenta";
@@ -110,11 +110,11 @@ private static StudentiController instance = null;
 		}
 		
 		if (nacin == null) {
-			return "Odaberite nacin finansiranja studenta";
+			return "Odaberite način finansiranja studenta";
 		}
 		nacin = nacin.trim();
 		if (nacin.isEmpty()) {
-			return "Odaberite nacin finansiranja studenta";
+			return "Odaberite način finansiranja studenta";
 		}
 			int index = Integer.parseInt(nacin);
 		BazaStudenata.getInstance().addStudent(ime, prezime, new SimpleDateFormat("dd.MM.yyyy").parse(datRodj), adresa, brojTel, emailAdr, brIndeksa,Integer.parseInt(godUpisa),Integer.parseInt(trenGodStud)+1,((index == 0) ? Student.Finansiranje.B : Student.Finansiranje.S));

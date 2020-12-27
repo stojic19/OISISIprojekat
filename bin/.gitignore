@@ -1,8 +1,8 @@
-/izgled/
-/table/
-/listeners/
-/studentska/
-/view/
-/dialog/
 /controller/
+/dialog/
+/izgled/
+/listeners/
 /model/
+/studentska/
+/table/
+/view/
