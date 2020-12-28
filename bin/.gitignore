@@ -1,7 +1,9 @@
-/model/
 /controller/
-/view/
 /dialog/
-/listeners/
-/tabs/
 /izgled/
+/listeners/
+/model/
+/studentska/
+/table/
+/tabs/
+/view/

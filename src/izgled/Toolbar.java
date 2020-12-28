@@ -73,7 +73,7 @@ public class Toolbar extends JToolBar {
 		
 		JButton btn4 = new JButton();
 		btn4.setToolTipText("Search");
-		btn4.setIcon(new ImageIcon("slike/search.png"));
+		btn4.setIcon(new ImageIcon("slike" + File.separator + "search.png"));
 
 		add(btn4);
 		btn4.addActionListener(new ActionListener() {
