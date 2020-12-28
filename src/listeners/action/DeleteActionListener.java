@@ -13,7 +13,6 @@ import javax.swing.WindowConstants;
 import controller.PredmetiController;
 import controller.ProfesoriController;
 import controller.StudentiController;
-import dialog.ProfesoriDialog;
 
 public class DeleteActionListener implements ActionListener{
 
@@ -40,10 +39,8 @@ public class DeleteActionListener implements ActionListener{
 					}else{
 					parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 					}
-					break;
 				}else {
-					
-					 JOptionPane.showInternalMessageDialog(null, "Odaberite studenta za brisanje!", "Brisanje studenta", JOptionPane.WARNING_MESSAGE,null);
+					 JOptionPane.showMessageDialog(null, "Odaberite studenta za brisanje!", "Brisanje studenta", JOptionPane.WARNING_MESSAGE,null);
 				}
 		break;
 			case 1:
@@ -55,13 +52,11 @@ public class DeleteActionListener implements ActionListener{
 					}else{
 						parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 					}
-					break;
 				}else {
-					 JOptionPane.showInternalMessageDialog(null, "Odaberite profesora za brisanje!", "Brisanje profesora", JOptionPane.WARNING_MESSAGE,null);
+					 JOptionPane.showMessageDialog(null, "Odaberite profesora za brisanje!", "Brisanje profesora", JOptionPane.WARNING_MESSAGE,null);
 				
 				}
 				break;
-				
 			case 2:
 				if(Tab.getInstance().getTabelaPredmeta().getSelectedRow() >= 0){
 					 code = JOptionPane.showOptionDialog(parent ,"Da li ste sigurni da želite da obrišete predmet?","Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, mess, null);
