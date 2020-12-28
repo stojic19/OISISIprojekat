@@ -14,7 +14,7 @@ public class Ocena {
 	private VrednostOcene vrednostOcene;
 	private Date datumPolaganja;
 	
-	public Ocena(/*Student student,*/Predmet predmet,VrednostOcene ocena,Date datPol)
+	public Ocena(Student student,Predmet predmet,VrednostOcene ocena,Date datPol)
 	{
 		setStudent(student);
 		setPredmet(predmet);
