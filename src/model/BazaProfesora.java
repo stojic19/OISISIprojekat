@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Student.Finansiranje;
+
 public class BazaProfesora {
 	private static BazaProfesora instance = null;
 
@@ -100,6 +102,26 @@ public class BazaProfesora {
 				break;
 			}
 		}
+	}
+	
+
+	public void editProfesor(String prz, String ime, Date datRodj, String adrs, String ktel, String email, String adrk,
+			String brlk, Titula t, Zvanje z, String licna_p) {
+	
+			for (Profesor p : profesori) {
+					if (0==p.getBrlk().compareTo(licna_p)) {
+						p.setPrz(prz);
+						p.setIme(ime);
+						p.setDatrodj(datRodj);
+						p.setAdrs(adrs);
+						p.setKtel(ktel);
+						p.setEmail(email);
+						p.setAdrk(adrk);
+						p.setBrlk(brlk);
+						p.setTitula(t);
+						p.setZvanje(z);
+					}
+			}
 	}
 }
 

@@ -6,7 +6,9 @@ import java.util.List;
 
 import izgled.Tab;
 import model.BazaProfesora;
+import model.BazaStudenata;
 import model.Profesor;
+import model.Student;
 import view.ProfesorView;
 
 public class ProfesoriController {
@@ -110,6 +112,89 @@ public class ProfesoriController {
 		Tab.getInstance().azurirajPrikazProfesora("DODAT", -1);
 		return "Profesor uspešno dodat";
 	}
+	
+      public String editProfesor(String prz,String ime,String datRodj,String adrs,String ktel,String email,String adrk,String brlk,String titula,String zvanje,String licna_p) throws ParseException {
+		
+		List<Profesor> checkingList = BazaProfesora.getInstance().getProfesori();
+		
+		if (prz == null) {
+			return "Unesite prezime profesora";
+		}
+		prz = prz.trim();
+		if (prz.isEmpty()) {
+			return "Unesite prezime profesora";
+		}
+
+		if (ime == null) {
+			return "Unesite ime profesora";
+		}
+		ime = ime.trim();
+		if (ime.isEmpty()) {
+			return "Unesite prezime profesora";
+		}
+		
+		if (datRodj == null) {
+			return "Unesite datum rođenja profesora";
+		}
+		datRodj = datRodj.trim();
+		if (datRodj.isEmpty()) {
+			return "Unesite datum rođenja profesora";
+		}
+		if(datRodj.length()!=11){
+			return "Nepravilan format datuma";
+		}
+		if (adrs == null) {
+			return "Unesite adresu stanovanja profesora";
+		}
+		adrs = adrs.trim();
+		if (adrs.isEmpty()) {
+			return "Unesite adresu stanovanja profesora";
+		}
+		if (ktel == null) {
+			return "Unesite kontakt telefon profesora";
+		}
+		ktel = ktel.trim();
+		if (ktel.isEmpty()) {
+			return "Unesite kontakt telefon profesora";
+		}
+		if (email == null) {
+			return "Unesite E-mail adresu profesora";
+		}
+		email = email.trim();
+		if (email.isEmpty()) {
+			return "Unesite E-mail adresu profesora";
+		}
+		if (adrk == null) {
+			return "Unesite adresu kancelarije profesora";
+		}
+		adrk = adrk.trim();
+		if (adrk.isEmpty()) {
+			return "Unesite adresu kancelarije profesora";
+		}
+		
+		brlk = brlk.trim();
+		if (brlk.isEmpty()) {
+			return "Unesite broj lične karte profesora";
+		}
+		if(brlk.length()<8){
+			return "Broj lične karte ima minimalno 8 karaktera!";
+		}
+		for(Profesor p: checkingList)
+		{
+			if(0==p.getBrlk().compareTo(brlk) && 0!=licna_p.compareTo(brlk))
+				return "Broj lične karte već postoji. Unesite novi.";
+		}
+		
+		
+		Profesor pom=new Profesor();
+		
+		
+		BazaProfesora.getInstance().editProfesor(prz,ime,new SimpleDateFormat("dd.MM.yyyy").parse(datRodj), adrs, ktel, email, adrk,brlk,pom.nadjiTitulu(titula),pom.nadjiZvanje(zvanje),licna_p);
+	
+		Tab.getInstance().azurirajPrikazProfesora("DODAT", -1);
+		return "Profesor uspešno izmenjen";
+	}
+      
 	public void removeProfesor(int rowSelectedIndex) throws ParseException {
     	if (rowSelectedIndex < 0) {
 			return;

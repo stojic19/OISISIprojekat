@@ -16,8 +16,7 @@ public class IdNumberKeyListener implements KeyListener {
 				|| arg0.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 			return;
 		}
-		char c = arg0.getKeyChar();
-		JTextField txt = (JTextField) arg0.getComponent();
+	
 
 		
 	}

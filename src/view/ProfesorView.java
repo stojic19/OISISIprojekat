@@ -23,11 +23,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import controller.ProfesoriController;
+import controller.StudentiController;
 import listeners.action.YesNoDialogActionListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.DateKeyListener;
 import listeners.key.IdNumberKeyListener;
 import listeners.key.TelNumKeyListener;
+import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Profesor;
 
 
@@ -67,19 +70,20 @@ public class ProfesorView extends JPanel{
 	private JButton btnOK;
 	private JButton btnCANCEL;
 	
-	public ProfesorView(Profesor profesor) {
-		initGUI();
+	
+	public ProfesorView(int selRow) throws ParseException {
+		initGUI(true);
 		constructGUI();
 
-		setProfesor(profesor);
+		setProfesor(BazaProfesora.getInstance().getRow(selRow));
 	}
 	public ProfesorView()
 	{
-		initGUI();
+		initGUI(false);
 		constructGUI();
 	}
 
-	private void initGUI() {
+	private void initGUI(boolean update) {
 		setLayout(new BorderLayout());
 
 		pnlContent = new JPanel(new GridBagLayout());
@@ -145,8 +149,11 @@ public class ProfesorView extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				YesNoDialogActionListener dialog = new YesNoDialogActionListener();
-				dialog.actionPerformed(e,"Prekid unosa?","Da li ste sigurni da želite da prekinete dodavanje profesora?");
-			}
+				if(!update)
+					dialog.actionPerformed(e,"Prekid unosa?","Da li ste sigurni da želite da prekinete dodavanje profesora?");
+					else
+					dialog.actionPerformed(e,"Prekid izmene?","Da li ste sigurni da želite da prekinete izmenu podataka o profesoru?");
+				}
 		});
 
 		
@@ -157,7 +164,7 @@ public class ProfesorView extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ok();
+					ok(update);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -293,8 +300,7 @@ public class ProfesorView extends JPanel{
 		
 	}
 
-
-	private void ok() throws ParseException {
+	private void ok(boolean update) throws ParseException {
 		
 		String ime = tfIme.getText();
 		String prz = tfPrz.getText();
@@ -311,14 +317,20 @@ public class ProfesorView extends JPanel{
 		if (profesoriController == null) {
 			profesoriController = new ProfesoriController(this);
 		}
-		
-		String message = profesoriController.addProfesor(prz,ime,datrodj,adrs,ktel,email,adrk,brlk,titula,zvanje);
+	
+        String message;
+		if(!update) {
+		 message = profesoriController.addProfesor(prz,ime,datrodj,adrs,ktel,email,adrk,brlk,titula,zvanje); 
+		}else {	
+		message = profesoriController.editProfesor(prz,ime,datrodj,adrs,ktel,email,adrk,brlk,titula,zvanje,profesor.getBrlk());
+		}
 
+		
 		Window parent = SwingUtilities.getWindowAncestor(this);
 		
 		JOptionPane.showMessageDialog(parent, message);
 		
-		if(message=="Profesor uspešno dodat")
+		if(message=="Profesor uspešno dodat" || message=="Profesor uspešno izmenjen" )
 			parent.setVisible(false);
 	}
 }

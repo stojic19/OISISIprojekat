@@ -13,6 +13,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import listeners.action.EditActionListener;
 import listeners.action.NewActionListener;
 
 
@@ -35,15 +36,8 @@ public class Toolbar extends JToolBar {
 	    btn2.setIcon(new ImageIcon("slike" + File.separator + "edit.png"));
 	    add(btn2);
 	    
-		btn2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Pritisnuto dugme edit");
-					
-				
-			}
-		});
+		btn2.addActionListener(new EditActionListener(parent));
+		
 	    
 	    addSeparator();
 
