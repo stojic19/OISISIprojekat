@@ -39,7 +39,7 @@ public class EditActionListener implements ActionListener {
 				dialog1.setVisible(true);
 				}else {
 					
-				JOptionPane.showInternalMessageDialog(null, "Odaberite profesora za izmenu!", "Izmena profesora", JOptionPane.WARNING_MESSAGE,null);
+				JOptionPane.showMessageDialog(null, "Odaberite profesora za izmenu!", "Izmena profesora", JOptionPane.WARNING_MESSAGE,null);
 				}
 				  break;
 			case 2:
