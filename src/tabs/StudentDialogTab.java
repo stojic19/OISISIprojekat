@@ -1,6 +1,5 @@
 package tabs;
 
-import java.awt.Color;
 import java.text.ParseException;
 
 import javax.swing.JPanel;
@@ -32,12 +31,11 @@ public class StudentDialogTab extends JTabbedPane {
     private JPanel polozeni = new JPanel();
     private JPanel nepolozeni = new JPanel();
     
-    //TABELE
     public StudentDialogTab(int selRow) throws ParseException {
 
     	StudentView studentView = new StudentView(selRow);
     	
-        add("Studenti",studentView);
+        add("Informacije",studentView);
         
         add("Položeni",polozeni);
         
