@@ -27,27 +27,20 @@ public class EditActionListener implements ActionListener {
 		try {
 			switch(Tab.getInstance().getSelectedIndex()){
 			case 0:
-				if(Tab.getInstance().getTabelaStudenata().getSelectedRow() >= 0){
+				
 				StudentDialog dialog = new StudentDialog(parent,Tab.getInstance().getTabelaStudenata().getSelectedRow());
 				dialog.setVisible(true);
-				}
-				break;
+				
 			case 1:
-				if(Tab.getInstance().getTabelaProfesora().getSelectedRow() >= 0){
-					ProfesoriDialog dialog1 = new ProfesoriDialog(parent,Tab.getInstance().getTabelaProfesora().getSelectedRow());
-					dialog1.setVisible(true);
-				}else {
+				
+				ProfesoriDialog dialog1 = new ProfesoriDialog(parent,Tab.getInstance().getTabelaProfesora().getSelectedRow());
+				dialog1.setVisible(true);
+				
 				  
-				    JOptionPane.showInternalMessageDialog(null, "Odaberite profesora za izmenu!", "Izmena profesora", JOptionPane.WARNING_MESSAGE,null);
-				    
-				}
-				break;
 			case 2:
-				if(Tab.getInstance().getTabelaPredmeta().getSelectedRow() >= 0){
 					PredmetDialog dialog2 = new PredmetDialog(parent,Tab.getInstance().getTabelaPredmeta().getSelectedRow());
 					dialog2.setVisible(true);
-					}
-				break;
+			
 			default:
 				  
 					break;
