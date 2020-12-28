@@ -5,6 +5,7 @@ import java.text.ParseException;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import view.OceneView;
 import view.StudentView;
 
 public class StudentDialogTab extends JTabbedPane {
@@ -28,16 +29,17 @@ public class StudentDialogTab extends JTabbedPane {
     private int h=dim.height*3/4;
     */
     
-    private JPanel polozeni = new JPanel();
     private JPanel nepolozeni = new JPanel();
     
     public StudentDialogTab(int selRow) throws ParseException {
 
     	StudentView studentView = new StudentView(selRow);
     	
+    	OceneView oceneView = new OceneView(selRow);
+    	
         add("Informacije",studentView);
         
-        add("Položeni",polozeni);
+        add("Položeni",oceneView);
         
         add("Nepoloženi",nepolozeni);
         

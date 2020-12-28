@@ -31,7 +31,7 @@ public class StudentDialog extends JDialog{
 	public StudentDialog(Frame parent,int selRow) throws ParseException {
 		super(parent, "Izmena studenta", true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(400, 450);
+		setSize(550, 500);
 		setLocationRelativeTo(parent);
 
 		JTabbedPane tabStud = new StudentDialogTab(selRow);
