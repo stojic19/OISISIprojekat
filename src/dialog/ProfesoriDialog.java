@@ -8,9 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 
 import tabs.ProfesorDialogTab;
-import tabs.StudentDialogTab;
 import view.ProfesorView;
-import view.StudentView;
 
 
 

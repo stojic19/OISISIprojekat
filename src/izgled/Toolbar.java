@@ -13,12 +13,18 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import listeners.action.DeleteActionListener;
 import listeners.action.EditActionListener;
 import listeners.action.NewActionListener;
 
 
 
 public class Toolbar extends JToolBar {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Toolbar(final JFrame parent){
 	    super(SwingConstants.HORIZONTAL);
 	    
@@ -45,15 +51,7 @@ public class Toolbar extends JToolBar {
 	    btn3.setToolTipText("Delete");
 	    btn3.setIcon(new ImageIcon("slike" + File.separator + "delete.png"));
 	    add(btn3);
-		btn3.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Pritisnuto dugme delete ");
-					
-				
-			}
-		});
+		btn3.addActionListener(new DeleteActionListener(parent));
 	   
 		for(int i = 0; i < 80; i++)
 		addSeparator();

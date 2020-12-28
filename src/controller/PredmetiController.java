@@ -6,8 +6,11 @@ import java.text.ParseException;
 import java.util.List;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 import view.PredmetView;
+import view.ProfesorView;
 
 public class PredmetiController {
 
@@ -146,4 +149,14 @@ private static PredmetiController instance = null;
 		}
 		this.predmetView = predmetView;
 	}
+	
+	public void removePredmet(int rowSelectedIndex) throws ParseException {
+    	if (rowSelectedIndex < 0) {
+			return;
+		}
+    	Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+		BazaPredmeta.getInstance().removePredmet(predmet.getSpr());
+		Tab.getInstance().azurirajPrikazPredmeta("UKLONJEN", rowSelectedIndex);
+    }
+
 }

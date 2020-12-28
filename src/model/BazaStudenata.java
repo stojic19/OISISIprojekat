@@ -102,14 +102,7 @@ public class BazaStudenata {
 		this.studenti.add(new Student(ime,prezime,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin));
 	}
 
-	public void removeStudent(String brInd) {
-		for (Student i : studenti) {
-			if (i.getBrojIndeksa() == brInd) {
-				studenti.remove(i);
-				break;
-			}
-		}
-	}
+
 
 	public void editStudent(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin,String stariBrInd) {
 		for (Student s : studenti) {
@@ -124,6 +117,15 @@ public class BazaStudenata {
 				s.setTrenutnaGodinaStudija(trenGodStud);
 				s.setStatus(nacin);
 				s.setBrojIndeksa(brIndeksa);
+			}
+		}
+	}
+	
+	public void removeStudent(String brInd) {
+		for (Student i : studenti) {
+			if (i.getBrojIndeksa() == brInd) {
+				studenti.remove(i);
+				break;
 			}
 		}
 	}
