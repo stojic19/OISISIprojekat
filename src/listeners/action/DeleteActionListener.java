@@ -71,7 +71,7 @@ public class DeleteActionListener implements ActionListener{
 					
 			}else {
 				  
-				   JOptionPane.showInternalMessageDialog(null, "Odaberite predmet za brisanje!", "Brisanje predmeta", JOptionPane.WARNING_MESSAGE,null);
+				   JOptionPane.showMessageDialog(null, "Odaberite predmet za brisanje!", "Brisanje predmeta", JOptionPane.WARNING_MESSAGE,null);
 				    
 				}
 				
