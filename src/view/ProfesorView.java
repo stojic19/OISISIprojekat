@@ -23,13 +23,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import controller.ProfesoriController;
-import controller.StudentiController;
 import listeners.action.YesNoDialogActionListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.DateKeyListener;
 import listeners.key.IdNumberKeyListener;
 import listeners.key.TelNumKeyListener;
-import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Profesor;
 
