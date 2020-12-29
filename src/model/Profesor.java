@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 enum Titula {
 	BSC(0),MSC(1),MR(2),DR(3),PROFDR(4);
@@ -41,12 +43,14 @@ public class Profesor {
 	private String brlk;
     private Titula titula;
     private Zvanje zvanje;
-    
+    private List<Predmet> predmeti;
     
 	public Profesor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	public Profesor(String prz, String ime, Date datrodj, String adrs, String ktel, String email, String adrk,
 			String brlk, Titula titula, Zvanje zvanje) {
 		super();
@@ -60,8 +64,10 @@ public class Profesor {
 		this.brlk = brlk;
 		this.titula = titula;
 		this.zvanje = zvanje;
+		predmeti = new ArrayList<Predmet>();
 	}
-	
+
+
 	public Titula nadjiTitulu(String titula) {
 		Titula t=null;
 		switch(Integer.parseInt(titula)) {
@@ -178,6 +184,19 @@ public class Profesor {
 	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
+	
+	
+	
+	public List<Predmet> getPredmeti() {
+		return predmeti;
+	}
+
+
+	public void setPredmeti(List<Predmet> predmeti) {
+		this.predmeti = predmeti;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Profesor [prz=" + prz + ", ime=" + ime + ", titula=" + titula + ", zvanje=" + zvanje + "]";
