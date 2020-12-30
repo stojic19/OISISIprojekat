@@ -10,6 +10,10 @@ import view.ProfesorView;
 
 
 public class ProfesorDialogTab extends JTabbedPane {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static ProfesorDialogTab instance=null;
 
     public static ProfesorDialogTab getInstance() throws ParseException {
@@ -21,7 +25,6 @@ public class ProfesorDialogTab extends JTabbedPane {
  
     private JPanel predmeti = new JPanel();
     
-    //TABELE
     public ProfesorDialogTab(int selRow) throws ParseException {
 
     	ProfesorView profesorView = new ProfesorView(selRow);

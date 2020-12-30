@@ -6,6 +6,10 @@ import model.BazaPredmeta;
 
 public class AbstractTableModelPredmeti extends AbstractTableModel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
