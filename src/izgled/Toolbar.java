@@ -14,8 +14,9 @@ import javax.swing.border.LineBorder;
 import listeners.action.DeleteActionListener;
 import listeners.action.EditActionListener;
 import listeners.action.NewActionListener;
+import model.BazaPredmeta;
 import model.BazaProfesora;
-
+import search.PretragaPredmeta;
 import search.PretragaProfesora;
 
 
@@ -82,22 +83,26 @@ public class Toolbar extends JToolBar {
 		add(btn4);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				String pretraga=tf.getText();
 			try {
 			switch(Tab.getInstance().getSelectedIndex()){
 			case 0:
 				//TO DO
 				break;
 			case 1:
-				    	String pretraga=tf.getText();
+				    	
 				    	if(pretraga.isEmpty()) {
 				    		BazaProfesora.getInstance().OsveziPrikaz();
 				    	}
-					    PretragaProfesora p=new PretragaProfesora(pretraga.trim());
+					    PretragaProfesora p1=new PretragaProfesora(pretraga.trim());
 				  break;
 			case 2:
-				//TO DO
-				  break;
+						
+						if(pretraga.isEmpty()) {
+						BazaPredmeta.getInstance().OsveziPrikaz();
+		    	        }
+			            PretragaPredmeta p2=new PretragaPredmeta(pretraga.trim());
+				        break;
 			default:
 				  
 				 break;

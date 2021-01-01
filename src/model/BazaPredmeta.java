@@ -18,6 +18,7 @@ public class BazaPredmeta {
 	
 	private List<Predmet> predmeti =new ArrayList<>();
 	private List<String> kolone = new ArrayList<>();
+	private List<Predmet> refresh =new ArrayList<>();
 
 	private BazaPredmeta() {
 	   
@@ -45,6 +46,7 @@ public class BazaPredmeta {
 			predmeti.add(p4);
 			predmeti.add(p5);
 			predmeti.add(p6);
+			refresh=predmeti;
 	}
 
 
@@ -91,6 +93,7 @@ public class BazaPredmeta {
 	
 	public void addPredmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
 		this.predmeti.add(new Predmet(spr, naziv, semestar, godina, espb));
+		refresh=predmeti;
 	}
 
 	public void removePredmet(String spr) {
@@ -100,6 +103,7 @@ public class BazaPredmeta {
 				break;
 			}
 		}
+		refresh=predmeti;
 	}
 
 	public void editPredmet(String spr, String naziv, Semestar semestar, int godina, int espb, String staraSpr) {
@@ -112,6 +116,10 @@ public class BazaPredmeta {
 				p.setEspb(espb);
 			}
 		}
+		refresh=predmeti;
+	}
+	public void OsveziPrikaz() {
+		predmeti=refresh;
 	}
 
 }
