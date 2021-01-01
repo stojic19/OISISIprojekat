@@ -10,10 +10,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-
 import model.BazaPredmeta;
-import model.BazaStudenata;
+
 
 public class PredmetiJTable extends JTable {
 	/**

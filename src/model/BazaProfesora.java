@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import model.Student.Finansiranje;
-
 public class BazaProfesora {
 	private static BazaProfesora instance = null;
 
@@ -21,6 +19,7 @@ public class BazaProfesora {
 
 
 	private List<Profesor> profesori =new ArrayList<>();
+	private List<Profesor> refresh =new ArrayList<>();
 	private List<String> kolone = new ArrayList<>();
 
 	private BazaProfesora() throws ParseException {
@@ -50,6 +49,7 @@ public class BazaProfesora {
 		profesori.add(p4);
 		profesori.add(p5);
 		profesori.add(p6);
+		refresh=profesori;
 	}
 
 	
@@ -57,7 +57,7 @@ public class BazaProfesora {
 	public List<Profesor> getProfesori() {
 		return profesori;
 	}
-
+	
 	public void setProfesori(List<Profesor> profesori) {
 		this.profesori = profesori;
 	}
@@ -93,6 +93,7 @@ public class BazaProfesora {
 	
 	public void addProfesor(String prz,String ime,Date datRodj,String adresa,String brojTel,String email,String Adrk,String brlk,Titula t,Zvanje z) {
 		this.profesori.add(new Profesor(prz,ime,datRodj,adresa,brojTel,email,Adrk,brlk,t,z));
+		refresh=profesori;
 	}
 	
 	public void removeProfesor(String brLK) {
@@ -102,10 +103,14 @@ public class BazaProfesora {
 				break;
 			}
 		}
+		refresh=profesori;
 	}
-	
 
-	public void editProfesor(String prz, String ime, Date datRodj, String adrs, String ktel, String email, String adrk,
+   
+   public void OsveziPrikaz() {
+	   profesori=refresh;
+   }
+   public void editProfesor(String prz, String ime, Date datRodj, String adrs, String ktel, String email, String adrk,
 			String brlk, Titula t, Zvanje z, String licna_p) {
 	
 			for (Profesor p : profesori) {
@@ -122,6 +127,7 @@ public class BazaProfesora {
 						p.setZvanje(z);
 					}
 			}
+			refresh=profesori;
 	}
 }
 

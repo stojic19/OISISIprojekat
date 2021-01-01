@@ -1,10 +1,7 @@
 package tabs;
 
 import java.text.ParseException;
-
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-
 import view.NepolozeniPredmetiView;
 import view.OceneView;
 import view.StudentView;
