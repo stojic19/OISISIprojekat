@@ -6,9 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -18,11 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import model.BazaNepolozenihPredmeta;
 import model.BazaOcena;
-import model.BazaPredmeta;
 import model.BazaStudenata;
-import table.OceneJTable;
 import model.Ocena;
+import table.AbstractTableModelOcene;
+import table.OceneJTable;
+import tabs.StudentDialogTab;
 
 public class OceneView extends JPanel {
 	
@@ -47,18 +46,13 @@ public class OceneView extends JPanel {
 	
 	public OceneView(int selRow) throws ParseException
 	{
-		List<Ocena> polozeniIspiti = new ArrayList<Ocena>();
-		
-		polozeniIspiti.add(new Ocena(BazaStudenata.getInstance().getRow(selRow), BazaPredmeta.getInstance().getRow(selRow), Ocena.VrednostOcene.DESET, new SimpleDateFormat("dd.MM.yyyy").parse("09.01.2021.")));
-		
-		BazaStudenata.getInstance().getRow(selRow).setPolozeniIspiti(polozeniIspiti);
 		BazaOcena.getInstance().setOcene(BazaStudenata.getInstance().getRow(selRow).getPolozeniIspiti());
 		
-		initGUI();
+		initGUI(selRow);
 		constructGUI();
 	}
 
-	private void initGUI() {
+	private void initGUI(int selRow) {
 		BoxLayout box=new BoxLayout(this, BoxLayout.Y_AXIS);
 		setLayout(box);
 
@@ -82,10 +76,33 @@ public class OceneView extends JPanel {
 				String[] mess = new String[2];
 				mess[0] = "Da";
 				mess[1] = "Ne";
+				if(tabelaOcena.getSelectedRow()>=0){
 				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da ponistite ocenu?",
 						"Ponistavanje ocene", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
-				if(code != JOptionPane.YES_OPTION){
-					//TO DO: ponistavanje ocene
+				if(code == JOptionPane.YES_OPTION){
+					Ocena o = BazaOcena.getInstance().getOcene().get(tabelaOcena.getSelectedRow());
+						
+					try {
+						BazaStudenata.getInstance().getStudenti().get(selRow).getPolozeniIspiti().remove(tabelaOcena.getSelectedRow());
+						BazaStudenata.getInstance().getStudenti().get(selRow).getNepolozeniIspiti().add(o.getPredmet());
+						BazaOcena.getInstance().setOcene(BazaStudenata.getInstance().getStudenti().get(selRow).getPolozeniIspiti());
+						BazaNepolozenihPredmeta.getInstance().setPredmeti(BazaStudenata.getInstance().getStudenti().get(selRow).getNepolozeniIspiti());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					try {
+						azurirajTabelu("UKLONJEN",tabelaOcena.getSelectedRow());
+						StudentDialogTab.getInstance(selRow).azurirajTabeluNepolozenihPredmeta("DODAT", -1);
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+				}
+				}else{
+					JOptionPane.showMessageDialog(null, "Odaberite predmet za poništavanje!", "Poništavanje predmeta", JOptionPane.WARNING_MESSAGE,null);
 				}
 				}
 			});
@@ -113,5 +130,15 @@ public class OceneView extends JPanel {
 		//add(pnlPonisti,BorderLayout.NORTH);
 		//add(scrollPane, BorderLayout.CENTER);
 		//add(pnlContent, BorderLayout.SOUTH);
+	}
+	public void azurirajTabelu(String akcija, int vrednost) {
+		azurirajLabele();
+		AbstractTableModelOcene model = (AbstractTableModelOcene) tabelaOcena.getModel();
+		model.fireTableDataChanged();
+		tabelaOcena.validate();
+	}
+	private void azurirajLabele(){
+		lblProsek.setText("Prosečna ocena:"+BazaOcena.getInstance().getProsek());
+		lblEspb.setText("Ukupno ESPB:"+BazaOcena.getInstance().getESPB());
 	}
 }

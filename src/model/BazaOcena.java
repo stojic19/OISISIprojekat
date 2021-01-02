@@ -116,6 +116,10 @@ public class BazaOcena {
 				sum += 10;
 		}
 		double avg = sum / ocene.size();
+		if(sum == 0)
+		{
+			return  Double.toString(0);
+		}
 		return Double.toString(avg);
 	}
 

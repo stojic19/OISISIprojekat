@@ -43,6 +43,16 @@ public class BazaStudenata {
 		studenti.add(new Student("Anja", "Tanović",new SimpleDateFormat("dd.MM.yyyy").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "EE49/2018", 2018, 3 , Finansiranje.B));
 		studenti.add(new Student("Jovana", "Đorđević",new SimpleDateFormat("dd.MM.yyyy").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "II20/2018", 2018, 3 , Finansiranje.B));
 		studenti.add(new Student("Zorana", "Popović",new SimpleDateFormat("dd.MM.yyyy").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "AU27/2018", 2018, 3 , Finansiranje.S));
+	
+		studenti.get(0).getPolozeniIspiti().add(new Ocena(studenti.get(0), BazaPredmeta.getInstance().getRow(1), Ocena.VrednostOcene.DESET, new SimpleDateFormat("dd.MM.yyyy").parse("09.01.2021.")));
+		studenti.get(0).getPolozeniIspiti().add(new Ocena(studenti.get(0), BazaPredmeta.getInstance().getRow(2), Ocena.VrednostOcene.DEVET, new SimpleDateFormat("dd.MM.yyyy").parse("09.10.2021.")));
+		
+		studenti.get(0).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(3).getSpr(),BazaPredmeta.getInstance().getRow(3).getNaziv(),
+				BazaPredmeta.getInstance().getRow(3).getSemestar(),BazaPredmeta.getInstance().getRow(3).getGodina(),
+				BazaPredmeta.getInstance().getRow(3).getEspb()));
+		studenti.get(0).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),
+				BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),
+				BazaPredmeta.getInstance().getRow(4).getEspb()));
 	}
 
 	public List<Student> getStudenti() {

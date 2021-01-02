@@ -6,8 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,10 +14,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import model.BazaNepolozenihPredmeta;
-import model.BazaPredmeta;
 import model.BazaStudenata;
+import table.AbstractTableModelNepolozeniPredmeti;
 import table.NepolozeniPredmetiJTable;
-import model.Predmet;
 
 public class NepolozeniPredmetiView extends JPanel {
 	
@@ -27,13 +24,10 @@ public class NepolozeniPredmetiView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-
+	
 	private JPanel pnlempty;
 	private JPanel pnlContent;
 	private JPanel pnlPom;
-	
-	
 	
 	private JButton btnDodaj;
 	private JButton btnObrisi;
@@ -44,12 +38,6 @@ public class NepolozeniPredmetiView extends JPanel {
 	
 	public NepolozeniPredmetiView(int selRow) throws ParseException
 	{
-		List<Predmet> nepolozeniPredmeti=new ArrayList<Predmet>();
-		nepolozeniPredmeti.add(new Predmet(BazaPredmeta.getInstance().getRow(selRow).getSpr(),BazaPredmeta.getInstance().getRow(selRow).getNaziv(),
-				BazaPredmeta.getInstance().getRow(selRow).getSemestar(),BazaPredmeta.getInstance().getRow(selRow).getGodina(),
-				BazaPredmeta.getInstance().getRow(selRow).getEspb()));
-		
-		BazaStudenata.getInstance().getRow(selRow).setNepolozeniIspiti(nepolozeniPredmeti);
 		BazaNepolozenihPredmeta.getInstance().setPredmeti(BazaStudenata.getInstance().getRow(selRow).getNepolozeniIspiti());
 		initGUI();
 		constructGUI();
@@ -115,6 +103,12 @@ public class NepolozeniPredmetiView extends JPanel {
 		add(scrollPane);
 		add(pnlContent);
 		
+	}
+	
+	public void azurirajTabelu(String akcija, int vrednost) {
+		AbstractTableModelNepolozeniPredmeti model = (AbstractTableModelNepolozeniPredmeti) tabelaPredmeta.getModel();
+		model.fireTableDataChanged();
+		tabelaPredmeta.validate();
 	}
 }
 
