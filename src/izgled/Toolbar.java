@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.ParseException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,13 +12,16 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
 import listeners.action.DeleteActionListener;
 import listeners.action.EditActionListener;
 import listeners.action.NewActionListener;
 import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.BazaStudenata;
 import search.PretragaPredmeta;
 import search.PretragaProfesora;
+import search.PretragaStudenata;
 
 
 
@@ -87,7 +91,10 @@ public class Toolbar extends JToolBar {
 			try {
 			switch(Tab.getInstance().getSelectedIndex()){
 			case 0:
-				//TO DO
+				if(pretraga.isEmpty()) {
+		    		BazaStudenata.getInstance().osveziPrikaz();
+		    	}
+			    PretragaStudenata p0 = new PretragaStudenata(pretraga.trim());
 				break;
 			case 1:
 				    	

@@ -20,6 +20,7 @@ public class BazaStudenata {
 	}
 
 	private List<Student> studenti;
+	private List<Student> refresh;
 	private List<String> kolone;
 
 	private BazaStudenata() throws ParseException {
@@ -53,6 +54,8 @@ public class BazaStudenata {
 		studenti.get(0).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),
 				BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),
 				BazaPredmeta.getInstance().getRow(4).getEspb()));
+		
+		refresh = studenti;
 	}
 
 	public List<Student> getStudenti() {
@@ -110,12 +113,27 @@ public class BazaStudenata {
 	
 	public void addStudent(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin) {
 		this.studenti.add(new Student(ime,prezime,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin));
+		this.refresh.add(new Student(ime,prezime,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin));
 	}
 
 
 
 	public void editStudent(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin,String stariBrInd) {
 		for (Student s : studenti) {
+			if (0==s.getBrojIndeksa().compareTo(stariBrInd)) {
+				s.setPrezime(prezime);
+				s.setIme(ime);
+				s.setDatum(datRodj);
+				s.setAdresaStanovanja(adresa);
+				s.setKontaktTelefon(brojTel);
+				s.setEmailAdresa(emailAdr);
+				s.setGodinaUpisa(godUpisa);
+				s.setTrenutnaGodinaStudija(trenGodStud);
+				s.setStatus(nacin);
+				s.setBrojIndeksa(brIndeksa);
+			}
+		}
+		for (Student s : refresh) {
 			if (0==s.getBrojIndeksa().compareTo(stariBrInd)) {
 				s.setPrezime(prezime);
 				s.setIme(ime);
@@ -138,6 +156,15 @@ public class BazaStudenata {
 				break;
 			}
 		}
+		for (Student i : refresh) {
+			if (i.getBrojIndeksa() == brInd) {
+				refresh.remove(i);
+				break;
+			}
+		}
 	}
 	
+	public void osveziPrikaz(){
+		studenti = refresh;
+	}
 }
