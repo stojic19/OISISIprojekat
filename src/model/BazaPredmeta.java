@@ -106,7 +106,7 @@ public class BazaPredmeta {
 		}
 		for (Predmet p : refresh) {
 			if (p.getSpr() == spr) {
-				predmeti.remove(p);
+				refresh.remove(p);
 				break;
 			}
 		}

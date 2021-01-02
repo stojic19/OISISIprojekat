@@ -93,7 +93,8 @@ public class BazaProfesora {
 	
 	public void addProfesor(String prz,String ime,Date datRodj,String adresa,String brojTel,String email,String Adrk,String brlk,Titula t,Zvanje z) {
 		this.profesori.add(new Profesor(prz,ime,datRodj,adresa,brojTel,email,Adrk,brlk,t,z));
-		refresh=profesori;
+		this.refresh.add(new Profesor(prz,ime,datRodj,adresa,brojTel,email,Adrk,brlk,t,z));
+		
 	}
 	
 	public void removeProfesor(String brLK) {
@@ -103,7 +104,12 @@ public class BazaProfesora {
 				break;
 			}
 		}
-		refresh=profesori;
+		for (Profesor p : refresh) {
+			if (p.getBrlk().compareTo(brLK)==0) {
+				refresh.remove(p);
+				break;
+			}
+		}
 	}
 
    
@@ -127,7 +133,20 @@ public class BazaProfesora {
 						p.setZvanje(z);
 					}
 			}
-			refresh=profesori;
+			for (Profesor p : refresh) {
+				if (0==p.getBrlk().compareTo(licna_p)) {
+					p.setPrz(prz);
+					p.setIme(ime);
+					p.setDatrodj(datRodj);
+					p.setAdrs(adrs);
+					p.setKtel(ktel);
+					p.setEmail(email);
+					p.setAdrk(adrk);
+					p.setBrlk(brlk);
+					p.setTitula(t);
+					p.setZvanje(z);
+				}
+	     	}
 	}
 }
 
