@@ -50,7 +50,7 @@ public class PretragaPredmeta {
 			
 			if(listapretraga.isEmpty()) {
 				
-				JOptionPane.showMessageDialog(null, "Nema profesora!", "Pretraga", JOptionPane.WARNING_MESSAGE,null);
+				JOptionPane.showMessageDialog(null, "Nema predmeta!", "Pretraga", JOptionPane.WARNING_MESSAGE,null);
 				
 			}else {
 				BazaPredmeta.getInstance().setPredmeti(listapretraga);

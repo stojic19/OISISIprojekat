@@ -93,7 +93,8 @@ public class BazaPredmeta {
 	
 	public void addPredmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
 		this.predmeti.add(new Predmet(spr, naziv, semestar, godina, espb));
-		refresh=predmeti;
+		this.refresh.add(new Predmet(spr, naziv, semestar, godina, espb));
+		
 	}
 
 	public void removePredmet(String spr) {
@@ -103,7 +104,12 @@ public class BazaPredmeta {
 				break;
 			}
 		}
-		refresh=predmeti;
+		for (Predmet p : refresh) {
+			if (p.getSpr() == spr) {
+				predmeti.remove(p);
+				break;
+			}
+		}
 	}
 
 	public void editPredmet(String spr, String naziv, Semestar semestar, int godina, int espb, String staraSpr) {
@@ -116,7 +122,16 @@ public class BazaPredmeta {
 				p.setEspb(espb);
 			}
 		}
-		refresh=predmeti;
+		for (Predmet p : refresh) {
+			if (p.getSpr().compareTo(staraSpr) == 0){
+				p.setSpr(spr);
+				p.setNaziv(naziv);
+				p.setSemestar(semestar);
+				p.setGodina(godina);
+				p.setEspb(espb);
+			}
+		}
+		
 	}
 	public void OsveziPrikaz() {
 		predmeti=refresh;
