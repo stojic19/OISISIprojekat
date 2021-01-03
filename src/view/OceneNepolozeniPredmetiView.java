@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import dialog.DodavanjePredmetaStudentuDialog;
 import model.BazaNepolozenihPredmeta;
 import model.BazaOcena;
 import model.BazaStudenata;
@@ -165,7 +167,16 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				DodavanjePredmetaStudentuDialog dialog;
+				try {
+					dialog = new DodavanjePredmetaStudentuDialog(null,selRow);
+					dialog.setVisible(true);
+					azurirajTabeluNP("DODAT",-1);
+					dialog.repaint();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}});
 		
 		btnObrisi = new JButton("Ukloni");
@@ -173,7 +184,20 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+				String[] mess = new String[2];
+				mess[0] = "Da";
+				mess[1] = "Ne";
+				if(tabelaPredmeta.getSelectedRow()>=0){
+				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da uklonite predmet?",
+						"Uklanjanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
+				if(code == JOptionPane.YES_OPTION){
+					BazaNepolozenihPredmeta.getInstance().removePredmet(BazaNepolozenihPredmeta.getInstance().getRow(tabelaPredmeta.getSelectedRow()).getSpr());
+					azurirajTabeluNP("UKLONJEN",tabelaPredmeta.getSelectedRow());
+				}
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Odaberite predmet za uklanjanje!", "Uklanjanje predmeta", JOptionPane.WARNING_MESSAGE,null);
+				}
 				}
 			});
 		btnPolaganje = new JButton("Polaganje");
