@@ -3,8 +3,6 @@ package tabs;
 import java.text.ParseException;
 
 import javax.swing.JTabbedPane;
-
-import view.NepolozeniPredmetiView;
 import view.OceneNepolozeniPredmetiView;
 import view.StudentView;
 
@@ -32,21 +30,21 @@ public class StudentDialogTab extends JTabbedPane {
 	
     private OceneNepolozeniPredmetiView oceneView;
 	
-    private NepolozeniPredmetiView nepolozeniPredmetiView;
+  //  private OceneNepolozeniPredmetiView nepolozeniPredmetiView;
     
     public StudentDialogTab(int selRow) throws ParseException {
 
     	studentView = new StudentView(selRow);
     	
-    	oceneView = new OceneNepolozeniPredmetiView(selRow,0);
+    	oceneView = new OceneNepolozeniPredmetiView(selRow);
     	
-    	nepolozeniPredmetiView = new NepolozeniPredmetiView(selRow);
+    	//nepolozeniPredmetiView = new oceneView.;
     	
         add("Informacije",studentView);
         
         add("Položeni",oceneView);
         
-        add("Nepoloženi",nepolozeniPredmetiView); 
+        add("Nepoloženi",oceneView.getNepolozeni()); 
     }
     
 }

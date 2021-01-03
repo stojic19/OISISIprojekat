@@ -14,12 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import model.BazaNepolozenihPredmeta;
 import model.BazaOcena;
 import model.BazaStudenata;
 import model.Ocena;
+import table.AbstractTableModelNepolozeniPredmeti;
 import table.AbstractTableModelOcene;
+import table.NepolozeniPredmetiJTable;
 import table.OceneJTable;
 
 public class OceneNepolozeniPredmetiView extends JPanel {
@@ -41,15 +42,31 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 	private JTable tabelaOcena;
 	
 	JScrollPane scrollPane;
+	///nepolozeni predmeti
+	private JPanel pnlempty;
+	private JPanel pnlContent1;
+	private JPanel pnlPom;
 	
-	public OceneNepolozeniPredmetiView(int selRow,int i) throws ParseException
+	private JButton btnDodaj;
+	private JButton btnObrisi;
+	private JButton btnPolaganje;
+	
+	private JTable tabelaPredmeta;
+	JScrollPane scrollPane1;
+	private JPanel nepolozeni;
+	
+	public OceneNepolozeniPredmetiView(int selRow) throws ParseException
 	{
-		if(i==0){
+		
 		BazaOcena.getInstance().setOcene(BazaStudenata.getInstance().getRow(selRow).getPolozeniIspiti());
 		
 		initGUIOcene(selRow);
 		constructGUIOcene();
-		}
+		
+		BazaNepolozenihPredmeta.getInstance().setPredmeti(BazaStudenata.getInstance().getRow(selRow).getNepolozeniIspiti());
+		
+		initGUINP(selRow);
+		constructGUINP();
 	}
 	private void initGUIOcene(int selRow) {
 		BoxLayout box=new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -85,7 +102,7 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 					BazaNepolozenihPredmeta.getInstance().addPredmet(o.getPredmet().getSpr(), o.getPredmet().getNaziv(), o.getPredmet().getSemestar(), o.getPredmet().getGodina(), o.getPredmet().getEspb());
 					
 					azurirajTabeluOcena("UKLONJEN",tabelaOcena.getSelectedRow());
-					//TO DO:azurirajTabeluNepolozenihPredmeta("DODAT", -1);
+					azurirajTabeluNP("DODAT", -1);
 				}
 				}else{
 					JOptionPane.showMessageDialog(null, "Odaberite predmet za poništavanje!", "Poništavanje predmeta", JOptionPane.WARNING_MESSAGE,null);
@@ -127,4 +144,81 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 		lblProsek.setText("Prosečna ocena:"+BazaOcena.getInstance().getProsek());
 		lblEspb.setText("Ukupno ESPB:"+BazaOcena.getInstance().getESPB());
 	}
+	// nepolozeni predmeti:
+	private void initGUINP(int selRow) {
+		nepolozeni = new JPanel();
+		BoxLayout box=new BoxLayout(nepolozeni, BoxLayout.Y_AXIS);
+		nepolozeni.setLayout(box);
+
+		pnlContent1 = new JPanel(new BorderLayout());
+		
+		pnlempty = new JPanel();
+		BoxLayout boxCenter=new BoxLayout(pnlempty, BoxLayout.Y_AXIS);
+		pnlempty.setLayout(boxCenter);
+		
+		pnlPom = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	
+
+		
+		btnDodaj = new JButton("Dodaj");
+		btnDodaj.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}});
+		
+		btnObrisi = new JButton("Ukloni");
+		btnObrisi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				}
+			});
+		btnPolaganje = new JButton("Polaganje");
+		btnPolaganje.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("polaganje");
+				}
+			});
+		tabelaPredmeta = new NepolozeniPredmetiJTable();
+		scrollPane1 = new JScrollPane(tabelaPredmeta);
+	}
+	
+	private void constructGUINP() {
+		nepolozeni.setMaximumSize(new Dimension(500,450));
+		
+		pnlPom.add(btnDodaj);
+		pnlPom.add(btnObrisi);
+		pnlPom.add(btnPolaganje);
+		pnlPom.setPreferredSize(new Dimension(80,80));
+		
+		
+		pnlContent1.add(pnlempty,BorderLayout.EAST);
+		pnlContent1.setPreferredSize(new Dimension(80,80));
+		
+		scrollPane1.setPreferredSize(new Dimension(500,300));
+		
+		nepolozeni.add(pnlPom);
+		nepolozeni.add(scrollPane1);
+		nepolozeni.add(pnlContent1);
+	}
+	
+	
+	public JPanel getNepolozeni() {
+		return nepolozeni;
+	}
+	public void setNepolozeni(JPanel nepolozeni) {
+		
+		this.nepolozeni = nepolozeni;
+	}
+	public void azurirajTabeluNP(String akcija, int vrednost) {
+		AbstractTableModelNepolozeniPredmeti model = (AbstractTableModelNepolozeniPredmeti) tabelaPredmeta.getModel();
+		model.fireTableDataChanged();
+		tabelaPredmeta.validate();
+	}
+	
 }

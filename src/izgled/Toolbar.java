@@ -98,11 +98,11 @@ public class Toolbar extends JToolBar {
 				break;
 			case 1:
 				    	
-				    	if(pretraga.isEmpty()) {
-				    		BazaProfesora.getInstance().OsveziPrikaz();
-				    	}
-					    PretragaProfesora p1=new PretragaProfesora(pretraga.trim());
-				  break;
+				 if(pretraga.isEmpty()) {
+				    BazaProfesora.getInstance().OsveziPrikaz();
+				 }
+		         PretragaProfesora p1=new PretragaProfesora(pretraga.trim());
+				 break;
 			case 2:
 						
 						if(pretraga.isEmpty()) {
