@@ -36,10 +36,10 @@ public class BazaPredmeta {
 			
 			Predmet p1= new Predmet("E11","Algebra",Predmet.Semestar.ZIMSKI,1,8);
 			Predmet p2= new Predmet("E12","Matematička analiza 1",Predmet.Semestar.ZIMSKI,1,8);
-			Predmet p3= new Predmet("E11","Arhitektura računara",Predmet.Semestar.LETNJI,1,8);
-			Predmet p4= new Predmet("E11","Matematička analiza 2",Predmet.Semestar.ZIMSKI,2,8);
-			Predmet p5= new Predmet("E11","Sociologija",Predmet.Semestar.LETNJI,2,3);
-			Predmet p6= new Predmet("E11","Programski prevodioci",Predmet.Semestar.ZIMSKI,3,3);
+			Predmet p3= new Predmet("E13","Arhitektura računara",Predmet.Semestar.LETNJI,1,8);
+			Predmet p4= new Predmet("E14","Matematička analiza 2",Predmet.Semestar.ZIMSKI,2,8);
+			Predmet p5= new Predmet("E15","Sociologija",Predmet.Semestar.LETNJI,2,3);
+			Predmet p6= new Predmet("E16","Programski prevodioci",Predmet.Semestar.ZIMSKI,3,3);
 			predmeti.add(p1);
 			predmeti.add(p2);
 			predmeti.add(p3);

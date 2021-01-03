@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import dialog.DodavanjePredmetaStudentuDialog;
 import model.BazaNepolozenihPredmeta;
 import model.BazaStudenata;
 import table.AbstractTableModelNepolozeniPredmeti;
@@ -63,7 +64,16 @@ public class NepolozeniPredmetiView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("dodaj");
+				DodavanjePredmetaStudentuDialog dialog;
+				try {
+					dialog = new DodavanjePredmetaStudentuDialog(null,selRow);
+					dialog.setVisible(true);
+					azurirajTabelu("DODAT",-1);
+					dialog.repaint();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}});
 		
 		btnObrisi = new JButton("Ukloni");
