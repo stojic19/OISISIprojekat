@@ -5,7 +5,7 @@ import java.text.ParseException;
 import javax.swing.JTabbedPane;
 
 import view.NepolozeniPredmetiView;
-import view.OceneView;
+import view.OceneNepolozeniPredmetiView;
 import view.StudentView;
 
 public class StudentDialogTab extends JTabbedPane {
@@ -30,7 +30,7 @@ public class StudentDialogTab extends JTabbedPane {
     */
     private StudentView studentView;
 	
-    private OceneView oceneView;
+    private OceneNepolozeniPredmetiView oceneView;
 	
     private NepolozeniPredmetiView nepolozeniPredmetiView;
     
@@ -38,7 +38,7 @@ public class StudentDialogTab extends JTabbedPane {
 
     	studentView = new StudentView(selRow);
     	
-    	oceneView = new OceneView(selRow);
+    	oceneView = new OceneNepolozeniPredmetiView(selRow,0);
     	
     	nepolozeniPredmetiView = new NepolozeniPredmetiView(selRow);
     	
@@ -49,11 +49,4 @@ public class StudentDialogTab extends JTabbedPane {
         add("Nepoloženi",nepolozeniPredmetiView); 
     }
     
-    public void azurirajTabeluOcena(String akcija, int vrednost) throws ParseException{
-    	oceneView.azurirajTabelu(akcija, vrednost);
-    }
-    
-    public void azurirajTabeluNepolozenihPredmeta(String akcija, int vrednost) throws ParseException{
-    	nepolozeniPredmetiView.azurirajTabelu(akcija, vrednost);
-    }
 }

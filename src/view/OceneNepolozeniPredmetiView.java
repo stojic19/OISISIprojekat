@@ -21,16 +21,14 @@ import model.BazaStudenata;
 import model.Ocena;
 import table.AbstractTableModelOcene;
 import table.OceneJTable;
-import tabs.StudentDialogTab;
 
-public class OceneView extends JPanel {
+public class OceneNepolozeniPredmetiView extends JPanel {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private OceneController oceneController;
-
+	
 	private JPanel pnlButton;
 	private JPanel pnlContent;
 	private JPanel pnlPonisti;
@@ -44,15 +42,16 @@ public class OceneView extends JPanel {
 	
 	JScrollPane scrollPane;
 	
-	public OceneView(int selRow) throws ParseException
+	public OceneNepolozeniPredmetiView(int selRow,int i) throws ParseException
 	{
+		if(i==0){
 		BazaOcena.getInstance().setOcene(BazaStudenata.getInstance().getRow(selRow).getPolozeniIspiti());
 		
-		initGUI(selRow);
-		constructGUI();
+		initGUIOcene(selRow);
+		constructGUIOcene();
+		}
 	}
-
-	private void initGUI(int selRow) {
+	private void initGUIOcene(int selRow) {
 		BoxLayout box=new BoxLayout(this, BoxLayout.Y_AXIS);
 		setLayout(box);
 
@@ -82,24 +81,11 @@ public class OceneView extends JPanel {
 				if(code == JOptionPane.YES_OPTION){
 					Ocena o = BazaOcena.getInstance().getOcene().get(tabelaOcena.getSelectedRow());
 						
-					try {
-						BazaStudenata.getInstance().getStudenti().get(selRow).getPolozeniIspiti().remove(tabelaOcena.getSelectedRow());
-						BazaStudenata.getInstance().getStudenti().get(selRow).getNepolozeniIspiti().add(o.getPredmet());
-						BazaOcena.getInstance().setOcene(BazaStudenata.getInstance().getStudenti().get(selRow).getPolozeniIspiti());
-						BazaNepolozenihPredmeta.getInstance().setPredmeti(BazaStudenata.getInstance().getStudenti().get(selRow).getNepolozeniIspiti());
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					BazaOcena.getInstance().removeOcena(o.getPredmet().getSpr());
+					BazaNepolozenihPredmeta.getInstance().addPredmet(o.getPredmet().getSpr(), o.getPredmet().getNaziv(), o.getPredmet().getSemestar(), o.getPredmet().getGodina(), o.getPredmet().getEspb());
 					
-					try {
-						azurirajTabelu("UKLONJEN",tabelaOcena.getSelectedRow());
-						StudentDialogTab.getInstance(selRow).azurirajTabeluNepolozenihPredmeta("DODAT", -1);
-					} catch (ParseException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-					
+					azurirajTabeluOcena("UKLONJEN",tabelaOcena.getSelectedRow());
+					//TO DO:azurirajTabeluNepolozenihPredmeta("DODAT", -1);
 				}
 				}else{
 					JOptionPane.showMessageDialog(null, "Odaberite predmet za poništavanje!", "Poništavanje predmeta", JOptionPane.WARNING_MESSAGE,null);
@@ -110,7 +96,7 @@ public class OceneView extends JPanel {
 		scrollPane = new JScrollPane(tabelaOcena);
 	}
 
-	private void constructGUI() {
+	private void constructGUIOcene() {
 		this.setMaximumSize(new Dimension(500,450));
 		
 		pnlPonisti.add(btnPONISTI);
@@ -131,7 +117,7 @@ public class OceneView extends JPanel {
 		//add(scrollPane, BorderLayout.CENTER);
 		//add(pnlContent, BorderLayout.SOUTH);
 	}
-	public void azurirajTabelu(String akcija, int vrednost) {
+	public void azurirajTabeluOcena(String akcija, int vrednost) {
 		azurirajLabele();
 		AbstractTableModelOcene model = (AbstractTableModelOcene) tabelaOcena.getModel();
 		model.fireTableDataChanged();
