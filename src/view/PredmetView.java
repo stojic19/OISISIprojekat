@@ -27,7 +27,9 @@ import listeners.focus.TextFieldFocusListener;
 import listeners.key.EspbKeyListener;
 import model.BazaPredmeta;
 import model.Predmet;
+import model.Profesor;
 import controller.PredmetiController;
+import dialog.DodavanjeProfNaPredmetDialog;
 
 public class PredmetView extends JPanel {
 
@@ -60,11 +62,15 @@ public class PredmetView extends JPanel {
 	private JButton btnOK;
 	private JButton btnCANCEL;
 	
+	private int selRow;
+	
 	public PredmetView(int selRow) {
 		initGUI(true);
 		constructGUI(true);
 
 		setPredmet(BazaPredmeta.getInstance().getRow(selRow));
+		
+		this.selRow = selRow;
 	}
 	public PredmetView()
 	{
@@ -113,7 +119,12 @@ public class PredmetView extends JPanel {
 				dialog.actionPerformed(e,"Prekid izmene?","Da li ste sigurni da želite da prekinete izmenu podataka o predmetu?");
 			}
 		});
-
+		
+		lblProfessor = new JLabel("Profesor*");
+		tfProfessor = new JTextField(20);
+		tfProfessor.addFocusListener(tfFocusListener);
+		tfProfessor.setMinimumSize(new Dimension(150,20));
+		
 		btnOK = new JButton("Potvrdi");
 		btnOK.setBackground(new Color(170, 167, 196));
 		btnOK.addActionListener(new ActionListener() {
@@ -130,11 +141,45 @@ public class PredmetView extends JPanel {
 		});
 		
 		btnPLUS = new JButton("+");
+		btnPLUS.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DodavanjeProfNaPredmetDialog dialog = new DodavanjeProfNaPredmetDialog(null,selRow);
+					dialog.setVisible(true);
+					Predmet p = BazaPredmeta.getInstance().getRow(selRow);
+					if(p.getProfesor()!=null){
+					tfProfessor.setText(p.getProfesor().getIme()+" "+p.getProfesor().getPrz());
+					setPredmet(p);
+					refreshView();
+					}
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnMINUS = new JButton("-");
-		lblProfessor = new JLabel("Profesor*");
-		tfProfessor = new JTextField(20);
-		tfProfessor.addFocusListener(tfFocusListener);
-		tfProfessor.setMinimumSize(new Dimension(80,20));
+		btnMINUS.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] mess = new String[2];
+				mess[0] = "Da";
+				mess[1] = "Ne";
+				
+				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da uklonite profesora?",
+						"Uklanjanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
+				if(code == JOptionPane.YES_OPTION){
+					BazaPredmeta.getInstance().getRow(selRow).setProfesor(null);
+					tfProfessor.setText("");
+					refreshView();
+				}
+			}
+		});
+		
 		btnPLUS.setMaximumSize(new Dimension(18,18));
 		btnMINUS.setMaximumSize(new Dimension(18,18));
 	}
@@ -230,6 +275,16 @@ public class PredmetView extends JPanel {
 		else
 			cbSemester.setSelectedIndex(1);
 		tfESPB.setText(Integer.toString(predmet.getEspb()));
+		
+		if(predmet.getProfesor()==null){
+			btnMINUS.setEnabled(false);
+			btnPLUS.setEnabled(true);
+		}else{
+			Profesor p = predmet.getProfesor();
+			tfProfessor.setText(p.getIme()+" "+p.getPrz());
+			btnMINUS.setEnabled(true);
+			btnPLUS.setEnabled(false);
+		}
 	}
 
 	private void ok(boolean update) throws ParseException {

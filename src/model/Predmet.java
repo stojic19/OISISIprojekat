@@ -44,6 +44,8 @@ public class Predmet {
 		
 		polozili= new ArrayList<Student>();
 		nisuPolozili= new ArrayList<Student>();
+		
+		profesor = null;
 	}
 
 
