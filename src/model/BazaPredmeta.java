@@ -94,6 +94,7 @@ public class BazaPredmeta {
 	public void addPredmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
 		this.predmeti.add(new Predmet(spr, naziv, semestar, godina, espb));
 		this.refresh.add(new Predmet(spr, naziv, semestar, godina, espb));
+		//refresh=predmeti;
 		
 	}
 
@@ -110,6 +111,7 @@ public class BazaPredmeta {
 				break;
 			}
 		}
+	
 	}
 
 	public void editPredmet(String spr, String naziv, Semestar semestar, int godina, int espb, String staraSpr) {
@@ -131,6 +133,7 @@ public class BazaPredmeta {
 				p.setEspb(espb);
 			}
 		}
+	
 		
 	}
 	public void OsveziPrikaz() {

@@ -9,11 +9,21 @@ import java.text.ParseException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import dialog.DodavanjePredmetaProfesoruDialog;
+import dialog.DodavanjePredmetaStudentuDialog;
+import model.BazaNepolozenihPredmeta;
+import model.BazaOcena;
 import model.BazaProfesorPredajePredmete;
 import model.BazaProfesora;
+import model.Ocena;
+import model.Predmet;
+import table.AbstractTableModelNepolozeniPredmeti;
+import table.AbstractTableModelProfesorPredajePredmete;
 import table.ProfesorPredajePredmeteJTable;
 
 public class ProfesorPredajePredmeteView extends JPanel {
@@ -59,7 +69,16 @@ public class ProfesorPredajePredmeteView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				   System.out.println("Ukloni");
+				DodavanjePredmetaProfesoruDialog dialog;
+				try {
+					dialog = new DodavanjePredmetaProfesoruDialog(null,selRow);
+					dialog.setVisible(true);
+					azurirajTabeluPPPredmeta("DODAT",-1);
+					dialog.repaint();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				}
 			});
 		
@@ -68,7 +87,8 @@ public class ProfesorPredajePredmeteView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			          System.out.println("Ukloni");
+				System.out.println("Ukloni");
+					
 				}
 			});
 		tabelaPredmeta = new ProfesorPredajePredmeteJTable();
@@ -93,6 +113,11 @@ public class ProfesorPredajePredmeteView extends JPanel {
 		add(pnlP);
 		add(scrollPane);
 		add(pnlContent);
+	}
+	public void azurirajTabeluPPPredmeta(String akcija, int vrednost) {
+		AbstractTableModelProfesorPredajePredmete model = (AbstractTableModelProfesorPredajePredmete) tabelaPredmeta.getModel();
+		model.fireTableDataChanged();
+		tabelaPredmeta.validate();
 	}
 
 }
