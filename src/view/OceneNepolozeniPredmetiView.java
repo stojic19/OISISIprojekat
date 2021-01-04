@@ -95,7 +95,7 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 				mess[0] = "Da";
 				mess[1] = "Ne";
 				if(tabelaOcena.getSelectedRow()>=0){
-				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da ponistite ocenu?",
+				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da poništite ocenu?",
 						"Ponistavanje ocene", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
 				if(code == JOptionPane.YES_OPTION){
 					Ocena o = BazaOcena.getInstance().getOcene().get(tabelaOcena.getSelectedRow());

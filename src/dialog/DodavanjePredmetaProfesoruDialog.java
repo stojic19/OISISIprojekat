@@ -6,6 +6,8 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -15,17 +17,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-
 import model.BazaPredmeta;
-import model.BazaProfesora;
-import model.Profesor;
+import model.BazaProfesorPredajePredmete;
+import model.Predmet;
 
-public class DodavanjeProfNaPredmetDialog extends JDialog {
+public class DodavanjePredmetaProfesoruDialog extends JDialog {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	private JPanel pnlContent;
 	private JPanel pnlButtons;
 	
@@ -38,8 +38,10 @@ public class DodavanjeProfNaPredmetDialog extends JDialog {
 	private JButton btnDodaj;
 	private JButton btnOdustani;
 	
-	public  DodavanjeProfNaPredmetDialog(Frame parent,int selRow) throws ParseException {
-		super(parent, "Odaberi profesora", true);
+	private List<Predmet> predmeti;
+	
+	public DodavanjePredmetaProfesoruDialog(Frame parent,int selRow) throws ParseException {
+		super(parent, "Dodavanje predmeta", true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(350, 280);
 		setLocationRelativeTo(parent);
@@ -60,25 +62,24 @@ public class DodavanjeProfNaPredmetDialog extends JDialog {
 		list.setVisibleRowCount(-1);
 		scrollPane = new JScrollPane(list);
 		
-		btnDodaj = new JButton("Dodaj");
+		btnDodaj = new JButton("Potvrdi");
 		btnDodaj.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(list.getSelectedIndex()>=0)
 				{
-					Profesor p;
-					try {
-						p = BazaProfesora.getInstance().getRow(list.getSelectedIndex());
-						BazaPredmeta.getInstance().getPredmeti().get(selRow).setProfesor(p);
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					Predmet p = predmeti.get(list.getSelectedIndex());
+					BazaProfesorPredajePredmete.getInstance().addPredmet(p.getSpr(), p.getNaziv(), p.getSemestar(), p.getGodina(), p.getEspb());
+					predmeti.remove(list.getSelectedIndex());
+					
+					list.updateUI();
+					pnlContent.validate();
+					pnlContent.repaint();
 					dispose();
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "Odaberite profesora za dodavanje!", "Dodavanje profesora", JOptionPane.WARNING_MESSAGE,null);
+					JOptionPane.showMessageDialog(null, "Odaberite predmet za dodavanje!", "Dodavanje predmeta", JOptionPane.WARNING_MESSAGE,null);
 				}
 			}
 		});
@@ -103,11 +104,24 @@ public class DodavanjeProfNaPredmetDialog extends JDialog {
 	private void initList(int selRow) throws ParseException{
 		listModel = new DefaultListModel<String>();
 		
-		for(Profesor p : BazaProfesora.getInstance().getProfesori())
+		boolean exists = false;
+		predmeti = new ArrayList<Predmet>();
+		
+		for(Predmet p : BazaPredmeta.getInstance().getPredmeti())
 		{
-				listModel.addElement(p.getIme() + " " + p.getPrz());
-			
+			exists = false;
+			for(Predmet p1 : BazaProfesorPredajePredmete.getInstance().getPredmeti()){
+				if(p1.getSpr()==p.getSpr()){
+					exists = true;
+					break;
+				}
+			}
+			if(!exists){
+				listModel.addElement(p.getSpr() + " - " + p.getNaziv());
+				predmeti.add(p);
+			}
 		}
 		list = new JList<String>(listModel);
 	}
+
 }

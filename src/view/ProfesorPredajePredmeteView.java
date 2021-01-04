@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import dialog.DodavanjePredmetaProfesoruDialog;
 import model.BazaProfesorPredajePredmete;
 import model.BazaProfesora;
 import table.AbstractTableModelProfesorPredajePredmete;
@@ -62,8 +63,18 @@ public class ProfesorPredajePredmeteView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				DodavanjePredmetaProfesoruDialog dialog1;
+				try {
+					dialog1 = new DodavanjePredmetaProfesoruDialog(null,selRow);
+					dialog1.setVisible(true);
+					azurirajTabeluPPPredmeta("DODAT",-1);
+					dialog1.repaint();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+				
+			}
 			});
 		
 		btnUKLONI = new JButton("Ukloni predmet");
