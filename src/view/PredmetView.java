@@ -27,7 +27,9 @@ import listeners.focus.TextFieldFocusListener;
 import listeners.key.EspbKeyListener;
 import model.BazaPredmeta;
 import model.Predmet;
+import model.Profesor;
 import controller.PredmetiController;
+import dialog.DodavanjeProfNaPredmetDialog;
 
 public class PredmetView extends JPanel {
 
@@ -61,18 +63,18 @@ public class PredmetView extends JPanel {
 	private JButton btnCANCEL;
 	
 	public PredmetView(int selRow) {
-		initGUI(true);
+		initGUI(true,selRow);
 		constructGUI(true);
 
 		setPredmet(BazaPredmeta.getInstance().getRow(selRow));
 	}
 	public PredmetView()
 	{
-		initGUI(false);
+		initGUI(false,-1);
 		constructGUI(false);
 	}
 
-	private void initGUI(boolean update) {
+	private void initGUI(boolean update,int selRow) {
 		setLayout(new BorderLayout());
 
 		pnlContent = new JPanel(new GridBagLayout());
@@ -100,6 +102,11 @@ public class PredmetView extends JPanel {
 		tfESPB = new JTextField(20);
 		tfESPB.addFocusListener(tfFocusListener);
 		tfESPB.addKeyListener(espbKeyListener);
+		
+		lblProfessor = new JLabel("Profesor*");
+		tfProfessor = new JTextField(20);
+		tfProfessor.addFocusListener(tfFocusListener);
+		tfProfessor.setMinimumSize(new Dimension(150,20));
 		
 		btnCANCEL = new JButton("Odustani");
 		btnCANCEL.addActionListener(new ActionListener() {
@@ -130,11 +137,35 @@ public class PredmetView extends JPanel {
 		});
 		
 		btnPLUS = new JButton("+");
+		btnPLUS.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DodavanjeProfNaPredmetDialog dialog = new DodavanjeProfNaPredmetDialog(null,selRow);
+					dialog.setVisible(true);
+					Predmet p = BazaPredmeta.getInstance().getRow(selRow);
+					if(p.getProfesor()!=null){
+					tfProfessor.setText(p.getProfesor().getIme()+" "+p.getProfesor().getPrz());
+					setPredmet(p);
+					refreshView();
+					}
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
 		btnMINUS = new JButton("-");
-		lblProfessor = new JLabel("Profesor*");
-		tfProfessor = new JTextField(20);
-		tfProfessor.addFocusListener(tfFocusListener);
-		tfProfessor.setMinimumSize(new Dimension(80,20));
+		btnMINUS.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TO DO:uklanjaje prof sa predmeta
+				}
+		});
 		btnPLUS.setMaximumSize(new Dimension(18,18));
 		btnMINUS.setMaximumSize(new Dimension(18,18));
 	}
@@ -230,6 +261,16 @@ public class PredmetView extends JPanel {
 		else
 			cbSemester.setSelectedIndex(1);
 		tfESPB.setText(Integer.toString(predmet.getEspb()));
+		
+		if(predmet.getProfesor()==null){
+			btnMINUS.setEnabled(false);
+			btnPLUS.setEnabled(true);
+		}else{
+			Profesor p = predmet.getProfesor();
+			tfProfessor.setText(p.getIme()+" "+p.getPrz());
+			btnMINUS.setEnabled(true);
+			btnPLUS.setEnabled(false);
+		}
 	}
 
 	private void ok(boolean update) throws ParseException {
