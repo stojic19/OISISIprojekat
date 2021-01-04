@@ -49,6 +49,25 @@ public class BazaProfesora {
 		profesori.add(p4);
 		profesori.add(p5);
 		profesori.add(p6);
+		
+		profesori.get(0).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),
+				BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),
+				BazaPredmeta.getInstance().getRow(4).getEspb()));
+		profesori.get(0).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(5).getSpr(),BazaPredmeta.getInstance().getRow(5).getNaziv(),
+				BazaPredmeta.getInstance().getRow(5).getSemestar(),BazaPredmeta.getInstance().getRow(5).getGodina(),
+				BazaPredmeta.getInstance().getRow(5).getEspb()));
+		profesori.get(1).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),
+				BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),
+				BazaPredmeta.getInstance().getRow(4).getEspb()));
+		profesori.get(1).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(5).getSpr(),BazaPredmeta.getInstance().getRow(5).getNaziv(),
+				BazaPredmeta.getInstance().getRow(5).getSemestar(),BazaPredmeta.getInstance().getRow(5).getGodina(),
+				BazaPredmeta.getInstance().getRow(5).getEspb()));
+		profesori.get(2).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),
+				BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),
+				BazaPredmeta.getInstance().getRow(4).getEspb()));
+		profesori.get(2).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(5).getSpr(),BazaPredmeta.getInstance().getRow(5).getNaziv(),
+				BazaPredmeta.getInstance().getRow(5).getSemestar(),BazaPredmeta.getInstance().getRow(5).getGodina(),
+				BazaPredmeta.getInstance().getRow(5).getEspb()));
 		refresh=profesori;
 	}
 
