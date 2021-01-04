@@ -164,6 +164,17 @@ public class PredmetView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TO DO:uklanjaje prof sa predmeta
+				String[] mess = new String[2];
+				mess[0] = "Da";
+				mess[1] = "Ne";
+				
+				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da uklonite profesora?",
+						"Uklanjanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
+				if(code == JOptionPane.YES_OPTION){
+					BazaPredmeta.getInstance().getRow(selRow).setProfesor(null);
+					tfProfessor.setText("");
+					refreshView();
+				}
 				}
 		});
 		btnPLUS.setMaximumSize(new Dimension(18,18));
