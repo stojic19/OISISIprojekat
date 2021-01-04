@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,7 +29,8 @@ public class DodavanjePredmetaProfesoruDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JPanel pnlContent;
 	private JPanel pnlButtons;
-	
+	private JPanel pnlPredmeti;
+	private JLabel lblPredmeti;
 	private DefaultListModel<String> listModel;
 	
 	private JList<String> list;
@@ -41,7 +43,7 @@ public class DodavanjePredmetaProfesoruDialog extends JDialog {
 	private List<Predmet> predmeti;
 	
 	public DodavanjePredmetaProfesoruDialog(Frame parent,int selRow) throws ParseException {
-		super(parent, "Dodavanje predmeta", true);
+		super(parent, "Dodaj predmet", true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(350, 280);
 		setLocationRelativeTo(parent);
@@ -54,6 +56,8 @@ public class DodavanjePredmetaProfesoruDialog extends JDialog {
 		this.setLayout(new BorderLayout());
 		pnlContent = new JPanel(new BorderLayout());
 		pnlButtons = new JPanel(new FlowLayout());
+		pnlPredmeti = new JPanel(new BorderLayout());
+		lblPredmeti= new JLabel("Predmeti:");
 		
 		initList(selRow);
 
@@ -96,7 +100,9 @@ public class DodavanjePredmetaProfesoruDialog extends JDialog {
 	private void constructGUI(){
 		pnlButtons.add(btnDodaj);
 		pnlButtons.add(btnOdustani);
+	    pnlPredmeti.add(lblPredmeti,BorderLayout.WEST);
 		pnlContent.add(scrollPane,BorderLayout.CENTER);
+		pnlContent.add(pnlPredmeti,BorderLayout.NORTH);
 		add(pnlContent,BorderLayout.CENTER);
 		add(pnlButtons,BorderLayout.SOUTH);
 	}
