@@ -5,6 +5,7 @@ import java.text.ParseException;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import view.ProfesorPredajePredmeteView;
 import view.ProfesorView;
 
 
@@ -23,15 +24,15 @@ public class ProfesorDialogTab extends JTabbedPane {
         return instance;
     }
  
-    private JPanel predmeti = new JPanel();
     
     public ProfesorDialogTab(int selRow) throws ParseException {
 
     	ProfesorView profesorView = new ProfesorView(selRow);
+    	ProfesorPredajePredmeteView profesorPredajePredmeteView = new ProfesorPredajePredmeteView(selRow);
     	
         add("Informacije",profesorView);
         
-        add("Predmeti",predmeti);
+        add("Predmeti",profesorPredajePredmeteView);
         
    
         

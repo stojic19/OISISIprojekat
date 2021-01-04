@@ -18,8 +18,8 @@ public class BazaProfesora {
 
 
 
-	private List<Profesor> profesori =new ArrayList<>();
-	private List<Profesor> refresh =new ArrayList<>();
+	private List<Profesor> profesori =new ArrayList<Profesor>();
+	private List<Profesor> refresh =new ArrayList<Profesor>();
 	private List<String> kolone = new ArrayList<>();
 
 	private BazaProfesora() throws ParseException {
@@ -49,6 +49,18 @@ public class BazaProfesora {
 		profesori.add(p4);
 		profesori.add(p5);
 		profesori.add(p6);
+
+	    profesori.get(0).getPredmeti().add( new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),BazaPredmeta.getInstance().getRow(4).getEspb()));
+	    
+	    
+	    profesori.get(2).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),BazaPredmeta.getInstance().getRow(4).getEspb()));
+	    
+	    
+	    profesori.get(1).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(1).getSpr(),BazaPredmeta.getInstance().getRow(1).getNaziv(),BazaPredmeta.getInstance().getRow(1).getSemestar(),BazaPredmeta.getInstance().getRow(1).getGodina(),BazaPredmeta.getInstance().getRow(1).getEspb()));
+	    
+	  
+	    profesori.get(1).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(0).getSpr(),BazaPredmeta.getInstance().getRow(0).getNaziv(),BazaPredmeta.getInstance().getRow(0).getSemestar(),BazaPredmeta.getInstance().getRow(0).getGodina(),BazaPredmeta.getInstance().getRow(0).getEspb()));
+		  
 		refresh=profesori;
 	}
 
