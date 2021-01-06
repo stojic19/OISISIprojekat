@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -14,8 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import dialog.DodavanjePredmetaStudentuDialog;
+import dialog.UpisOceneDialog;
 import model.BazaNepolozenihPredmeta;
 import model.BazaOcena;
 import model.BazaStudenata;
@@ -32,6 +33,16 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private static OceneNepolozeniPredmetiView instance = null;
+
+	public static OceneNepolozeniPredmetiView getInstance() {
+		if (instance == null) {
+			instance = new OceneNepolozeniPredmetiView();
+		}
+		return instance;
+	}
+	
+	
 	private JPanel pnlButton;
 	private JPanel pnlContent;
 	private JPanel pnlPonisti;
@@ -41,19 +52,19 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 	
 	private JButton btnPONISTI;
 	
-	private JTable tabelaOcena;
+	public JTable tabelaOcena;
 	
 	JScrollPane scrollPane;
 	///nepolozeni predmeti
 	private JPanel pnlempty;
 	private JPanel pnlContent1;
-	private JPanel pnlPom;
+	private JPanel pnlPom;	
 	
 	private JButton btnDodaj;
 	private JButton btnObrisi;
 	private JButton btnPolaganje;
 	
-	private JTable tabelaPredmeta;
+	public JTable tabelaPredmeta;
 	JScrollPane scrollPane1;
 	private JPanel nepolozeni;
 	
@@ -69,6 +80,9 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 		
 		initGUINP(selRow);
 		constructGUINP();
+	}
+	public OceneNepolozeniPredmetiView() {
+		// TODO Auto-generated constructor stub
 	}
 	private void initGUIOcene(int selRow) {
 		BoxLayout box=new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -148,6 +162,8 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 	}
 	// nepolozeni predmeti:
 	private void initGUINP(int selRow) {
+		tabelaPredmeta = new NepolozeniPredmetiJTable();
+		scrollPane1 = new JScrollPane(tabelaPredmeta);
 		nepolozeni = new JPanel();
 		BoxLayout box=new BoxLayout(nepolozeni, BoxLayout.Y_AXIS);
 		nepolozeni.setLayout(box);
@@ -205,11 +221,26 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("polaganje");
+				if(tabelaPredmeta.getSelectedRow()>=0) {
+				UpisOceneDialog dialog;
+				try {
+					dialog = new UpisOceneDialog(null, selRow,tabelaPredmeta.getSelectedRow());
+					dialog.setVisible(true);
+					dialog.repaint();
+					azurirajTabeluNP("UKLONJEN", tabelaPredmeta.getSelectedRow());
+					azurirajTabeluOcena("DODAT", -1);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+				
+				}else {
+					JOptionPane.showMessageDialog(null, "Odaberite predmet za polaganje!", "Upis ocene", JOptionPane.WARNING_MESSAGE,null);
+				}
+				
+			}
 			});
-		tabelaPredmeta = new NepolozeniPredmetiJTable();
-		scrollPane1 = new JScrollPane(tabelaPredmeta);
+	
 	}
 	
 	private void constructGUINP() {

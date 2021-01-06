@@ -77,7 +77,7 @@ public class BazaOcena {
 				 return Integer.toString(8);
 			else if(ocena.getVrednostOcene()==VrednostOcene.DEVET)
 				 return Integer.toString(9);
-			else
+			else 
 				 return Integer.toString(10);
 		case 4:
 			DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy.");  
