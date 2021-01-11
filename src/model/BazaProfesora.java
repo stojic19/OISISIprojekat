@@ -1,12 +1,13 @@
 package model;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +42,8 @@ public class BazaProfesora {
 	}
 
 	private void initProfesore() throws ParseException {
-		
+		loadProfesorData();
+		/*
 		Profesor p1= new Profesor("Nikolić","Nikola",new SimpleDateFormat("dd.MM.yyyy").parse("07.08.1978."),"Adresa1","0394320492049","mejl1","Adresa k1","12345678",Titula.DR,Zvanje.ASISTENT);
 		Profesor p2= new Profesor("Lukić","Luka",new SimpleDateFormat("dd.MM.yyyy").parse("07.08.1978."),"Adresa2","0394320492049","mejl2","Adresa k2","21345678",Titula.MR,Zvanje.VANREDNIPROFESOR);
 		Profesor p3= new Profesor("Minić","Mina",new SimpleDateFormat("dd.MM.yyyy").parse("07.08.1978."),"Adresa3","0394320492049","mejl3","Adresa k3","31245678",Titula.DR,Zvanje.REDOVNIPROFESOR);
@@ -73,6 +75,7 @@ public class BazaProfesora {
 		profesori.get(2).getPredmeti().add(new Predmet(BazaPredmeta.getInstance().getRow(5).getSpr(),BazaPredmeta.getInstance().getRow(5).getNaziv(),
 				BazaPredmeta.getInstance().getRow(5).getSemestar(),BazaPredmeta.getInstance().getRow(5).getGodina(),
 				BazaPredmeta.getInstance().getRow(5).getEspb()));
+				*/
 		refresh=profesori;
 	}
 
@@ -190,12 +193,24 @@ public class BazaProfesora {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
-				
+				}		
 			}
 		}
-		
-
    }
+   
+   @SuppressWarnings("unchecked")
+	public void loadProfesorData(){
+		 ObjectInputStream in;
+		try {
+			in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("profesori.txt")));
+			profesori = (ArrayList<Profesor>)in.readObject();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
 }
 

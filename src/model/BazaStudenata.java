@@ -1,11 +1,13 @@
 package model;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,15 +44,16 @@ public class BazaStudenata {
 
 	private void initStudente() throws ParseException {
 		this.studenti = new ArrayList<Student>();
-		
-		studenti.add(new Student("Magdalena", "Reljin",new SimpleDateFormat("dd.MM.yyyy").parse("07.08.1978."), "Bulevar Severne Armije 45", "021021021", "adresa", "RA82/2018", 2018, 3 , Finansiranje.B));
-		studenti.add(new Student("Nenad", "Jecković",new SimpleDateFormat("dd.MM.yyyy").parse("17.08.1979."), "Bulevar Severne Armije 45", "021021021", "adresa", "RA85/2018", 2018, 2 , Finansiranje.S));
-		studenti.add(new Student("Anja", "Tanović",new SimpleDateFormat("dd.MM.yyyy").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "EE49/2018", 2018, 3 , Finansiranje.B));
-		studenti.add(new Student("Jovana", "Đorđević",new SimpleDateFormat("dd.MM.yyyy").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "II20/2018", 2018, 3 , Finansiranje.B));
-		studenti.add(new Student("Zorana", "Popović",new SimpleDateFormat("dd.MM.yyyy").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "AU27/2018", 2018, 3 , Finansiranje.S));
+		loadStudentData();
+		/*
+		studenti.add(new Student("Magdalena", "Reljin",new SimpleDateFormat("dd.MM.yyyy.").parse("07.08.1978."), "Bulevar Severne Armije 45", "021021021", "adresa", "RA82/2018", 2018, 3 , Finansiranje.B));
+		studenti.add(new Student("Nenad", "Jecković",new SimpleDateFormat("dd.MM.yyyy.").parse("17.08.1979."), "Bulevar Severne Armije 45", "021021021", "adresa", "RA85/2018", 2018, 2 , Finansiranje.S));
+		studenti.add(new Student("Anja", "Tanović",new SimpleDateFormat("dd.MM.yyyy.").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "EE49/2018", 2018, 3 , Finansiranje.B));
+		studenti.add(new Student("Jovana", "Đorđević",new SimpleDateFormat("dd.MM.yyyy.").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "II20/2018", 2018, 3 , Finansiranje.B));
+		studenti.add(new Student("Zorana", "Popović",new SimpleDateFormat("dd.MM.yyyy.").parse("27.10.1980."), "Bulevar Severne Armije 45", "021021021", "adresa", "AU27/2018", 2018, 3 , Finansiranje.S));
 	
-		studenti.get(0).getPolozeniIspiti().add(new Ocena(studenti.get(0), BazaPredmeta.getInstance().getRow(1), Ocena.VrednostOcene.DESET, new SimpleDateFormat("dd.MM.yyyy").parse("09.01.2021.")));
-		studenti.get(0).getPolozeniIspiti().add(new Ocena(studenti.get(0), BazaPredmeta.getInstance().getRow(2), Ocena.VrednostOcene.OSAM, new SimpleDateFormat("dd.MM.yyyy").parse("09.10.2021.")));
+		studenti.get(0).getPolozeniIspiti().add(new Ocena(studenti.get(0), BazaPredmeta.getInstance().getRow(1), Ocena.VrednostOcene.DESET, new SimpleDateFormat("dd.MM.yyyy.").parse("09.01.2021.")));
+		studenti.get(0).getPolozeniIspiti().add(new Ocena(studenti.get(0), BazaPredmeta.getInstance().getRow(2), Ocena.VrednostOcene.OSAM, new SimpleDateFormat("dd.MM.yyyy.").parse("09.10.2021.")));
 		
 		studenti.get(0).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(3).getSpr(),BazaPredmeta.getInstance().getRow(3).getNaziv(),
 				BazaPredmeta.getInstance().getRow(3).getSemestar(),BazaPredmeta.getInstance().getRow(3).getGodina(),
@@ -60,8 +63,8 @@ public class BazaStudenata {
 				BazaPredmeta.getInstance().getRow(4).getEspb()));
 		
 		
-		studenti.get(1).getPolozeniIspiti().add(new Ocena(studenti.get(1), BazaPredmeta.getInstance().getRow(1), Ocena.VrednostOcene.DESET, new SimpleDateFormat("dd.MM.yyyy").parse("09.01.2021.")));
-		studenti.get(1).getPolozeniIspiti().add(new Ocena(studenti.get(1), BazaPredmeta.getInstance().getRow(2), Ocena.VrednostOcene.OSAM, new SimpleDateFormat("dd.MM.yyyy").parse("09.10.2021.")));
+		studenti.get(1).getPolozeniIspiti().add(new Ocena(studenti.get(1), BazaPredmeta.getInstance().getRow(1), Ocena.VrednostOcene.DESET, new SimpleDateFormat("dd.MM.yyyy.").parse("09.01.2021.")));
+		studenti.get(1).getPolozeniIspiti().add(new Ocena(studenti.get(1), BazaPredmeta.getInstance().getRow(2), Ocena.VrednostOcene.OSAM, new SimpleDateFormat("dd.MM.yyyy.").parse("09.10.2021.")));
 		
 		studenti.get(1).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(3).getSpr(),BazaPredmeta.getInstance().getRow(3).getNaziv(),
 				BazaPredmeta.getInstance().getRow(3).getSemestar(),BazaPredmeta.getInstance().getRow(3).getGodina(),
@@ -69,7 +72,7 @@ public class BazaStudenata {
 		studenti.get(1).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(4).getSpr(),BazaPredmeta.getInstance().getRow(4).getNaziv(),
 				BazaPredmeta.getInstance().getRow(4).getSemestar(),BazaPredmeta.getInstance().getRow(4).getGodina(),
 				BazaPredmeta.getInstance().getRow(4).getEspb()));
-		
+		*/
 		refresh = studenti;
 	}
 
@@ -204,7 +207,20 @@ public class BazaStudenata {
 					
 				}
 			}
-			
-
 	   }
+	 
+	 @SuppressWarnings("unchecked")
+	public void loadStudentData(){
+		 ObjectInputStream in;
+		try {
+			in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("studenti.txt")));
+			studenti = (ArrayList<Student>)in.readObject();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
 }

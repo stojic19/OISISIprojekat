@@ -1,8 +1,11 @@
 package model;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +40,8 @@ public class BazaPredmeta {
 	}
 
 	private void initPredmete() {
-			
+			loadPredmetData();
+		/*
 			Predmet p1= new Predmet("E11","Algebra",Predmet.Semestar.ZIMSKI,1,8);
 			Predmet p2= new Predmet("E12","Matematička analiza 1",Predmet.Semestar.ZIMSKI,1,8);
 			Predmet p3= new Predmet("E13","Arhitektura računara",Predmet.Semestar.LETNJI,1,8);
@@ -50,6 +54,7 @@ public class BazaPredmeta {
 			predmeti.add(p4);
 			predmeti.add(p5);
 			predmeti.add(p6);
+			*/
 			refresh=predmeti;
 	}
 
@@ -162,8 +167,21 @@ public class BazaPredmeta {
 					
 				}
 			}
-			
-
 	   }
+	 
+	 @SuppressWarnings("unchecked")
+		public void loadPredmetData(){
+			 ObjectInputStream in;
+			try {
+				in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.txt")));
+				predmeti = (ArrayList<Predmet>)in.readObject();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
 
 }
