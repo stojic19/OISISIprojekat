@@ -177,9 +177,9 @@ public class BazaProfesora {
 	    ObjectOutputStream out=null;
 		try {
 		    out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("profesori.txt")));
-			for(Profesor p:profesori) {
-				out.writeObject(p);
-			}
+		
+				out.writeObject(profesori);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

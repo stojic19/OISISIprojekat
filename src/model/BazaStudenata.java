@@ -187,9 +187,9 @@ public class BazaStudenata {
 		    ObjectOutputStream out=null;
 			try {
 			    out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("studenti.txt")));
-				for(Student s:studenti) {
-					out.writeObject(s);
-				}
+				
+					out.writeObject(studenti);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

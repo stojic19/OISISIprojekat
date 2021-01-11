@@ -145,9 +145,9 @@ public class BazaPredmeta {
 		    ObjectOutputStream out=null;
 			try {
 			    out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.txt")));
-				for(Predmet p:predmeti) {
-					out.writeObject(p);
-				}
+			
+					out.writeObject(predmeti);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
