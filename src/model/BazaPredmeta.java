@@ -93,7 +93,7 @@ public class BazaPredmeta {
 	
 	public void addPredmet(String spr, String naziv, Semestar semestar, int godina, int espb) {
 		this.predmeti.add(new Predmet(spr, naziv, semestar, godina, espb));
-		this.refresh.add(new Predmet(spr, naziv, semestar, godina, espb));
+		refresh=predmeti;
 		
 	}
 

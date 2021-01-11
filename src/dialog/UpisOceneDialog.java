@@ -113,8 +113,7 @@ public class UpisOceneDialog extends JDialog{
 		    panDatum = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		    lblDatum = new JLabel("Datum*");
 		    txtDatum= new JTextField();
-		   
-	     
+	        
 			btnDodaj.addActionListener(new ActionListener() {
 
 				@Override
