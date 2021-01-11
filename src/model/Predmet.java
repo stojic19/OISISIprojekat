@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Predmet {
+public class Predmet implements Serializable {
        private String spr;
        private String naziv;
        private Semestar semestar;

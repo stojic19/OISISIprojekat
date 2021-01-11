@@ -1,5 +1,10 @@
 package model;
 
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -132,7 +137,7 @@ public class BazaProfesora {
 	}
 
    
-   public void OsveziPrikaz() {
+   public void osveziPrikaz() {
 	   profesori=refresh;
    }
    public void editProfesor(String prz, String ime, Date datRodj, String adrs, String ktel, String email, String adrk,
@@ -167,5 +172,30 @@ public class BazaProfesora {
 				}
 	     	}
 	}
+   
+   public void saveProfesorData() {
+	    ObjectOutputStream out=null;
+		try {
+		    out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("profesori.txt")));
+			for(Profesor p:profesori) {
+				out.writeObject(p);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(out!=null) {
+				  try {
+					out.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}
+		
+
+   }
 }
 

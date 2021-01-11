@@ -91,22 +91,22 @@ public class Toolbar extends JToolBar {
 			try {
 			switch(Tab.getInstance().getSelectedIndex()){
 			case 0:
-				if(pretraga.isEmpty()) {
-		    		BazaStudenata.getInstance().osveziPrikaz();
-		    	}
-			    PretragaStudenata p0 = new PretragaStudenata(pretraga.trim());
-				break;
+						if(pretraga.isEmpty()) {
+							BazaStudenata.getInstance().osveziPrikaz();
+						}
+						PretragaStudenata p0 = new PretragaStudenata(pretraga.trim());
+						break;
 			case 1:
 				    	
-				 if(pretraga.isEmpty()) {
-				    BazaProfesora.getInstance().OsveziPrikaz();
-				 }
-		         PretragaProfesora p1=new PretragaProfesora(pretraga.trim());
-				 break;
+						if(pretraga.isEmpty()) {
+							BazaProfesora.getInstance().osveziPrikaz();
+						}
+						PretragaProfesora p1=new PretragaProfesora(pretraga.trim());
+						break;
 			case 2:
 						
 						if(pretraga.isEmpty()) {
-						BazaPredmeta.getInstance().OsveziPrikaz();
+						BazaPredmeta.getInstance().osveziPrikaz();
 		    	        }
 			            PretragaPredmeta p2=new PretragaPredmeta(pretraga.trim());
 				        break;

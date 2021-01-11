@@ -38,6 +38,15 @@ public class StudentView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private static StudentView instance = null;
+
+	public static StudentView getInstance() {
+		if (instance == null) {
+			instance = new StudentView();
+		}
+		return instance;
+	}
+	
 	private Student student;
 	private StudentiController studentController;
 

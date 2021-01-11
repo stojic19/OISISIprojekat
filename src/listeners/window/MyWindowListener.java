@@ -1,9 +1,20 @@
 package listeners.window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.text.ParseException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+
+import izgled.MainFrame;
+import model.BazaPredmeta;
+import model.BazaProfesora;
+import model.BazaStudenata;
+import table.AbstractTableModelOcene;
+import view.PredmetView;
+import view.ProfesorView;
+import view.StudentView;
 
 public class MyWindowListener implements WindowListener {
 
@@ -33,6 +44,18 @@ public class MyWindowListener implements WindowListener {
 		if (code != JOptionPane.YES_OPTION) {
 			frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		} else {
+			try {
+				BazaStudenata.getInstance().saveStudentData();
+				BazaProfesora.getInstance().saveProfesorData();
+				BazaPredmeta.getInstance().savePredmetData();
+				
+			    MainFrame.getInstance().azurirajTabele("DODAT", -1);	
+	
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		}
 	}

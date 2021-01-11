@@ -38,6 +38,16 @@ public class ProfesorView extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static ProfesorView instance = null;
+
+	public static ProfesorView getInstance() {
+		if (instance == null) {
+			instance = new ProfesorView();
+		}
+		return instance;
+	}
+	
 	private Profesor profesor;
 	private ProfesoriController profesoriController;
 

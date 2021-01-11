@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Ocena {
+public class Ocena implements Serializable {
 
 	public enum VrednostOcene
 	{

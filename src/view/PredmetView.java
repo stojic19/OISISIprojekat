@@ -38,6 +38,17 @@ public class PredmetView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private static PredmetView instance = null;
+
+	public static PredmetView getInstance() {
+		if (instance == null) {
+			instance = new PredmetView();
+		}
+		return instance;
+	}
+	
+	
+	
 	private Predmet predmet;
 	private PredmetiController predmetController;
 

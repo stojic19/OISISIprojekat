@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,8 +137,33 @@ public class BazaPredmeta {
 		}
 		
 	}
-	public void OsveziPrikaz() {
+	public void osveziPrikaz() {
 		predmeti=refresh;
 	}
+	
+	 public void savePredmetData() {
+		    ObjectOutputStream out=null;
+			try {
+			    out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.txt")));
+				for(Predmet p:predmeti) {
+					out.writeObject(p);
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				if(out!=null) {
+					  try {
+						out.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
+			
+
+	   }
 
 }

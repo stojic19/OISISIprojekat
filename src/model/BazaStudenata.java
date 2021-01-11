@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -178,4 +182,29 @@ public class BazaStudenata {
 	public void osveziPrikaz(){
 		studenti = refresh;
 	}
+	
+	 public void saveStudentData() {
+		    ObjectOutputStream out=null;
+			try {
+			    out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("studenti.txt")));
+				for(Student s:studenti) {
+					out.writeObject(s);
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				if(out!=null) {
+					  try {
+						out.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
+			
+
+	   }
 }
