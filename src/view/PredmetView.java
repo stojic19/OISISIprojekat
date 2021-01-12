@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import listeners.action.YesNoDialogActionListener;
+import listeners.document.PredmetDocumentListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.EspbKeyListener;
 import model.BazaPredmeta;
@@ -72,6 +73,8 @@ public class PredmetView extends JPanel {
 
 	private JButton btnOK;
 	private JButton btnCANCEL;
+	
+	private JLabel lblMessage;
 	
 	public PredmetView(int selRow) {
 		initGUI(true,selRow);
@@ -190,6 +193,13 @@ public class PredmetView extends JPanel {
 		});
 		btnPLUS.setMaximumSize(new Dimension(18,18));
 		btnMINUS.setMaximumSize(new Dimension(18,18));
+		
+		lblMessage = new JLabel(" ");
+		tfCode.getDocument().addDocumentListener(new PredmetDocumentListener(1,this));
+		tfName.getDocument().addDocumentListener(new PredmetDocumentListener(2,this));
+		tfESPB.getDocument().addDocumentListener(new PredmetDocumentListener(3,this));
+		if(!update)
+			btnOK.setEnabled(false);
 	}
 
 	private void constructGUI(boolean update) {
@@ -221,6 +231,8 @@ public class PredmetView extends JPanel {
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		pnlContent.add(btnCANCEL, new GridBagConstraints(1, 5, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+		
+		add(lblMessage, BorderLayout.SOUTH);
 		}
 		else
 		{
@@ -239,6 +251,7 @@ public class PredmetView extends JPanel {
 					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 			
 			JPanel pnlSouth = new JPanel(new FlowLayout());
+			pnlSouth.add(lblMessage);
 			pnlSouth.add(btnOK);
 			pnlSouth.add(btnCANCEL);
 			add(pnlSouth, BorderLayout.SOUTH);
@@ -319,6 +332,36 @@ public class PredmetView extends JPanel {
 		
 		if(message=="Predmet uspešno dodat"||message=="Predmet uspešno izmenjen")
 			parent.setVisible(false);
+	}
+	public JTextField getTfCode() {
+		return tfCode;
+	}
+	public void setTfCode(JTextField tfCode) {
+		this.tfCode = tfCode;
+	}
+	public JTextField getTfName() {
+		return tfName;
+	}
+	public void setTfName(JTextField tfName) {
+		this.tfName = tfName;
+	}
+	public JTextField getTfESPB() {
+		return tfESPB;
+	}
+	public void setTfESPB(JTextField tfESPB) {
+		this.tfESPB = tfESPB;
+	}
+	public JButton getBtnOK() {
+		return btnOK;
+	}
+	public void setBtnOK(JButton btnOK) {
+		this.btnOK = btnOK;
+	}
+	public JLabel getLblMessage() {
+		return lblMessage;
+	}
+	public void setLblMessage(JLabel lblMessage) {
+		this.lblMessage = lblMessage;
 	}
 
 }

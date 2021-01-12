@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Ocena.VrednostOcene;
+
 public class Student implements Serializable{
 
 	public enum Finansiranje
@@ -123,5 +125,33 @@ public class Student implements Serializable{
 	public void setNepolozeniIspiti(List<Predmet> nepolozeniIspiti) {
 		this.nepolozeniIspiti = nepolozeniIspiti;
 	}
-	
+	public void racunajProsek(){
+		if(!polozeniIspiti.isEmpty())
+		{
+			double sum=0;
+			for(Ocena o : polozeniIspiti)
+			{
+				if(o.getVrednostOcene() == VrednostOcene.SEST)
+					sum += 6;
+				else if(o.getVrednostOcene() == VrednostOcene.SEDAM)
+					sum += 7;
+				else if(o.getVrednostOcene() == VrednostOcene.OSAM)
+					sum += 8;
+				else if(o.getVrednostOcene() == VrednostOcene.DEVET)
+					sum += 9;
+				else
+					sum += 10;
+			}
+			double avg = sum / polozeniIspiti.size();
+			if(sum == 0)
+			{
+				prosecnaOcena = 5.00;
+			}
+			prosecnaOcena = avg;
+		}
+		else
+		{
+			prosecnaOcena = 5.00;
+		}
+	}
 }

@@ -31,6 +31,11 @@ import model.Ocena.VrednostOcene;
 
 
 public class UpisOceneDialog extends JDialog{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	///obicni
 	private JPanel pnlContent;
 	private JPanel pnlButtons;
@@ -45,7 +50,7 @@ public class UpisOceneDialog extends JDialog{
      JPanel panNaziv;
      JLabel lblNaziv;
      JTextField txtNaziv;
-     JComboBox cbOcena;
+     JComboBox<String> cbOcena;
      JPanel panOcena;
      JLabel lblOcena;
      JPanel panDatum;
@@ -82,31 +87,12 @@ public class UpisOceneDialog extends JDialog{
 		    lblNaziv = new JLabel("Naziv*");
 		    txtNaziv = new JTextField();
 		     
-		    String[]ocena= {"6","7","8","9","10"};
-		    cbOcena=new JComboBox(ocena);
-		    panOcena=new JPanel(new FlowLayout(FlowLayout.LEFT));
+		    String[] ocena= {"6","7","8","9","10"};
+		    cbOcena = new JComboBox<String>(ocena);
+		    panOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		    lblOcena=new JLabel("Ocena*");
 		     
-		
-				switch(cbOcena.getSelectedIndex()) {
-				case 0:
-					vo= VrednostOcene.SEST;
-					break;
-				case 1:
-					vo= VrednostOcene.SEDAM;
-					break;
-				case 2:
-					vo= VrednostOcene.OSAM;
-					break;
-				case 3:
-					vo=VrednostOcene.DEVET;
-					break;
-				case 4:
-					vo= VrednostOcene.DESET;
-				    break;
-					
-				}
-				//System.out.println("***************************VREDNOST OCENE"+String.valueOf(vo));
+		    
 		     
 		        
 		
@@ -124,9 +110,28 @@ public class UpisOceneDialog extends JDialog{
 						
 						   if(!txtDatum.getText().isEmpty()) {
 							   
+								switch(cbOcena.getSelectedIndex()) {
+								case 0:
+									vo= VrednostOcene.SEST;
+									break;
+								case 1:
+									vo= VrednostOcene.SEDAM;
+									break;
+								case 2:
+									vo= VrednostOcene.OSAM;
+									break;
+								case 3:
+									vo=VrednostOcene.DEVET;
+									break;
+								case 4:
+									vo= VrednostOcene.DESET;
+								    break;
+									
+								}
+								
 						   Predmet o=BazaNepolozenihPredmeta.getInstance().getRow(predmet);
 		  		       	   BazaNepolozenihPredmeta.getInstance().removePredmet(o.getSpr());
-						   BazaOcena.getInstance().addOcena(BazaStudenata.getInstance().getRow(selRow),o,vo,new SimpleDateFormat("dd.MM.yyyy").parse(txtDatum.getText()));
+						   BazaOcena.getInstance().addOcena(BazaStudenata.getInstance().getRow(selRow),o,vo,new SimpleDateFormat("dd.MM.yyyy.").parse(txtDatum.getText()));
 						   dispose(); 
 						   }else {
 							  JOptionPane.showMessageDialog(null, "Unesite datum!", "Datum", JOptionPane.WARNING_MESSAGE, null);

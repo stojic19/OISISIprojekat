@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import dialog.DodavanjePredmetaProfesoruDialog;
+import model.BazaPredmeta;
 import model.BazaProfesorPredajePredmete;
 import model.BazaProfesora;
 import model.Predmet;
@@ -93,7 +94,7 @@ public class ProfesorPredajePredmeteView extends JPanel {
 					Predmet p = BazaProfesorPredajePredmete.getInstance().getPredmeti().get(tabelaPredmeta.getSelectedRow());
 						
 					BazaProfesorPredajePredmete.getInstance().removePredmet(p.getSpr());
-					 
+					BazaPredmeta.getInstance().ukloniProfesoraSaPredmeta(p.getSpr(),selRow);
 					azurirajTabeluPPPredmeta("UKLONJEN",tabelaPredmeta.getSelectedRow());
 				
 				}

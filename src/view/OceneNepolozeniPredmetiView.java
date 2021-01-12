@@ -14,10 +14,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import dialog.DodavanjePredmetaStudentuDialog;
 import dialog.UpisOceneDialog;
 import model.BazaNepolozenihPredmeta;
 import model.BazaOcena;
+import model.BazaPredmeta;
 import model.BazaStudenata;
 import model.Ocena;
 import table.AbstractTableModelNepolozeniPredmeti;
@@ -115,7 +117,7 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 						
 					BazaOcena.getInstance().removeOcena(o.getPredmet().getSpr());
 					BazaNepolozenihPredmeta.getInstance().addPredmet(o.getPredmet().getSpr(), o.getPredmet().getNaziv(), o.getPredmet().getSemestar(), o.getPredmet().getGodina(), o.getPredmet().getEspb());
-					
+					BazaPredmeta.getInstance().dodajStudentaUNepolozene(o.getPredmet().getSpr(), selRow);
 					azurirajTabeluOcena("UKLONJEN",tabelaOcena.getSelectedRow());
 					azurirajTabeluNP("DODAT", -1);
 				}
@@ -206,6 +208,7 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da uklonite predmet?",
 						"Uklanjanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
 				if(code == JOptionPane.YES_OPTION){
+					BazaPredmeta.getInstance().ukloniStudentaSaPredmeta(BazaNepolozenihPredmeta.getInstance().getRow(tabelaPredmeta.getSelectedRow()).getSpr(),selRow);
 					BazaNepolozenihPredmeta.getInstance().removePredmet(BazaNepolozenihPredmeta.getInstance().getRow(tabelaPredmeta.getSelectedRow()).getSpr());
 					azurirajTabeluNP("UKLONJEN",tabelaPredmeta.getSelectedRow());
 				}

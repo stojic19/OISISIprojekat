@@ -1,6 +1,7 @@
 package model;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -120,7 +121,8 @@ public class BazaOcena {
 		{
 			return  Double.toString(0);
 		}
-		return Double.toString(avg);
+		DecimalFormat df = new DecimalFormat("##.##");
+		return df.format(avg);
 	}
 
 	public String getESPB() {

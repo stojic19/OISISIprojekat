@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,6 +130,36 @@ public class BazaPredmeta {
 				p.setSemestar(semestar);
 				p.setGodina(godina);
 				p.setEspb(espb);
+				
+				
+				try {
+					for(Profesor prof : BazaProfesora.getInstance().getProfesori()){
+						for(Predmet p1 : prof.getPredmeti()){
+							if(p1.getSpr().compareTo(p.getSpr())==0){
+								p1 = p;
+								break;
+							}
+						}
+					}
+					for(Student s : BazaStudenata.getInstance().getStudenti()){
+						for(Ocena o : s.getPolozeniIspiti())
+						{
+							if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+								o.setPredmet(p);
+								break;
+							}
+						}
+						for(Predmet p1 : s.getNepolozeniIspiti()){
+							if(p1.getSpr().compareTo(p.getSpr())==0){
+								p1 = p;
+								break;
+							}
+						}
+					}
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		for (Predmet p : refresh) {
@@ -183,5 +214,52 @@ public class BazaPredmeta {
 				e.printStackTrace();
 			}
 		 }
+
+	public void dodajStudentaUNepolozene(String spr, int selRow) {
+		for(Predmet p : predmeti){
+			if(p.getSpr().compareTo(spr)==0){
+				try {
+					p.getNisuPolozili().add(BazaStudenata.getInstance().getRow(selRow));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+	}
+
+	public void ukloniStudentaSaPredmeta(String spr, int selRow) {
+		for(Predmet p : predmeti){
+			if(p.getSpr().compareTo(spr)==0){
+				try {
+					p.getNisuPolozili().remove(BazaStudenata.getInstance().getRow(selRow));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+	}
+
+	public void ukloniProfesoraSaPredmeta(String spr, int selRow) {
+		for(Predmet p : predmeti){
+			if(p.getSpr().compareTo(spr)==0){
+				try {
+					if(p.getProfesor()==null){
+						break;
+					}
+					if(p.getProfesor().getBrlk().compareTo(BazaProfesora.getInstance().getRow(selRow).getBrlk())==0){
+						p.setProfesor(null);
+					}
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+	}
 
 }

@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import listeners.action.YesNoDialogActionListener;
+import listeners.document.StudentDocumentListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.DateKeyListener;
 import listeners.key.TelNumKeyListener;
@@ -74,6 +75,8 @@ public class StudentView extends JPanel {
 
 	private JButton btnOK;
 	private JButton btnCANCEL;
+	
+	private JLabel lblMessage;
 	
 	public StudentView(int selRow) throws ParseException {
 		initGUI(true);
@@ -166,6 +169,17 @@ public class StudentView extends JPanel {
 				}
 			}
 		});
+		lblMessage = new JLabel(" ");
+		tfFirstName.getDocument().addDocumentListener(new StudentDocumentListener(1,this));
+		tfLastName.getDocument().addDocumentListener(new StudentDocumentListener(2,this));
+		tfDate.getDocument().addDocumentListener(new StudentDocumentListener(3,this));
+		tfAdress.getDocument().addDocumentListener(new StudentDocumentListener(4,this));
+		tfTelNum.getDocument().addDocumentListener(new StudentDocumentListener(5,this));
+		tfEmailAdr.getDocument().addDocumentListener(new StudentDocumentListener(6,this));
+		tfIndNum.getDocument().addDocumentListener(new StudentDocumentListener(7,this));
+		tfYear.getDocument().addDocumentListener(new StudentDocumentListener(8,this));
+		if(!update)
+			btnOK.setEnabled(false);
 	}
 
 	private void constructGUI() {
@@ -223,6 +237,7 @@ public class StudentView extends JPanel {
 		pnlContent.add(btnCANCEL, new GridBagConstraints(1, 10, 1, 1, 0, 0, GridBagConstraints.WEST,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 		
+		add(lblMessage, BorderLayout.SOUTH);
 		add(pnlContent, BorderLayout.CENTER);
 	}
 
@@ -302,5 +317,75 @@ public class StudentView extends JPanel {
 		if(message=="Student uspešno dodat" || message =="Student uspešno izmenjen")
 			parent.setVisible(false);
 	}
-
+	
+	public JTextField getTfFirstName() {
+		return tfFirstName;
+	}
+	public void setTfFirstName(JTextField tfFirstName) {
+		this.tfFirstName = tfFirstName;
+	}
+	public JTextField getTfLastName() {
+		return tfLastName;
+	}
+	public void setTfLastName(JTextField tfLastName) {
+		this.tfLastName = tfLastName;
+	}
+	public JTextField getTfDate() {
+		return tfDate;
+	}
+	public void setTfDate(JTextField tfDate) {
+		this.tfDate = tfDate;
+	}
+	public JTextField getTfAdress() {
+		return tfAdress;
+	}
+	public void setTfAdress(JTextField tfAdress) {
+		this.tfAdress = tfAdress;
+	}
+	public JTextField getTfTelNum() {
+		return tfTelNum;
+	}
+	public void setTfTelNum(JTextField tfTelNum) {
+		this.tfTelNum = tfTelNum;
+	}
+	public JTextField getTfEmailAdr() {
+		return tfEmailAdr;
+	}
+	public void setTfEmailAdr(JTextField tfEmailAdr) {
+		this.tfEmailAdr = tfEmailAdr;
+	}
+	public JTextField getTfIndNum() {
+		return tfIndNum;
+	}
+	public void setTfIndNum(JTextField tfIndNum) {
+		this.tfIndNum = tfIndNum;
+	}
+	public JTextField getTfYear() {
+		return tfYear;
+	}
+	public void setTfYear(JTextField tfYear) {
+		this.tfYear = tfYear;
+	}
+	public JButton getBtnOK() {
+		return btnOK;
+	}
+	public void setBtnOK(JButton btnOK) {
+		this.btnOK = btnOK;
+	}
+	public void disableBtnOk(){
+		btnOK.setEnabled(false);
+		pnlContent.repaint();
+		this.validate();
+	}
+	public void enableBtnOk(){
+		btnOK.setEnabled(true);
+		this.validate();
+	}
+	public JLabel getLblMessage() {
+		return lblMessage;
+	}
+	public void setLblMessage(JLabel lblMessage) {
+		this.lblMessage = lblMessage;
+	}
+	
 }

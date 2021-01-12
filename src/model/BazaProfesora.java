@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -127,6 +128,12 @@ public class BazaProfesora {
 	public void removeProfesor(String brLK) {
 		for (Profesor p : profesori) {
 			if (p.getBrlk().compareTo(brLK)==0) {
+				
+				for(Predmet pred : BazaPredmeta.getInstance().getPredmeti()){
+					if(pred.getProfesor().getBrlk().compareTo(p.getBrlk())==0){
+						pred.setProfesor(null);
+					}
+				}
 				profesori.remove(p);
 				break;
 			}

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -98,6 +99,7 @@ public class BazaStudenata {
 
 	public String getValueAt(int row, int column) {
 		Student student = this.studenti.get(row);
+		student.racunajProsek();
 		switch (column) {
 		case 0:
 			return student.getBrojIndeksa();
@@ -131,7 +133,7 @@ public class BazaStudenata {
 	
 	public void addStudent(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin) {
 		this.studenti.add(new Student(ime,prezime,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin));
-		this.refresh.add(new Student(ime,prezime,datRodj,adresa,brojTel,emailAdr,brIndeksa,godUpisa,trenGodStud,nacin));
+		refresh = studenti;
 	}
 
 
@@ -149,6 +151,37 @@ public class BazaStudenata {
 				s.setTrenutnaGodinaStudija(trenGodStud);
 				s.setStatus(nacin);
 				s.setBrojIndeksa(brIndeksa);
+				
+				for(Ocena o : s.getPolozeniIspiti()){
+					o.setStudent(s);
+					
+					for(Predmet p : BazaPredmeta.getInstance().getPredmeti()){
+						if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+							for(Student s1: p.getPolozili()){
+								if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
+									s1=s;
+									o.setPredmet(p);
+									break;
+								}
+							}
+							break;
+						}
+					}
+				}
+				for(Predmet p: s.getNepolozeniIspiti()){
+					for(Predmet p1 : BazaPredmeta.getInstance().getPredmeti()){
+						if(p.getSpr().compareTo(p1.getSpr())==0){
+					for(Student s1: p1.getNisuPolozili()){
+						if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
+							s1=s;
+							p = p1;
+							break;
+						}
+					}
+					break;
+					}
+						}
+				}
 			}
 		}
 		for (Student s : refresh) {
@@ -163,20 +196,81 @@ public class BazaStudenata {
 				s.setTrenutnaGodinaStudija(trenGodStud);
 				s.setStatus(nacin);
 				s.setBrojIndeksa(brIndeksa);
+				
+				for(Ocena o : s.getPolozeniIspiti()){
+					o.setStudent(s);
+					
+					for(Predmet p : BazaPredmeta.getInstance().getPredmeti()){
+						if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+							for(Student s1: p.getPolozili()){
+								if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
+									s1=s;
+									o.setPredmet(p);
+									break;
+								}
+							}
+							break;
+						}
+					}
+				}
+				for(Predmet p: s.getNepolozeniIspiti()){
+					for(Predmet p1 : BazaPredmeta.getInstance().getPredmeti()){
+						if(p.getSpr().compareTo(p1.getSpr())==0){
+					for(Student s1: p1.getNisuPolozili()){
+						if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
+							s1=s;
+							p = p1;
+							break;
+						}
+					}
+					break;
+					}
+						}
+				}
+				break;
 			}
 		}
 	}
 	
 	public void removeStudent(String brInd) {
-		for (Student i : studenti) {
-			if (i.getBrojIndeksa() == brInd) {
-				studenti.remove(i);
+		for (Student s : studenti) {
+			if (s.getBrojIndeksa() == brInd) {
+				
+				for(Ocena o : s.getPolozeniIspiti()){
+					
+					for(Predmet p : BazaPredmeta.getInstance().getPredmeti()){
+						if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+							for(Student s1: p.getPolozili()){
+								if (0==s1.getBrojIndeksa().compareTo(brInd)){
+									p.getPolozili().remove(s1);
+									break;
+								}
+							}
+							break;
+						}
+					}
+				}
+				
+				for(Predmet p: s.getNepolozeniIspiti()){
+					for(Predmet p1 : BazaPredmeta.getInstance().getPredmeti()){
+						if(p.getSpr().compareTo(p1.getSpr())==0){
+					for(Student s1: p1.getNisuPolozili()){
+						if (0==s1.getBrojIndeksa().compareTo(brInd)){
+							p1.getNisuPolozili().remove(s1);
+							break;
+						}
+					}
+					break;
+					}
+						}
+				}
+				studenti.remove(s);
 				break;
 			}
 		}
-		for (Student i : refresh) {
-			if (i.getBrojIndeksa() == brInd) {
-				refresh.remove(i);
+		for (Student s : refresh) {
+			if (s.getBrojIndeksa() == brInd) {
+				refresh.remove(s);
 				break;
 			}
 		}
