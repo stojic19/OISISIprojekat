@@ -107,9 +107,9 @@ public class BazaPredmeta {
 		
 	}
 
-	public void removePredmet(String spr) {
+	public void removePredmet(String spr) throws ParseException {
 		for (Predmet p : predmeti) {
-			if (p.getSpr() == spr) {
+			if (p.getSpr() == spr) {	
 				predmeti.remove(p);
 				break;
 			}

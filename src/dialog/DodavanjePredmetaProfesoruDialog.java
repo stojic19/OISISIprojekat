@@ -18,9 +18,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+
+import model.BazaNepolozenihPredmeta;
 import model.BazaPredmeta;
 import model.BazaProfesorPredajePredmete;
+import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 
 public class DodavanjePredmetaProfesoruDialog extends JDialog {
 	/**
@@ -74,13 +78,25 @@ public class DodavanjePredmetaProfesoruDialog extends JDialog {
 				if(list.getSelectedIndex()>=0)
 				{
 					Predmet p = predmeti.get(list.getSelectedIndex());
-					BazaProfesorPredajePredmete.getInstance().addPredmet(p.getSpr(), p.getNaziv(), p.getSemestar(), p.getGodina(), p.getEspb());
-					predmeti.remove(list.getSelectedIndex());
 					
-					list.updateUI();
-					pnlContent.validate();
-					pnlContent.repaint();
-					dispose();
+					predmeti.remove(list.getSelectedIndex());
+					try {
+
+						BazaProfesorPredajePredmete.getInstance().addPredmet(p.getSpr(), p.getNaziv(), p.getSemestar(), p.getGodina(), p.getEspb());
+
+						initList(selRow);
+						list.updateUI();
+						pnlContent.validate();
+						pnlContent.repaint();
+						dispose();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+					
+					
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Odaberite predmet za dodavanje!", "Dodavanje predmeta", JOptionPane.WARNING_MESSAGE,null);
@@ -109,23 +125,18 @@ public class DodavanjePredmetaProfesoruDialog extends JDialog {
 	
 	private void initList(int selRow) throws ParseException{
 		listModel = new DefaultListModel<String>();
-		
-		boolean exists = false;
+		//boolean exists=false;
 		predmeti = new ArrayList<Predmet>();
 		
 		for(Predmet p : BazaPredmeta.getInstance().getPredmeti())
 		{
-			exists = false;
-			for(Predmet p1 : BazaProfesorPredajePredmete.getInstance().getPredmeti()){
-				if(p1.getSpr()==p.getSpr()){
-					exists = true;
-					break;
-				}
-			}
-			if(!exists){
-				listModel.addElement(p.getSpr() + " - " + p.getNaziv());
-				predmeti.add(p);
-			}
+			
+	
+           if(p.getProfesor()==null) {
+			listModel.addElement(p.getSpr() + " - " + p.getNaziv());
+			
+			predmeti.add(p);
+           }
 		}
 		list = new JList<String>(listModel);
 	}

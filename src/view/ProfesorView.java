@@ -24,6 +24,8 @@ import javax.swing.SwingUtilities;
 
 import controller.ProfesoriController;
 import listeners.action.YesNoDialogActionListener;
+import listeners.document.ProfesorDocumentListener;
+import listeners.document.StudentDocumentListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.DateKeyListener;
 import listeners.key.IdNumberKeyListener;
@@ -77,7 +79,7 @@ public class ProfesorView extends JPanel{
 
 	private JButton btnOK;
 	private JButton btnCANCEL;
-	
+	private JLabel lblMessage;
 	
 	public ProfesorView(int selRow) throws ParseException {
 		initGUI(true);
@@ -165,6 +167,20 @@ public class ProfesorView extends JPanel{
 		});
 
 		
+		/*btnOK = new JButton("Potvrdi");
+		btnOK.setBackground(new Color(170, 167, 196));
+		btnOK.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ok(update);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});*/
 		btnOK = new JButton("Potvrdi");
 		btnOK.setBackground(new Color(170, 167, 196));
 		btnOK.addActionListener(new ActionListener() {
@@ -179,6 +195,18 @@ public class ProfesorView extends JPanel{
 				}
 			}
 		});
+		lblMessage = new JLabel(" ");
+		tfPrz.getDocument().addDocumentListener(new ProfesorDocumentListener(1,this));
+		tfIme.getDocument().addDocumentListener(new  ProfesorDocumentListener(2,this));
+		tfDate.getDocument().addDocumentListener(new  ProfesorDocumentListener(3,this));
+		tfAdrs.getDocument().addDocumentListener(new  ProfesorDocumentListener(4,this));
+		tfKtel.getDocument().addDocumentListener(new  ProfesorDocumentListener(5,this));
+		tfEmail.getDocument().addDocumentListener(new  ProfesorDocumentListener(6,this));
+		tfAdrk.getDocument().addDocumentListener(new  ProfesorDocumentListener(7,this));
+		tfBrlk.getDocument().addDocumentListener(new  ProfesorDocumentListener(8,this));
+	
+		if(!update)
+			btnOK.setEnabled(false);
 	}
 
 	private void constructGUI() {
@@ -235,7 +263,7 @@ public class ProfesorView extends JPanel{
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		pnlContent.add(btnCANCEL, new GridBagConstraints(1, 10, 1, 1, 0, 0, GridBagConstraints.WEST,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
-		
+		add(lblMessage, BorderLayout.SOUTH);
 		add(pnlContent, BorderLayout.CENTER);
 	}
 
@@ -341,4 +369,159 @@ public class ProfesorView extends JPanel{
 		if(message=="Profesor uspešno dodat" || message=="Profesor uspešno izmenjen" )
 			parent.setVisible(false);
 	}
+	
+	public JPanel getPnlContent() {
+		return pnlContent;
+	}
+	public void setPnlContent(JPanel pnlContent) {
+		this.pnlContent = pnlContent;
+	}
+	public JLabel getLblPrz() {
+		return lblPrz;
+	}
+	public void setLblPrz(JLabel lblPrz) {
+		this.lblPrz = lblPrz;
+	}
+	public JTextField getTfPrz() {
+		return tfPrz;
+	}
+	public void setTfPrz(JTextField tfPrz) {
+		this.tfPrz = tfPrz;
+	}
+	public JLabel getLblIme() {
+		return lblIme;
+	}
+	public void setLblIme(JLabel lblIme) {
+		this.lblIme = lblIme;
+	}
+	public JTextField getTfIme() {
+		return tfIme;
+	}
+	public void setTfIme(JTextField tfIme) {
+		this.tfIme = tfIme;
+	}
+	public JLabel getLblDate() {
+		return lblDate;
+	}
+	public void setLblDate(JLabel lblDate) {
+		this.lblDate = lblDate;
+	}
+	public JTextField getTfDate() {
+		return tfDate;
+	}
+	public void setTfDate(JTextField tfDate) {
+		this.tfDate = tfDate;
+	}
+	public JLabel getLblAdrs() {
+		return lblAdrs;
+	}
+	public void setLblAdrs(JLabel lblAdrs) {
+		this.lblAdrs = lblAdrs;
+	}
+	public JTextField getTfAdrs() {
+		return tfAdrs;
+	}
+	public void setTfAdrs(JTextField tfAdrs) {
+		this.tfAdrs = tfAdrs;
+	}
+	public JLabel getLblKtel() {
+		return lblKtel;
+	}
+	public void setLblKtel(JLabel lblKtel) {
+		this.lblKtel = lblKtel;
+	}
+	public JTextField getTfKtel() {
+		return tfKtel;
+	}
+	public void setTfKtel(JTextField tfKtel) {
+		this.tfKtel = tfKtel;
+	}
+	public JLabel getLblEmail() {
+		return lblEmail;
+	}
+	public void setLblEmail(JLabel lblEmail) {
+		this.lblEmail = lblEmail;
+	}
+	public JTextField getTfEmail() {
+		return tfEmail;
+	}
+	public void setTfEmail(JTextField tfEmail) {
+		this.tfEmail = tfEmail;
+	}
+	public JLabel getLblAdrk() {
+		return lblAdrk;
+	}
+	public void setLblAdrk(JLabel lblAdrk) {
+		this.lblAdrk = lblAdrk;
+	}
+	public JTextField getTfAdrk() {
+		return tfAdrk;
+	}
+	public void setTfAdrk(JTextField tfAdrk) {
+		this.tfAdrk = tfAdrk;
+	}
+	public JLabel getLblBrlk() {
+		return lblBrlk;
+	}
+	public void setLblBrlk(JLabel lblBrlk) {
+		this.lblBrlk = lblBrlk;
+	}
+	public JTextField getTfBrlk() {
+		return tfBrlk;
+	}
+	public void setTfBrlk(JTextField tfBrlk) {
+		this.tfBrlk = tfBrlk;
+	}
+	public JLabel getLblTitula() {
+		return lblTitula;
+	}
+	public void setLblTitula(JLabel lblTitula) {
+		this.lblTitula = lblTitula;
+	}
+	public JComboBox<String> getCbTitula() {
+		return cbTitula;
+	}
+	public void setCbTitula(JComboBox<String> cbTitula) {
+		this.cbTitula = cbTitula;
+	}
+	public JLabel getLblZvanje() {
+		return lblZvanje;
+	}
+	public void setLblZvanje(JLabel lblZvanje) {
+		this.lblZvanje = lblZvanje;
+	}
+	public JComboBox<String> getCbZvanje() {
+		return cbZvanje;
+	}
+	public void setCbZvanje(JComboBox<String> cbZvanje) {
+		this.cbZvanje = cbZvanje;
+	}
+	public JButton getBtnOK() {
+		return btnOK;
+	}
+	public void setBtnOK(JButton btnOK) {
+		this.btnOK = btnOK;
+	}
+	public JButton getBtnCANCEL() {
+		return btnCANCEL;
+	}
+	public void setBtnCANCEL(JButton btnCANCEL) {
+		this.btnCANCEL = btnCANCEL;
+	}
+	public void disableBtnOk(){
+		btnOK.setEnabled(false);
+		pnlContent.repaint();
+		this.validate();
+	}
+	public void enableBtnOk(){
+		btnOK.setEnabled(true);
+		this.validate();
+	}
+	public JLabel getLblMessage() {
+		return lblMessage;
+	}
+	public void setLblMessage(JLabel lblMessage) {
+		this.lblMessage = lblMessage;
+	}
+	
 }

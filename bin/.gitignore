@@ -1,6 +1,3 @@
-/controller/
-/dialog/
-/izgled/
 /listeners/
 /model/
 /search/
@@ -8,4 +5,3 @@
 /table/
 /tabs/
 /view/
-/listners/
