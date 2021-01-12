@@ -9,6 +9,7 @@ import java.text.ParseException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,6 +17,7 @@ import javax.swing.JTable;
 import dialog.DodavanjePredmetaProfesoruDialog;
 import model.BazaProfesorPredajePredmete;
 import model.BazaProfesora;
+import model.Predmet;
 import table.AbstractTableModelProfesorPredajePredmete;
 import table.ProfesorPredajePredmeteJTable;
 
@@ -81,8 +83,23 @@ public class ProfesorPredajePredmeteView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Ukloni");
-					
+				String[] mess = new String[2];
+				mess[0] = "Potrvdi";
+				mess[1] = "Odustani";
+				if(tabelaPredmeta.getSelectedRow()>=0){
+				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni?",
+						"Ukloni predmet", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
+				if(code == JOptionPane.YES_OPTION){
+					Predmet p = BazaProfesorPredajePredmete.getInstance().getPredmeti().get(tabelaPredmeta.getSelectedRow());
+						
+					BazaProfesorPredajePredmete.getInstance().removePredmet(p.getSpr());
+					 
+					azurirajTabeluPPPredmeta("UKLONJEN",tabelaPredmeta.getSelectedRow());
+				
+				}
+				}else{
+					JOptionPane.showMessageDialog(null, "Odaberite predmet za uklanjanje!", "Uklanjanje predmeta", JOptionPane.WARNING_MESSAGE,null);
+				}
 				}
 			});
 		tabelaPredmeta = new ProfesorPredajePredmeteJTable();
