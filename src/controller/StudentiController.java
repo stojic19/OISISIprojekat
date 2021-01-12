@@ -146,6 +146,9 @@ private static StudentiController instance = null;
 		if (datRodj.isEmpty()) {
 			return "Unesite datum rodjenja studenta";
 		}
+		if(datRodj.length()!=11){
+			return "Nepravilan format datuma";
+		}
 		if (adresa == null) {
 			return "Unesite adresu stanovanja studenta";
 		}
@@ -186,6 +189,9 @@ private static StudentiController instance = null;
 		godUpisa = godUpisa.trim();
 		if (godUpisa.isEmpty()) {
 			return "Unesite godinu upisa studenta";
+		}
+		if(godUpisa.length()!=4){
+			return "Nepravilna dužina godine upisa";
 		}
 		
 		if (trenGodStud == null) {

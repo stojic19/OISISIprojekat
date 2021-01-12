@@ -239,7 +239,7 @@ public class StudentView extends JPanel {
 	public void refreshView() {
 		tfFirstName.setText(student.getIme());
 		tfLastName.setText(student.getPrezime());
-		String timePattern = "dd.MM.yyyy";
+		String timePattern = "dd.MM.yyyy.";
 		DateFormat df = new SimpleDateFormat(timePattern);
 		tfDate.setText(df.format(student.getDatum()));
 		tfAdress.setText(student.getAdresaStanovanja());

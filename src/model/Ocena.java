@@ -19,7 +19,7 @@ public class Ocena implements Serializable {
 	{
 		setStudent(student);
 		setPredmet(predmet);
-		setVrednostOcene(vrednostOcene);
+		setVrednostOcene(ocena);
 		setDatumPolaganja(datPol);
 	}
 	public Student getStudent() {

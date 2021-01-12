@@ -80,7 +80,7 @@ public class BazaOcena {
 			else 
 				 return Integer.toString(10);
 		case 4:
-			DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy.");  
+			DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.");  
 			return dateFormat.format(ocena.getDatumPolaganja()); 
 		default:
 			return null;
