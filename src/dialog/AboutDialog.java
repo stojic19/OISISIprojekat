@@ -34,8 +34,14 @@ public class AboutDialog extends JDialog {
 		ImageIcon helpIcon = new ImageIcon("slike"+ File.separator + "about_menu.png");
 		setIconImage(helpIcon.getImage());
 		
-		JTextArea JTA = new JTextArea("Verzija 2.00 za Domaći2. Program omogućava prikaz i dodavanje studenata i profesora.\n"
-				+ "Aplikacija je namenjena da olakša rad studentske službe i da omogući dodavanje,izmenu i brisanje profesora, studenata, predmeta.\n"
+		JTextArea JTA = new JTextArea("Informacije o aplikaciji:\n"
+				+ "Finalna verzija aplikacije.\n"
+				+ "Aplikacija je namenjena da olakša rad studentske službe i da omogući dodavanje,izmenu i brisanje profesora, studenata, predmeta.\n Za svakog studenta moguć je prikaz ocena kao i nepoloženih predmeta. Svaku ocenu je moguće poništiti, nepoložene predmete je moguće položiti ili ukloniti,"
+				+ " a u zavisnosti od godine studenta moguće je studentu dodati nove predmete na slušanje."
+				+ "\nZa svakog profesora je moguće prikazati listu predmeta koje predaje, kao i dodavanje novih predmeta u pomenutu listu."
+				+ "\nZa svaki predmet je moguće dodati/ukloniti profesora koji će biti zadužen za taj predmet."
+				+ "Podatke iz tabela je moguće pretraživati i sortirati po kriterijumima koji su prikazani u kolonama svake tabele.\n"
+				+ "Sažete biografije studenata:\n"
 				+ "Magdalena Rejin rođena je u Novom Sadu 1999. godine. Završila je Gimnaziju \"Laza Kostić\". Trenutno studira na Fakultetu tehničkih nauka, smer Računarstvo i automatika.\n"
 				+ " Aleksa Stojić rođen je u Novom Sadu 1999. godine. Završio je Gimnaziju \"Jovan Jovanović Zmaj\". Trenutno studira na Fakultetu tehničkih nauka, smer Računarstvo i automatika.",20,20);
 		JTA.setLineWrap(true);

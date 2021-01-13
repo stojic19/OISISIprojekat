@@ -105,8 +105,8 @@ public class BazaStudenata {
 		studenti.add(new Student("RA 226/2017", "Mikica", "Kovacevic",	3,	new SimpleDateFormat("dd.MM.yyyy.").parse("23.03.1999."),	"Valentina Vodnika 112, Novi Sad",	"011/1992-371", "mikica.kovacevic@mailinator.com", s2, 2017));
 		studenti.add(new Student("SW 12/2020", "Miloš", "Milić",	1,	new SimpleDateFormat("dd.MM.yyyy.").parse("21.10.2001."),	"Neznanog junaka 12, Beograd",	"011/8172-372", "milos.milic@mailinator.com", s2, 2020));
 		*/
-		
-		/*studenti.get(3).getPolozeniIspiti().add(new Ocena(studenti.get(3),BazaPredmeta.getInstance().getPredmeti().get(4),VrednostOcene.DESET,new SimpleDateFormat("dd.MM.yyyy.").parse("12.12.2017.")));
+		/*
+		studenti.get(3).getPolozeniIspiti().add(new Ocena(studenti.get(3),BazaPredmeta.getInstance().getPredmeti().get(4),VrednostOcene.DESET,new SimpleDateFormat("dd.MM.yyyy.").parse("12.12.2017.")));
         studenti.get(3).getPolozeniIspiti().add(new Ocena(studenti.get(3),BazaPredmeta.getInstance().getPredmeti().get(2),VrednostOcene.DEVET,new SimpleDateFormat("dd.MM.yyyy.").parse("10.11.2019.")));
         studenti.get(3).getPolozeniIspiti().add(new Ocena(studenti.get(3),BazaPredmeta.getInstance().getPredmeti().get(0),VrednostOcene.OSAM,new SimpleDateFormat("dd.MM.yyyy.").parse("11.11.2020.")));
 
@@ -162,8 +162,8 @@ public class BazaStudenata {
 				BazaPredmeta.getInstance().getRow(18).getEspb()));
 		studenti.get(25).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(18).getSpr(),BazaPredmeta.getInstance().getRow(18).getNaziv(),
 				BazaPredmeta.getInstance().getRow(18).getSemestar(),BazaPredmeta.getInstance().getRow(18).getGodina(),
-				BazaPredmeta.getInstance().getRow(18).getEspb()));*/
-		
+				BazaPredmeta.getInstance().getRow(18).getEspb()));
+		*/
 		
 		
 		refresh = studenti;
