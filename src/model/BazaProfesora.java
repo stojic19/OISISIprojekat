@@ -306,6 +306,20 @@ public Profesor getProfesorByBrlk(String string) {
 	}
 	return null;
 }
+
+public void ukloniPredmetProfesoru(String brlk,String spr){
+	 for(Profesor p : profesori){
+		 if(p.getBrlk().matches(brlk)){
+			 for(Predmet pred : p.getPredmeti()){
+				 if(pred.getSpr().matches(spr)){
+					 p.getPredmeti().remove(pred);
+					 break;
+				 }
+			 }
+			 break;
+		 }
+	 }
+}
  
 }
 

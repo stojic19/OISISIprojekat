@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Ocena.VrednostOcene;
 import model.Student.Finansiranje;
 
 public class BazaStudenata {
@@ -104,6 +105,67 @@ public class BazaStudenata {
 		studenti.add(new Student("RA 226/2017", "Mikica", "Kovacevic",	3,	new SimpleDateFormat("dd.MM.yyyy.").parse("23.03.1999."),	"Valentina Vodnika 112, Novi Sad",	"011/1992-371", "mikica.kovacevic@mailinator.com", s2, 2017));
 		studenti.add(new Student("SW 12/2020", "Miloš", "Milić",	1,	new SimpleDateFormat("dd.MM.yyyy.").parse("21.10.2001."),	"Neznanog junaka 12, Beograd",	"011/8172-372", "milos.milic@mailinator.com", s2, 2020));
 		*/
+		
+		/*studenti.get(3).getPolozeniIspiti().add(new Ocena(studenti.get(3),BazaPredmeta.getInstance().getPredmeti().get(4),VrednostOcene.DESET,new SimpleDateFormat("dd.MM.yyyy.").parse("12.12.2017.")));
+        studenti.get(3).getPolozeniIspiti().add(new Ocena(studenti.get(3),BazaPredmeta.getInstance().getPredmeti().get(2),VrednostOcene.DEVET,new SimpleDateFormat("dd.MM.yyyy.").parse("10.11.2019.")));
+        studenti.get(3).getPolozeniIspiti().add(new Ocena(studenti.get(3),BazaPredmeta.getInstance().getPredmeti().get(0),VrednostOcene.OSAM,new SimpleDateFormat("dd.MM.yyyy.").parse("11.11.2020.")));
+
+        studenti.get(1).getPolozeniIspiti().add(new Ocena(studenti.get(1),BazaPredmeta.getInstance().getPredmeti().get(0),VrednostOcene.DESET,new SimpleDateFormat("dd.MM.yyyy.").parse("20.11.2020.")));
+        studenti.get(1).getPolozeniIspiti().add(new Ocena(studenti.get(1),BazaPredmeta.getInstance().getPredmeti().get(4),VrednostOcene.DESET,new SimpleDateFormat("dd.MM.yyyy.").parse("30.10.2020.")));
+
+        studenti.get(14).getPolozeniIspiti().add(new Ocena(studenti.get(14),BazaPredmeta.getInstance().getPredmeti().get(14),VrednostOcene.DEVET,new SimpleDateFormat("dd.MM.yyyy.").parse("10.01.2021.")));
+        studenti.get(15).getPolozeniIspiti().add(new Ocena(studenti.get(15),BazaPredmeta.getInstance().getPredmeti().get(14),VrednostOcene.DESET,new SimpleDateFormat("dd.MM.yyyy.").parse("12.01.2018.")));
+        studenti.get(14).getPolozeniIspiti().add(new Ocena(studenti.get(14),BazaPredmeta.getInstance().getPredmeti().get(15),VrednostOcene.DESET,new SimpleDateFormat("dd.MM.yyyy.").parse("01.01.2021.")));
+
+
+        studenti.get(15).getPolozeniIspiti().add(new Ocena(studenti.get(15),BazaPredmeta.getInstance().getPredmeti().get(15),VrednostOcene.OSAM,new SimpleDateFormat("dd.MM.yyyy.").parse("04.02.2019.")));
+        
+        studenti.get(3).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(1).getSpr(),BazaPredmeta.getInstance().getRow(1).getNaziv(),
+				BazaPredmeta.getInstance().getRow(1).getSemestar(),BazaPredmeta.getInstance().getRow(1).getGodina(),
+				BazaPredmeta.getInstance().getRow(1).getEspb()));
+		studenti.get(3).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(3).getSpr(),BazaPredmeta.getInstance().getRow(3).getNaziv(),
+				BazaPredmeta.getInstance().getRow(3).getSemestar(),BazaPredmeta.getInstance().getRow(3).getGodina(),
+				BazaPredmeta.getInstance().getRow(3).getEspb()));
+		
+		studenti.get(16).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(14).getSpr(),BazaPredmeta.getInstance().getRow(14).getNaziv(),
+				BazaPredmeta.getInstance().getRow(14).getSemestar(),BazaPredmeta.getInstance().getRow(14).getGodina(),
+				BazaPredmeta.getInstance().getRow(14).getEspb()));
+		
+		studenti.get(17).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(14).getSpr(),BazaPredmeta.getInstance().getRow(14).getNaziv(),
+				BazaPredmeta.getInstance().getRow(14).getSemestar(),BazaPredmeta.getInstance().getRow(14).getGodina(),
+				BazaPredmeta.getInstance().getRow(14).getEspb()));
+		
+		studenti.get(21).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(17).getSpr(),BazaPredmeta.getInstance().getRow(17).getNaziv(),
+				BazaPredmeta.getInstance().getRow(17).getSemestar(),BazaPredmeta.getInstance().getRow(17).getGodina(),
+				BazaPredmeta.getInstance().getRow(17).getEspb()));
+		studenti.get(22).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(17).getSpr(),BazaPredmeta.getInstance().getRow(17).getNaziv(),
+				BazaPredmeta.getInstance().getRow(17).getSemestar(),BazaPredmeta.getInstance().getRow(17).getGodina(),
+				BazaPredmeta.getInstance().getRow(17).getEspb()));
+		studenti.get(23).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(17).getSpr(),BazaPredmeta.getInstance().getRow(17).getNaziv(),
+				BazaPredmeta.getInstance().getRow(17).getSemestar(),BazaPredmeta.getInstance().getRow(17).getGodina(),
+				BazaPredmeta.getInstance().getRow(17).getEspb()));
+		studenti.get(24).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(17).getSpr(),BazaPredmeta.getInstance().getRow(17).getNaziv(),
+				BazaPredmeta.getInstance().getRow(17).getSemestar(),BazaPredmeta.getInstance().getRow(17).getGodina(),
+				BazaPredmeta.getInstance().getRow(17).getEspb()));
+		studenti.get(25).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(17).getSpr(),BazaPredmeta.getInstance().getRow(17).getNaziv(),
+				BazaPredmeta.getInstance().getRow(17).getSemestar(),BazaPredmeta.getInstance().getRow(17).getGodina(),
+				BazaPredmeta.getInstance().getRow(17).getEspb()));
+		
+		studenti.get(21).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(18).getSpr(),BazaPredmeta.getInstance().getRow(18).getNaziv(),
+				BazaPredmeta.getInstance().getRow(18).getSemestar(),BazaPredmeta.getInstance().getRow(18).getGodina(),
+				BazaPredmeta.getInstance().getRow(18).getEspb()));
+		studenti.get(22).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(18).getSpr(),BazaPredmeta.getInstance().getRow(18).getNaziv(),
+				BazaPredmeta.getInstance().getRow(18).getSemestar(),BazaPredmeta.getInstance().getRow(18).getGodina(),
+				BazaPredmeta.getInstance().getRow(18).getEspb()));
+		studenti.get(23).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(18).getSpr(),BazaPredmeta.getInstance().getRow(18).getNaziv(),
+				BazaPredmeta.getInstance().getRow(18).getSemestar(),BazaPredmeta.getInstance().getRow(18).getGodina(),
+				BazaPredmeta.getInstance().getRow(18).getEspb()));
+		studenti.get(25).getNepolozeniIspiti().add(new Predmet(BazaPredmeta.getInstance().getRow(18).getSpr(),BazaPredmeta.getInstance().getRow(18).getNaziv(),
+				BazaPredmeta.getInstance().getRow(18).getSemestar(),BazaPredmeta.getInstance().getRow(18).getGodina(),
+				BazaPredmeta.getInstance().getRow(18).getEspb()));*/
+		
+		
+		
 		refresh = studenti;
 	}
 

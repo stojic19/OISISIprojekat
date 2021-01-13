@@ -31,7 +31,7 @@ public class PretragaStudenata {
 
 	public PretragaStudenata(String pretraga) throws ParseException  {
 		
-		BazaStudenata.getInstance().osveziPrikaz();
+	//	BazaStudenata.getInstance().osveziPrikaz();
 		listapretraga= new ArrayList<Student>(BazaStudenata.getInstance().getStudenti());
         remove = new ArrayList<Student>();
 	

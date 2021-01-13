@@ -1,6 +1,10 @@
-/listeners/
-/table/
-/izgled/
-/model/
+/controller/
 /dialog/
+/izgled/
+/listeners/
+/model/
+/search/
+/studentska/
+/table/
+/tabs/
 /view/

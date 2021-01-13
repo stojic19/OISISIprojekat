@@ -188,9 +188,14 @@ public class PredmetView extends JPanel {
 				if(code == JOptionPane.YES_OPTION){
 					
 					try {
+					
+						
+						Profesor p = BazaPredmeta.getInstance().getRow(selRow).getProfesor();
+						Predmet pred = BazaPredmeta.getInstance().getRow(selRow);
 						BazaPredmeta.getInstance().getRow(selRow).setProfesor(null);
-						BazaPredmeta.getInstance().azurirajPredmet(BazaPredmeta.getInstance().getRow(selRow).getSpr());
-						BazaProfesora.getInstance().azurirajProfesora(BazaPredmeta.getInstance().getRow(selRow).getProfesor().getBrlk());
+						BazaProfesora.getInstance().ukloniPredmetProfesoru(p.getBrlk(), pred.getSpr());
+						BazaPredmeta.getInstance().azurirajPredmet(pred.getSpr());
+						BazaProfesora.getInstance().azurirajProfesora(p.getBrlk());
 						tfProfessor.setText("");
 						refreshView();
 					} catch (ParseException e1) {
