@@ -165,6 +165,24 @@ public class BazaProfesora {
 						p.setBrlk(brlk);
 						p.setTitula(t);
 						p.setZvanje(z);
+						
+							
+						for(Predmet pred : BazaPredmeta.getInstance().getPredmeti()){
+							if(pred.getProfesor()!=null)
+							if(pred.getProfesor().getBrlk().compareTo(licna_p)==0){
+								pred.setProfesor(p);
+							}
+						}
+						for(Predmet pred : p.getPredmeti()){
+							if(pred.getProfesor()!=null)
+								if(pred.getProfesor().getBrlk().compareTo(licna_p)==0){
+									pred.setProfesor(p);
+								}
+						}
+						
+						
+						
+						
 					}
 			}
 			for (Profesor p : refresh) {
@@ -219,5 +237,43 @@ public class BazaProfesora {
 			e.printStackTrace();
 		}
 	 }
+   
+   public void azurirajProfesora(String brlk) {
+		
+		for (Profesor p : profesori) {
+				if (0==p.getBrlk().compareTo(brlk)) {
+					
+					for(Predmet pred : BazaPredmeta.getInstance().getPredmeti()){
+						if(pred.getProfesor()!=null)
+						if(pred.getProfesor().getBrlk().compareTo(brlk)==0){
+							pred.setProfesor(p);
+						}
+					}
+					for(Predmet pred : p.getPredmeti()){
+						if(pred.getProfesor()!=null)
+							if(pred.getProfesor().getBrlk().compareTo(brlk)==0){
+								pred.setProfesor(p);
+							}
+					}
+				}
+		}
+		for (Profesor p : refresh) {
+			if (0==p.getBrlk().compareTo(brlk)) {
+				for(Predmet pred : BazaPredmeta.getInstance().getPredmeti()){
+					if(pred.getProfesor()!=null)
+					if(pred.getProfesor().getBrlk().compareTo(brlk)==0){
+						pred.setProfesor(p);
+					}
+				}
+				for(Predmet pred : p.getPredmeti()){
+					if(pred.getProfesor()!=null)
+						if(pred.getProfesor().getBrlk().compareTo(brlk)==0){
+							pred.setProfesor(p);
+						}
+				}
+			}
+    	}
+}
+ 
 }
 

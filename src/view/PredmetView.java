@@ -27,6 +27,7 @@ import listeners.document.PredmetDocumentListener;
 import listeners.focus.TextFieldFocusListener;
 import listeners.key.EspbKeyListener;
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
 import model.Profesor;
 import controller.PredmetiController;
@@ -185,9 +186,18 @@ public class PredmetView extends JPanel {
 				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da uklonite profesora?",
 						"Uklanjanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
 				if(code == JOptionPane.YES_OPTION){
-					BazaPredmeta.getInstance().getRow(selRow).setProfesor(null);
-					tfProfessor.setText("");
-					refreshView();
+					
+					try {
+						BazaPredmeta.getInstance().getRow(selRow).setProfesor(null);
+						BazaPredmeta.getInstance().azurirajPredmet(BazaPredmeta.getInstance().getRow(selRow).getSpr());
+						BazaProfesora.getInstance().azurirajProfesora(BazaPredmeta.getInstance().getRow(selRow).getProfesor().getBrlk());
+						tfProfessor.setText("");
+						refreshView();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 				}
 		});

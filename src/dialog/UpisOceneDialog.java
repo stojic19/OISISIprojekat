@@ -25,6 +25,7 @@ import listeners.focus.TextFieldFocusListener;
 import listeners.key.DateKeyListener;
 import model.BazaNepolozenihPredmeta;
 import model.BazaOcena;
+import model.BazaPredmeta;
 import model.BazaStudenata;
 import model.Predmet;
 import model.Ocena.VrednostOcene;
@@ -131,7 +132,9 @@ public class UpisOceneDialog extends JDialog{
 								
 						   Predmet o=BazaNepolozenihPredmeta.getInstance().getRow(predmet);
 		  		       	   BazaNepolozenihPredmeta.getInstance().removePredmet(o.getSpr());
-						   BazaOcena.getInstance().addOcena(BazaStudenata.getInstance().getRow(selRow),o,vo,new SimpleDateFormat("dd.MM.yyyy.").parse(txtDatum.getText()));
+					 	   BazaOcena.getInstance().addOcena(BazaStudenata.getInstance().getRow(selRow),o,vo,new SimpleDateFormat("dd.MM.yyyy.").parse(txtDatum.getText()));
+						   BazaStudenata.getInstance().azurirajStudenta(BazaStudenata.getInstance().getRow(selRow).getBrojIndeksa());
+						   BazaPredmeta.getInstance().azurirajPredmet(o.getSpr());
 						   dispose(); 
 						   }else {
 							  JOptionPane.showMessageDialog(null, "Unesite datum!", "Datum", JOptionPane.WARNING_MESSAGE, null);

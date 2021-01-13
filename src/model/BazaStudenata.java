@@ -152,10 +152,11 @@ public class BazaStudenata {
 				s.setStatus(nacin);
 				s.setBrojIndeksa(brIndeksa);
 				
+				
 				for(Ocena o : s.getPolozeniIspiti()){
 					o.setStudent(s);
 					
-					for(Predmet p : BazaPredmeta.getInstance().getPredmeti()){
+			   	for(Predmet p : BazaPredmeta.getInstance().getPredmeti()){
 						if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
 							for(Student s1: p.getPolozili()){
 								if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
@@ -167,7 +168,7 @@ public class BazaStudenata {
 							break;
 						}
 					}
-				}
+				 }
 				for(Predmet p: s.getNepolozeniIspiti()){
 					for(Predmet p1 : BazaPredmeta.getInstance().getPredmeti()){
 						if(p.getSpr().compareTo(p1.getSpr())==0){
@@ -181,7 +182,7 @@ public class BazaStudenata {
 					break;
 					}
 						}
-				}
+				 }
 			}
 		}
 		for (Student s : refresh) {
@@ -317,4 +318,77 @@ public class BazaStudenata {
 			e.printStackTrace();
 		}
 	 }
+	 
+	 
+	 public void azurirajStudenta(String brInd) {
+			for (Student s : studenti) {
+				if (0==s.getBrojIndeksa().compareTo(brInd)) {
+					for(Ocena o : s.getPolozeniIspiti()){
+						o.setStudent(s);
+						
+						for(Predmet p : BazaPredmeta.getInstance().getPredmeti()){
+							if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+								for(Student s1: p.getPolozili()){
+									if (0==s1.getBrojIndeksa().compareTo(brInd)){
+										s1=s;
+										o.setPredmet(p);
+										break;
+									}
+								}
+								break;
+							}
+						}
+					}
+					for(Predmet p: s.getNepolozeniIspiti()){
+						for(Predmet p1 : BazaPredmeta.getInstance().getPredmeti()){
+							if(p.getSpr().compareTo(p1.getSpr())==0){
+						for(Student s1: p1.getNisuPolozili()){
+							if (0==s1.getBrojIndeksa().compareTo(brInd)){
+								s1=s;
+								p = p1;
+								break;
+							}
+						}
+						break;
+						}
+							}
+					}
+				}
+			}
+			for (Student s : refresh) {
+				if (0==s.getBrojIndeksa().compareTo(brInd)) {
+					for(Ocena o : s.getPolozeniIspiti()){
+						o.setStudent(s);
+						
+						for(Predmet p : BazaPredmeta.getInstance().getPredmeti()){
+							if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+								for(Student s1: p.getPolozili()){
+									if (0==s1.getBrojIndeksa().compareTo(brInd)){
+										s1=s;
+										o.setPredmet(p);
+										break;
+									}
+								}
+								break;
+							}
+						}
+					}
+					for(Predmet p: s.getNepolozeniIspiti()){
+						for(Predmet p1 : BazaPredmeta.getInstance().getPredmeti()){
+							if(p.getSpr().compareTo(p1.getSpr())==0){
+						for(Student s1: p1.getNisuPolozili()){
+							if (0==s1.getBrojIndeksa().compareTo(brInd)){
+								s1=s;
+								p = p1;
+								break;
+							}
+						}
+						break;
+						}
+							}
+					}
+					break;
+				}
+			}
+		}
 }

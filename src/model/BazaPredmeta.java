@@ -110,6 +110,33 @@ public class BazaPredmeta {
 	public void removePredmet(String spr) throws ParseException {
 		for (Predmet p : predmeti) {
 			if (p.getSpr() == spr) {	
+				
+				
+				for(Profesor prof : BazaProfesora.getInstance().getProfesori()){
+					for(Predmet p1 : prof.getPredmeti()){
+						if(p1.getSpr().compareTo(p.getSpr())==0){
+							prof.getPredmeti().remove(p1);
+							break;
+						}
+					}
+				}
+				for(Student s : BazaStudenata.getInstance().getStudenti()){
+					for(Ocena o : s.getPolozeniIspiti())
+					{
+						if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+							s.getPolozeniIspiti().remove(o);
+							break;
+						}
+					}
+					for(Predmet p1 : s.getNepolozeniIspiti()){
+						if(p1.getSpr().compareTo(p.getSpr())==0){
+							s.getNepolozeniIspiti().remove(p1);
+							break;
+						}
+					}
+				}
+				
+				
 				predmeti.remove(p);
 				break;
 			}
@@ -261,5 +288,62 @@ public class BazaPredmeta {
 			}
 		}
 	}
+	
+public void poloziIspit(String spr, int selRow){
+		for(Predmet p : predmeti){
+			if(p.getSpr().compareTo(spr)==0){
+				try {
+					p.getPolozili().add(BazaStudenata.getInstance().getRow(selRow));
+					p.getNisuPolozili().remove(BazaStudenata.getInstance().getRow(selRow));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+	}
+public void azurirajPredmet(String spr) {
+		for (Predmet p : predmeti) {
+			if (p.getSpr().compareTo(spr) == 0){		
+				try {
+					for(Profesor prof : BazaProfesora.getInstance().getProfesori()){
+						for(Predmet p1 : prof.getPredmeti()){
+							if(p1.getSpr().compareTo(p.getSpr())==0){
+								p1 = p;
+								break;
+							}
+						}
+					}
+					for(Student s : BazaStudenata.getInstance().getStudenti()){
+						for(Ocena o : s.getPolozeniIspiti())
+						{
+							if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+								o.setPredmet(p);
+								break;
+							}
+						}
+						for(Predmet p1 : s.getNepolozeniIspiti()){
+							if(p1.getSpr().compareTo(p.getSpr())==0){
+								p1 = p;
+								break;
+							}
+						}
+					}
+					for (Predmet p1 : refresh) {
+						if (p1.getSpr().compareTo(spr) == 0){
+							p1=p;
+						}
+					}
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+	}
+
+
 
 }
