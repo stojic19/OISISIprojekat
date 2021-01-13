@@ -35,6 +35,7 @@ public class ProfesoriJTable extends JTable {
 		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
 		for(int i = 0;i < BazaProfesora.getInstance().getColumnCount();i++)
 		this.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
+		this.setAutoCreateRowSorter(true);
     }
 	
 	

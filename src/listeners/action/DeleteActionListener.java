@@ -47,7 +47,7 @@ public class DeleteActionListener implements ActionListener{
 				if(Tab.getInstance().getTabelaProfesora().getSelectedRow() >= 0){
 					 code = JOptionPane.showOptionDialog(parent ,"Da li ste sigurni da želite da obrišete profesora?","Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, mess, null);
 					if(code == JOptionPane.YES_OPTION){
-					ProfesoriController.getInstance().removeProfesor(Tab.getInstance().getTabelaProfesora().getSelectedRow());
+					ProfesoriController.getInstance().removeProfesor(Tab.getInstance().getTabelaProfesora().convertRowIndexToModel(Tab.getInstance().getTabelaProfesora().getSelectedRow()));
 					parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 					}else{
 						parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -61,7 +61,7 @@ public class DeleteActionListener implements ActionListener{
 				if(Tab.getInstance().getTabelaPredmeta().getSelectedRow() >= 0){
 					 code = JOptionPane.showOptionDialog(parent ,"Da li ste sigurni da želite da obrišete predmet?","Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, mess, null);
 					if(code == JOptionPane.YES_OPTION){
-						PredmetiController.getInstance().removePredmet(Tab.getInstance().getTabelaPredmeta().getSelectedRow());
+						PredmetiController.getInstance().removePredmet(Tab.getInstance().getTabelaPredmeta().convertRowIndexToModel(Tab.getInstance().getTabelaPredmeta().getSelectedRow()));
 						parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 					}else{
 						parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

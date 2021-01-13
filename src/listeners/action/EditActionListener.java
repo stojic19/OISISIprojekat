@@ -35,7 +35,7 @@ public class EditActionListener implements ActionListener {
 			case 1:
 				if(Tab.getInstance().getTabelaProfesora().getSelectedRow() >= 0){
 				
-				ProfesoriDialog dialog1 = new ProfesoriDialog(parent,Tab.getInstance().getTabelaProfesora().getSelectedRow());
+				ProfesoriDialog dialog1 = new ProfesoriDialog(parent,Tab.getInstance().getTabelaProfesora().convertRowIndexToModel(Tab.getInstance().getTabelaProfesora().getSelectedRow()));
 				dialog1.setVisible(true);
 				}else {
 					
@@ -44,7 +44,7 @@ public class EditActionListener implements ActionListener {
 				  break;
 			case 2:
 				if(Tab.getInstance().getTabelaPredmeta().getSelectedRow() >= 0){
-					PredmetDialog dialog2 = new PredmetDialog(parent,Tab.getInstance().getTabelaPredmeta().getSelectedRow());
+					PredmetDialog dialog2 = new PredmetDialog(parent,Tab.getInstance().getTabelaPredmeta().convertRowIndexToModel(Tab.getInstance().getTabelaPredmeta().getSelectedRow()));
 					dialog2.setVisible(true);
 				}else{
 					JOptionPane.showMessageDialog(null, "Odaberite predmet za izmenu!", "Izmena predmeta", JOptionPane.WARNING_MESSAGE,null);
