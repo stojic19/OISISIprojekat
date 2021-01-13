@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.Ocena.VrednostOcene;
+import model.Student.Finansiranje;
 
 public class Student implements Serializable{
 
@@ -31,6 +32,26 @@ public class Student implements Serializable{
 	
 	public Student(String ime,String prezime,Date datRodj,String adresa,String brojTel,String emailAdr,String brIndeksa,int godUpisa,int trenGodStud,Finansiranje nacin)
 	{
+		setPrezime(prezime);
+		setIme(ime);
+		setDatum(datRodj);
+		setAdresaStanovanja(adresa);
+		setKontaktTelefon(brojTel);
+		setEmailAdresa(emailAdr);
+		setBrojIndeksa(brIndeksa);
+		setGodinaUpisa(godUpisa);
+		setTrenutnaGodinaStudija(trenGodStud);
+		setStatus(nacin);
+		
+		polozeniIspiti = new ArrayList<Ocena>();
+		nepolozeniIspiti = new ArrayList<Predmet>();
+		
+		setProsecnaOcena(5.00);
+	}
+	public Student(String brIndeksa, String ime, String prezime, int trenGodStud,
+			Date datRodj, String adresa, String brojTel, String emailAdr,
+			Finansiranje nacin, int godUpisa) {
+		
 		setPrezime(prezime);
 		setIme(ime);
 		setDatum(datRodj);

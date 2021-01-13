@@ -280,7 +280,7 @@ public class ProfesorView extends JPanel{
 	public void refreshView() {
 		tfIme.setText(profesor.getIme());
 		tfPrz.setText(profesor.getPrz());
-		String timePattern = "dd.MM.yyyy";
+		String timePattern = "dd.MM.yyyy.";
 		DateFormat df = new SimpleDateFormat(timePattern);
 		tfDate.setText(df.format(profesor.getDatrodj()));
 		tfAdrs.setText(profesor.getAdrs());

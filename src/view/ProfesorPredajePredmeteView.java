@@ -95,6 +95,14 @@ public class ProfesorPredajePredmeteView extends JPanel {
 						
 					BazaProfesorPredajePredmete.getInstance().removePredmet(p.getSpr());
 					BazaPredmeta.getInstance().ukloniProfesoraSaPredmeta(p.getSpr(),selRow);
+					try {
+						BazaProfesora.getInstance().azurirajProfesora(BazaProfesora.getInstance().getRow(selRow).getBrlk());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					BazaPredmeta.getInstance().azurirajPredmet(p.getSpr());
+					
 					azurirajTabeluPPPredmeta("UKLONJEN",tabelaPredmeta.getSelectedRow());
 				
 				}

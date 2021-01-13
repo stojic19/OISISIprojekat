@@ -55,5 +55,12 @@ public class AbstractTableModelStudenti extends AbstractTableModel {
 		}
 		return columnIndex;
 	}
-	
+	@Override
+	public Class<?> getColumnClass(int columnIndex){
+		switch(columnIndex){
+		case 3 :return  Integer.class;
+		case 5 :return  Float.class;
+		default :return  String.class;
+		}
+	}
 }

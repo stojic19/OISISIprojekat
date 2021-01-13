@@ -69,6 +69,24 @@ public class Profesor implements Serializable {
 	}
 
 
+	public Profesor(String ime, String prz, Date datrodj, String adrs,
+			String ktel, String email, String adrk, String brlk,
+			Titula titula, Zvanje zvanje, Object object) {
+		super();
+		this.prz = prz;
+		this.ime = ime;
+		this.datrodj = datrodj;
+		this.adrs = adrs;
+		this.ktel = ktel;
+		this.email = email;
+		this.adrk = adrk;
+		this.brlk = brlk;
+		this.titula = titula;
+		this.zvanje = zvanje;
+		predmeti = new ArrayList<Predmet>();
+	}
+
+
 	public Titula nadjiTitulu(String titula) {
 		Titula t=null;
 		switch(Integer.parseInt(titula)) {

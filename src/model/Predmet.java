@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Predmet.Semestar;
+
 public class Predmet implements Serializable {
        private String spr;
        private String naziv;
@@ -41,6 +43,20 @@ public class Predmet implements Serializable {
 		this.semestar = semestar;
 		this.godina = godina;
 		this.profesor = null;
+		this.espb = espb;
+		
+		polozili= new ArrayList<Student>();
+		nisuPolozili= new ArrayList<Student>();
+	}
+
+
+	public Predmet(String spr, String naziv, int godina, int espb,Profesor profesor, Semestar s) {
+		super();
+		this.spr = spr;
+		this.naziv = naziv;
+		this.semestar = s;
+		this.godina = godina;
+		this.profesor = profesor;
 		this.espb = espb;
 		
 		polozili= new ArrayList<Student>();

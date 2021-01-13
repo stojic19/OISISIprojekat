@@ -34,7 +34,7 @@ public class DeleteActionListener implements ActionListener{
 				if(Tab.getInstance().getTabelaStudenata().getSelectedRow() >= 0){
 					 code = JOptionPane.showOptionDialog(parent ,"Da li ste sigurni da želite da obrišete sudenta?","Brisanje studenta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, mess, null);
 					if(code == JOptionPane.YES_OPTION){
-					StudentiController.getInstance().removeStudent(Tab.getInstance().getTabelaStudenata().getSelectedRow());
+					StudentiController.getInstance().removeStudent(Tab.getInstance().getTabelaStudenata().convertRowIndexToModel(Tab.getInstance().getTabelaStudenata().getSelectedRow()));
 					parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 					}else{
 					parent.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

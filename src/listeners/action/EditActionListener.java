@@ -26,7 +26,7 @@ public class EditActionListener implements ActionListener {
 			switch(Tab.getInstance().getSelectedIndex()){
 			case 0:
 				if(Tab.getInstance().getTabelaStudenata().getSelectedRow() >= 0){
-				StudentDialog dialog = new StudentDialog(parent,Tab.getInstance().getTabelaStudenata().getSelectedRow());
+				StudentDialog dialog = new StudentDialog(parent,Tab.getInstance().getTabelaStudenata().convertRowIndexToModel(Tab.getInstance().getTabelaStudenata().getSelectedRow()));
 				dialog.setVisible(true);
 				}else{
 					JOptionPane.showMessageDialog(null, "Odaberite studenta za izmenu!", "Izmena studenta", JOptionPane.WARNING_MESSAGE,null);

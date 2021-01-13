@@ -72,6 +72,8 @@ public class DodavanjeProfNaPredmetDialog extends JDialog {
 						p = BazaProfesora.getInstance().getRow(list.getSelectedIndex());
 						BazaPredmeta.getInstance().getPredmeti().get(selRow).setProfesor(p);
 						BazaProfesora.getInstance().getRow(list.getSelectedIndex()).getPredmeti().add(BazaPredmeta.getInstance().getRow(selRow));
+						BazaPredmeta.getInstance().azurirajPredmet(BazaPredmeta.getInstance().getRow(selRow).getSpr());
+						BazaProfesora.getInstance().azurirajProfesora(p.getBrlk());
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

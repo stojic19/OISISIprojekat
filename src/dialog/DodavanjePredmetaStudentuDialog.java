@@ -77,7 +77,15 @@ public class DodavanjePredmetaStudentuDialog extends JDialog {
 				{
 					Predmet p = predmeti.get(list.getSelectedIndex());
 					BazaNepolozenihPredmeta.getInstance().addPredmet(p.getSpr(), p.getNaziv(), p.getSemestar(), p.getGodina(), p.getEspb());
-				
+					BazaPredmeta.getInstance().dodajStudentaUNepolozene(p.getSpr(), selRow);
+					try {
+						BazaStudenata.getInstance().azurirajStudenta(BazaStudenata.getInstance().getRow(selRow).getBrojIndeksa());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					BazaPredmeta.getInstance().azurirajPredmet(p.getSpr());
+					
 					predmeti.remove(list.getSelectedIndex());
 					
 					list.updateUI();

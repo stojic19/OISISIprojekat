@@ -1,5 +1,7 @@
 package view;
 
+import izgled.Tab;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -22,6 +24,7 @@ import model.BazaOcena;
 import model.BazaPredmeta;
 import model.BazaStudenata;
 import model.Ocena;
+import model.Predmet;
 import table.AbstractTableModelNepolozeniPredmeti;
 import table.AbstractTableModelOcene;
 import table.NepolozeniPredmetiJTable;
@@ -117,9 +120,23 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 						
 					BazaOcena.getInstance().removeOcena(o.getPredmet().getSpr());
 					BazaNepolozenihPredmeta.getInstance().addPredmet(o.getPredmet().getSpr(), o.getPredmet().getNaziv(), o.getPredmet().getSemestar(), o.getPredmet().getGodina(), o.getPredmet().getEspb());
-					BazaPredmeta.getInstance().dodajStudentaUNepolozene(o.getPredmet().getSpr(), selRow);
+					BazaPredmeta.getInstance().ponistiOcenu(o.getPredmet().getSpr(), selRow);
+					try {
+						BazaStudenata.getInstance().azurirajStudenta(BazaStudenata.getInstance().getRow(selRow).getBrojIndeksa());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					BazaPredmeta.getInstance().azurirajPredmet(o.getPredmet().getSpr());
+					
 					azurirajTabeluOcena("UKLONJEN",tabelaOcena.getSelectedRow());
 					azurirajTabeluNP("DODAT", -1);
+					try {
+						Tab.getInstance().azurirajPrikazStudenta(null, -1);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				}else{
 					JOptionPane.showMessageDialog(null, "Odaberite predmet za poništavanje!", "Poništavanje predmeta", JOptionPane.WARNING_MESSAGE,null);
@@ -208,8 +225,17 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 				int code = JOptionPane.showOptionDialog(null ,"Da li ste sigurni da zelite da uklonite predmet?",
 						"Uklanjanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, mess, null);
 				if(code == JOptionPane.YES_OPTION){
-					BazaPredmeta.getInstance().ukloniStudentaSaPredmeta(BazaNepolozenihPredmeta.getInstance().getRow(tabelaPredmeta.getSelectedRow()).getSpr(),selRow);
-					BazaNepolozenihPredmeta.getInstance().removePredmet(BazaNepolozenihPredmeta.getInstance().getRow(tabelaPredmeta.getSelectedRow()).getSpr());
+					Predmet p = BazaNepolozenihPredmeta.getInstance().getRow(tabelaPredmeta.getSelectedRow());
+					BazaPredmeta.getInstance().ukloniStudentaSaPredmeta(p.getSpr(),selRow);
+					BazaNepolozenihPredmeta.getInstance().removePredmet(p.getSpr());
+					try {
+						BazaStudenata.getInstance().azurirajStudenta(BazaStudenata.getInstance().getRow(selRow).getBrojIndeksa());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					BazaPredmeta.getInstance().azurirajPredmet(p.getSpr());
+					
 					azurirajTabeluNP("UKLONJEN",tabelaPredmeta.getSelectedRow());
 				}
 				}
@@ -231,6 +257,8 @@ public class OceneNepolozeniPredmetiView extends JPanel {
 					dialog.repaint();
 					azurirajTabeluNP("UKLONJEN", tabelaPredmeta.getSelectedRow());
 					azurirajTabeluOcena("DODAT", -1);
+					
+					Tab.getInstance().azurirajPrikazStudenta(null, -1);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
