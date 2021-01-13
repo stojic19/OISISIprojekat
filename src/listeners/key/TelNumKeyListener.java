@@ -37,7 +37,7 @@ public class TelNumKeyListener implements KeyListener {
 		}
 		char c = arg0.getKeyChar();
 		if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
-				&& c != '9' && c != '+') {
+				&& c != '9' && c != '+' && c!='/' && c!='-') {
 			JOptionPane.showMessageDialog(null, "Dozvoljen je unos samo brojeva i znaka plus!");
 			JTextField txt = (JTextField) arg0.getComponent();
 			txt.setText(txt.getText().substring(0, txt.getText().length() - 1));

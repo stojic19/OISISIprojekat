@@ -134,8 +134,6 @@ public class DodavanjePredmetaProfesoruDialog extends JDialog {
 		
 		for(Predmet p : BazaPredmeta.getInstance().getPredmeti())
 		{
-			
-	
            if(p.getProfesor()==null) {
 			listModel.addElement(p.getSpr() + " - " + p.getNaziv());
 			
