@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -274,7 +273,7 @@ public class BazaProfesora {
 								pred.setProfesor(p);
 							for(Predmet pred1 : BazaPredmeta.getInstance().getPredmeti()){
 								if(pred1.getSpr().matches(pred.getSpr())){
-									pred1 = pred;
+									pred1.setProfesor(p);
 								}
 							}
 					}

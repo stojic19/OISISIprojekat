@@ -8,12 +8,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import model.Ocena.VrednostOcene;
 import model.Student.Finansiranje;
 
 public class BazaStudenata {
@@ -252,7 +250,16 @@ public class BazaStudenata {
 						if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
 							for(Student s1: p.getPolozili()){
 								if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
-									s1=s;
+									s1.setPrezime(prezime);
+									s1.setIme(ime);
+									s1.setDatum(datRodj);
+									s1.setAdresaStanovanja(adresa);
+									s1.setKontaktTelefon(brojTel);
+									s1.setEmailAdresa(emailAdr);
+									s1.setGodinaUpisa(godUpisa);
+									s1.setTrenutnaGodinaStudija(trenGodStud);
+									s1.setStatus(nacin);
+									s1.setBrojIndeksa(brIndeksa);
 									o.setPredmet(p);
 									break;
 								}
@@ -266,8 +273,22 @@ public class BazaStudenata {
 						if(p.getSpr().compareTo(p1.getSpr())==0){
 					for(Student s1: p1.getNisuPolozili()){
 						if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
-							s1=s;
-							p = p1;
+							s1.setPrezime(prezime);
+							s1.setIme(ime);
+							s1.setDatum(datRodj);
+							s1.setAdresaStanovanja(adresa);
+							s1.setKontaktTelefon(brojTel);
+							s1.setEmailAdresa(emailAdr);
+							s1.setGodinaUpisa(godUpisa);
+							s1.setTrenutnaGodinaStudija(trenGodStud);
+							s1.setStatus(nacin);
+							s1.setBrojIndeksa(brIndeksa);
+							p.setSpr(p1.getSpr());
+							p.setNaziv(p1.getNaziv());
+							p.setSemestar(p1.getSemestar());
+							p.setGodina(p1.getGodina());
+							p.setEspb(p1.getEspb());
+							p.setProfesor(p1.getProfesor());
 							break;
 						}
 					}
@@ -297,7 +318,16 @@ public class BazaStudenata {
 						if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
 							for(Student s1: p.getPolozili()){
 								if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
-									s1=s;
+									s1.setPrezime(prezime);
+									s1.setIme(ime);
+									s1.setDatum(datRodj);
+									s1.setAdresaStanovanja(adresa);
+									s1.setKontaktTelefon(brojTel);
+									s1.setEmailAdresa(emailAdr);
+									s1.setGodinaUpisa(godUpisa);
+									s1.setTrenutnaGodinaStudija(trenGodStud);
+									s1.setStatus(nacin);
+									s1.setBrojIndeksa(brIndeksa);
 									o.setPredmet(p);
 									break;
 								}
@@ -311,8 +341,22 @@ public class BazaStudenata {
 						if(p.getSpr().compareTo(p1.getSpr())==0){
 					for(Student s1: p1.getNisuPolozili()){
 						if (0==s1.getBrojIndeksa().compareTo(stariBrInd)){
-							s1=s;
-							p = p1;
+							s1.setPrezime(prezime);
+							s1.setIme(ime);
+							s1.setDatum(datRodj);
+							s1.setAdresaStanovanja(adresa);
+							s1.setKontaktTelefon(brojTel);
+							s1.setEmailAdresa(emailAdr);
+							s1.setGodinaUpisa(godUpisa);
+							s1.setTrenutnaGodinaStudija(trenGodStud);
+							s1.setStatus(nacin);
+							s1.setBrojIndeksa(brIndeksa);
+							p.setSpr(p1.getSpr());
+							p.setNaziv(p1.getNaziv());
+							p.setSemestar(p1.getSemestar());
+							p.setGodina(p1.getGodina());
+							p.setEspb(p1.getEspb());
+							p.setProfesor(p1.getProfesor());
 							break;
 						}
 					}
@@ -422,7 +466,16 @@ public class BazaStudenata {
 							if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
 								for(Student s1: p.getPolozili()){
 									if (0==s1.getBrojIndeksa().compareTo(brInd)){
-										s1=s;
+										s1.setPrezime(s.getPrezime());
+										s1.setIme(s.getIme());
+										s1.setDatum(s.getDatum());
+										s1.setAdresaStanovanja(s.getAdresaStanovanja());
+										s1.setKontaktTelefon(s.getKontaktTelefon());
+										s1.setEmailAdresa(s.getEmailAdresa());
+										s1.setGodinaUpisa(s.getGodinaUpisa());
+										s1.setTrenutnaGodinaStudija(s.getTrenutnaGodinaStudija());
+										s1.setStatus(s.getStatus());
+										s1.setBrojIndeksa(s.getBrojIndeksa());
 										o.setPredmet(p);
 										break;
 									}
@@ -436,8 +489,22 @@ public class BazaStudenata {
 							if(p.getSpr().compareTo(p1.getSpr())==0){
 						for(Student s1: p1.getNisuPolozili()){
 							if (0==s1.getBrojIndeksa().compareTo(brInd)){
-								s1=s;
-								p = p1;
+								s1.setPrezime(s.getPrezime());
+								s1.setIme(s.getIme());
+								s1.setDatum(s.getDatum());
+								s1.setAdresaStanovanja(s.getAdresaStanovanja());
+								s1.setKontaktTelefon(s.getKontaktTelefon());
+								s1.setEmailAdresa(s.getEmailAdresa());
+								s1.setGodinaUpisa(s.getGodinaUpisa());
+								s1.setTrenutnaGodinaStudija(s.getTrenutnaGodinaStudija());
+								s1.setStatus(s.getStatus());
+								s1.setBrojIndeksa(s.getBrojIndeksa());
+								p.setSpr(p1.getSpr());
+								p.setNaziv(p1.getNaziv());
+								p.setSemestar(p1.getSemestar());
+								p.setGodina(p1.getGodina());
+								p.setEspb(p1.getEspb());
+								p.setProfesor(p1.getProfesor());
 								break;
 							}
 						}
@@ -456,7 +523,16 @@ public class BazaStudenata {
 							if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
 								for(Student s1: p.getPolozili()){
 									if (0==s1.getBrojIndeksa().compareTo(brInd)){
-										s1=s;
+										s1.setPrezime(s.getPrezime());
+										s1.setIme(s.getIme());
+										s1.setDatum(s.getDatum());
+										s1.setAdresaStanovanja(s.getAdresaStanovanja());
+										s1.setKontaktTelefon(s.getKontaktTelefon());
+										s1.setEmailAdresa(s.getEmailAdresa());
+										s1.setGodinaUpisa(s.getGodinaUpisa());
+										s1.setTrenutnaGodinaStudija(s.getTrenutnaGodinaStudija());
+										s1.setStatus(s.getStatus());
+										s1.setBrojIndeksa(s.getBrojIndeksa());
 										o.setPredmet(p);
 										break;
 									}
@@ -470,8 +546,22 @@ public class BazaStudenata {
 							if(p.getSpr().compareTo(p1.getSpr())==0){
 						for(Student s1: p1.getNisuPolozili()){
 							if (0==s1.getBrojIndeksa().compareTo(brInd)){
-								s1=s;
-								p = p1;
+								s1.setPrezime(s.getPrezime());
+								s1.setIme(s.getIme());
+								s1.setDatum(s.getDatum());
+								s1.setAdresaStanovanja(s.getAdresaStanovanja());
+								s1.setKontaktTelefon(s.getKontaktTelefon());
+								s1.setEmailAdresa(s.getEmailAdresa());
+								s1.setGodinaUpisa(s.getGodinaUpisa());
+								s1.setTrenutnaGodinaStudija(s.getTrenutnaGodinaStudija());
+								s1.setStatus(s.getStatus());
+								s1.setBrojIndeksa(s.getBrojIndeksa());
+								p.setSpr(p1.getSpr());
+								p.setNaziv(p1.getNaziv());
+								p.setSemestar(p1.getSemestar());
+								p.setGodina(p1.getGodina());
+								p.setEspb(p1.getEspb());
+								p.setProfesor(p1.getProfesor());
 								break;
 							}
 						}

@@ -210,8 +210,13 @@ public class BazaPredmeta {
 				try {
 					for(Profesor prof : BazaProfesora.getInstance().getProfesori()){
 						for(Predmet p1 : prof.getPredmeti()){
-							if(p1.getSpr().compareTo(p.getSpr())==0){
-								p1 = p;
+							if(p1.getSpr().compareTo(staraSpr)==0){
+								p1.setSpr(p.getSpr());
+								p1.setNaziv(p.getNaziv());
+								p1.setSemestar(p.getSemestar());
+								p1.setGodina(p.getGodina());
+								p1.setEspb(p.getEspb());
+								p1.setProfesor(p.getProfesor());
 								break;
 							}
 						}
@@ -219,14 +224,19 @@ public class BazaPredmeta {
 					for(Student s : BazaStudenata.getInstance().getStudenti()){
 						for(Ocena o : s.getPolozeniIspiti())
 						{
-							if(o.getPredmet().getSpr().compareTo(p.getSpr())==0){
+							if(o.getPredmet().getSpr().compareTo(staraSpr)==0){
 								o.setPredmet(p);
 								break;
 							}
 						}
 						for(Predmet p1 : s.getNepolozeniIspiti()){
-							if(p1.getSpr().compareTo(p.getSpr())==0){
-								p1 = p;
+							if(p1.getSpr().compareTo(staraSpr)==0){
+								p1.setSpr(spr);
+								p1.setNaziv(naziv);
+								p1.setSemestar(semestar);
+								p1.setGodina(godina);
+								p1.setEspb(espb);
+								p1.setProfesor(p.getProfesor());
 								break;
 							}
 						}
@@ -372,7 +382,12 @@ public void azurirajPredmet(String spr) {
 					for(Profesor prof : BazaProfesora.getInstance().getProfesori()){
 						for(Predmet p1 : prof.getPredmeti()){
 							if(p1.getSpr().compareTo(p.getSpr())==0){
-								p1 = p;
+								p1.setSpr(p.getSpr());
+								p1.setNaziv(p.getNaziv());
+								p1.setSemestar(p.getSemestar());
+								p1.setGodina(p.getGodina());
+								p1.setEspb(p.getEspb());
+								p1.setProfesor(p.getProfesor());
 								break;
 							}
 						}
@@ -387,14 +402,24 @@ public void azurirajPredmet(String spr) {
 						}
 						for(Predmet p1 : s.getNepolozeniIspiti()){
 							if(p1.getSpr().compareTo(p.getSpr())==0){
-								p1 = p;
+								p1.setSpr(p.getSpr());
+								p1.setNaziv(p.getNaziv());
+								p1.setSemestar(p.getSemestar());
+								p1.setGodina(p.getGodina());
+								p1.setEspb(p.getEspb());
+								p1.setProfesor(p.getProfesor());
 								break;
 							}
 						}
 					}
 					for (Predmet p1 : refresh) {
 						if (p1.getSpr().compareTo(spr) == 0){
-							p1=p;
+							p1.setSpr(p.getSpr());
+							p1.setNaziv(p.getNaziv());
+							p1.setSemestar(p.getSemestar());
+							p1.setGodina(p.getGodina());
+							p1.setEspb(p.getEspb());
+							p1.setProfesor(p.getProfesor());
 						}
 					}
 				} catch (ParseException e) {
